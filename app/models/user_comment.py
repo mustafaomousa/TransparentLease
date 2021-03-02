@@ -12,7 +12,7 @@ class UserComment(db.Model):
     pinned = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
-    broker_reply = db.relationship("Broker_Reply")
+    broker_reply = db.relationship("BrokerReply")
 
     def to_dict(self):
         return {

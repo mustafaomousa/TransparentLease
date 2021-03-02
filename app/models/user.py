@@ -22,7 +22,8 @@ class User(db.Model, UserMixin):
     zip_code = db.Column(db.Integer, nullable=True)
     created_at = db.Column(db.Date, nullable=True)
 
-    broker_lease_infos = db.relationship("Lease_Info", back_populates="users")
+    broker_lease_infos = db.relationship("LeaseInfo", back_populates="users")
+    broker_deals = db.relationship("BrokerDeal", back_populates="users")
 
     @property
     def password(self):

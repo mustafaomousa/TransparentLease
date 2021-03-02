@@ -7,3 +7,4 @@ from .model import Model
 from .style import Style
 from .trim import Trim
 from .lease_info import LeaseInfo
+from .broker_deal import BrokerDeal

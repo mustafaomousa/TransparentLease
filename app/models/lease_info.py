@@ -22,7 +22,8 @@ class LeaseInfo(db.Model):
     payment = db.Column(db.Float, nullable=False)
 
     broker = db.relationship("Broker", back_populates="lease_infos")
-    trim = db.relationship("trim", back_populates="lease_infos")
+    trim = db.relationship("Trim", back_populates="lease_infos")
+    broker_deal = db.relationship("BrokerDeal", back_populates="lease_infos")
 
     def to_dict(self):
         return {
@@ -40,4 +41,5 @@ class LeaseInfo(db.Model):
             "conquest": self.conquest,
             "additional_fees": self.additional_fees,
             "payment": self.payment,
+            "broker_deal": self.broker_deal
         }
