@@ -1,26 +1,26 @@
 from .db import db
 
 
-class User_Comment(db.Model):
-    __tablename__ = 'user_comments'
+class Broker_Reply(db.Model):
+    __tablename__ = 'broker_replies'
 
     id = db.Column(db.Integer, primary_key=True)
+    user_comment_id = db.Column(
+        db.Integer, db.ForeignKey("user_comments.id"), nullable=False)
     broker_id = db.Column(
         db.Integer, db.ForeignKey("users.id"), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    comment = db.Column(db.String, nullable=False)
-    pinned = db.Column(db.Boolean)
+    reply = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
-    broker_reply = db.relationship("Broker_Reply")
+
+    comment = db.relationship("User_Comment", back_populates="broker_replies")
 
     def to_dict(self):
         return {
             "id": self.id,
+            "user_comment_id": self.user_comment_id,
             "broker_id": self.broker_id,
-            "user_id": self.user_id,
-            "comment": self.comment,
-            "pinned": self.pinned,
+            "reply": self.reply,
             "created_at": self.created_at,
             "updated_at": self.updated_at
 
