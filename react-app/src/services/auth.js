@@ -1,5 +1,5 @@
-export const authenticate = async() => {
-  const response = await fetch('/api/auth/',{
+export const authenticate = async () => {
+  const response = await fetch('/api/auth/', {
     headers: {
       'Content-Type': 'application/json'
     }
@@ -31,7 +31,8 @@ export const logout = async () => {
 };
 
 
-export const signUp = async (username, email, password) => {
+export const signUp = async (username, email, password, address, bio, broker, city, dealer,
+  header, name, profileImage, state, zipcode) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: {
@@ -41,6 +42,16 @@ export const signUp = async (username, email, password) => {
       username,
       email,
       password,
+      address,
+      bio,
+      broker,
+      city,
+      dealer,
+      header,
+      name,
+      profile_image=profileImage,
+      state,
+      zip_code=zipcode
     }),
   });
   return await response.json();
