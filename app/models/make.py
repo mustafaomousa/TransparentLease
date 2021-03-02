@@ -9,6 +9,7 @@ class Make(db.Model):
     luxury = db.Column(db.Boolean)
 
     models = db.relationship("Model", back_populates="makes")
+    trims = db.relationship("Trim", back_populates="styles")
 
     def to_dict(self):
         return {

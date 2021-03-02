@@ -5,3 +5,4 @@ from .broker_reply import Broker_Reply
 from .make import Make
 from .model import Model
 from .style import Style
+from .trim import Trim
