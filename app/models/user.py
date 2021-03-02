@@ -28,6 +28,7 @@ class User(db.Model, UserMixin):
         "BrokerDealNote", back_populates="users")
     broker_pictures = db.relationship(
         "BrokerDealPicture", back_populates="users")
+    user_alerts = db.relationship("DealAlert", back_populates="users")
 
     @property
     def password(self):

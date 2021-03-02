@@ -9,7 +9,8 @@ class Model(db.Model):
     name = db.Column(db.String(100), nullable=False)
 
     make = db.relationship("Make", back_populates="models")
-    trims = db.relationship("Trim", back_populates="styles")
+    trims = db.relationship("Trim", back_populates="models")
+    alerts = db.relationship("DealAlert", back_populates="models")
 
     def to_dict(self):
         return {

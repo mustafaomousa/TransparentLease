@@ -11,6 +11,7 @@ class Make(db.Model):
     models = db.relationship("Model", back_populates="makes")
     trims = db.relationship("Trim", back_populates="makes")
     broker_deals = db.relationship("BrokerDeal", back_populates="makes")
+    alerts = db.relationship("DealAlert", back_populates="makes")
 
     def to_dict(self):
         return {

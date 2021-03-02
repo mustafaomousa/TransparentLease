@@ -10,3 +10,4 @@ from .lease_info import LeaseInfo
 from .broker_deal import BrokerDeal
 from .broker_deal_note import BrokerDealNote
 from .broker_deal_picture import BrokerDealPicture
+from .deal_alert import DealAlert
