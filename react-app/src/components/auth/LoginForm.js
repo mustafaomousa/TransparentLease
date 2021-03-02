@@ -30,13 +30,13 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form className="ui form" onSubmit={onLogin}>
       <div>
         {errors.map((error) => (
           <div>{error}</div>
         ))}
       </div>
-      <div>
+      <div className="field">
         <label htmlFor="email">Email</label>
         <input
           name="email"
