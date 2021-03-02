@@ -3,6 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from datetime import *
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -66,7 +67,18 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            address=form.data['address'],
+            bio=form.data['bio'],
+            broker=form.data['broker'],
+            city=form.data['city'],
+            created_at=datetime.now(),
+            dealer=form.data['dealer'],
+            header=form.data['header'],
+            name=form.data['name'],
+            profile_image=form.data['profile_image'],
+            state=form.data['state'],
+            zip_code=form.data['zip_code']
         )
         db.session.add(user)
         db.session.commit()
