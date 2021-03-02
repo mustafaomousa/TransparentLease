@@ -3,6 +3,8 @@ from .users import seed_users, undo_users
 from .makes import seed_makes, undo_makes
 from .models import seed_models, undo_models
 from .styles import seed_styles, undo_styles
+from .trims import seed_trims, undo_trims
+
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
@@ -16,6 +18,7 @@ def seed():
     seed_makes()
     seed_models()
     seed_styles()
+    seed_trims()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
@@ -27,4 +30,5 @@ def undo():
     undo_makes()
     undo_models()
     undo_styles()
+    undo_trims()
     # Add other undo functions here
