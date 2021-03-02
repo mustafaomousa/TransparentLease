@@ -24,6 +24,8 @@ class User(db.Model, UserMixin):
 
     broker_lease_infos = db.relationship("LeaseInfo", back_populates="users")
     broker_deals = db.relationship("BrokerDeal", back_populates="users")
+    broker_notes = db.relationship(
+        "BrokerDealNote", back_populates="broker_deals")
 
     @property
     def password(self):
