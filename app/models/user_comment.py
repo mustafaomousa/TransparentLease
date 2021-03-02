@@ -1,7 +1,7 @@
 from .db import db
 
 
-class User_Comment(db.Model):
+class UserComment(db.Model):
     __tablename__ = 'user_comments'
 
     id = db.Column(db.Integer, primary_key=True)

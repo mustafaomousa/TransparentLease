@@ -1,7 +1,7 @@
 from .db import db
 
 
-class Broker_Reply(db.Model):
+class BrokerReply(db.Model):
     __tablename__ = 'broker_replies'
 
     id = db.Column(db.Integer, primary_key=True)

@@ -20,6 +20,7 @@ class Trim(db.Model):
     model = db.relationship("Model", back_populates='trims')
     make = db.relationship("Make", back_populates="trims")
     style = db.relationship("Style", back_populates="trims")
+    lease_infos = db.relationship("Lease_Info", back_populates="trims")
 
     def to_dict(self):
         return {
