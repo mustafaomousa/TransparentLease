@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
+import { Form } from "semantic-ui-react";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
@@ -30,34 +31,34 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <form className="ui form" onSubmit={onLogin}>
-      <div>
+    <Form onSubmit={onLogin}>
+      <Form.Field>
         {errors.map((error) => (
           <div>{error}</div>
         ))}
-      </div>
-      <div className="field">
+      </Form.Field>
+      <Form.Field className="field">
         <label htmlFor="email">Email</label>
-        <input
+        <Form.Input
           name="email"
           type="text"
           placeholder="Email"
           value={email}
           onChange={updateEmail}
         />
-      </div>
-      <div>
+      </Form.Field>
+      <Form.Field>
         <label htmlFor="password">Password</label>
-        <input
+        <Form.Input
           name="password"
           type="password"
           placeholder="Password"
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
-      </div>
-    </form>
+        <Form.Button type="submit">Login</Form.Button>
+      </Form.Field>
+    </Form>
   );
 };
 

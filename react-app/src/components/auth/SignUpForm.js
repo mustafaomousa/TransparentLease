@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
+import { Form } from "semantic-ui-react";
 import { signUp } from '../../services/auth';
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,46 +40,46 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
+    <Form onSubmit={onSignUp}>
+      <Form.Field>
         <label>User Name</label>
-        <input
+        <Form.Input
           type="text"
           name="username"
           onChange={updateUsername}
           value={username}
-        ></input>
-      </div>
-      <div>
+        ></Form.Input>
+      </Form.Field>
+      <Form.Field>
         <label>Email</label>
-        <input
+        <Form.Input
           type="text"
           name="email"
           onChange={updateEmail}
           value={email}
-        ></input>
-      </div>
-      <div>
+        ></Form.Input>
+      </Form.Field>
+      <Form.Field>
         <label>Password</label>
-        <input
+        <Form.Input
           type="password"
           name="password"
           onChange={updatePassword}
           value={password}
-        ></input>
-      </div>
-      <div>
+        ></Form.Input>
+      </Form.Field>
+      <Form.Field>
         <label>Repeat Password</label>
-        <input
+        <Form.Input
           type="password"
           name="repeat_password"
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
-        ></input>
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
+        ></Form.Input>
+      </Form.Field>
+      <Form.Button type="submit">Sign Up</Form.Button>
+    </Form>
   );
 };
 
