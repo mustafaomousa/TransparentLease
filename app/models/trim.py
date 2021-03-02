@@ -17,10 +17,10 @@ class Trim(db.Model):
     awd = db.Column(db.Boolean)
     cylinders = db.Column(db.Integer, nullable=False)
 
-    model = db.relationship("Model", back_populates='trims')
-    make = db.relationship("Make", back_populates="trims")
-    style = db.relationship("Style", back_populates="trims")
-    lease_infos = db.relationship("LeaseInfo", back_populates="trims")
+    model = db.relationship("Model")
+    make = db.relationship("Make")
+    style = db.relationship("Style")
+    lease_infos = db.relationship("LeaseInfo")
 
     def to_dict(self):
         return {

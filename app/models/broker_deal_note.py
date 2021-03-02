@@ -11,8 +11,8 @@ class BrokerDealNote(db.Model):
         "broker_deals.id"), nullable=False)
     note = db.Column(db.String, nullable=False)
 
-    broker = db.relationship("User", back_populates="broker_deal_notes")
-    deal = db.relationship("BrokerDeal", back_populates="broker_deal_notes")
+    broker = db.relationship("User")
+    deal = db.relationship("BrokerDeal")
 
     def to_dict(self):
         return {

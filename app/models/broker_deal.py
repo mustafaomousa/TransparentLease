@@ -18,12 +18,12 @@ class BrokerDeal(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
-    broker = db.relationship("Broker", back_populates="broker_deals")
-    make = db.relationship("Make", back_populates="broker_deals")
-    lease_info = db.relationship("LeaseInfo", back_populates="broker_deals")
-    notes = db.relationship("BrokerDealNote", back_populates="broker_deals")
+    broker = db.relationship("User")
+    make = db.relationship("Make")
+    lease_info = db.relationship("LeaseInfo")
+    notes = db.relationship("BrokerDealNote")
     broker_pictures = db.relationship(
-        "BrokerDealPicture", back_populates="broker_deals")
+        "BrokerDealPicture")
 
     def to_dict(self):
         return {

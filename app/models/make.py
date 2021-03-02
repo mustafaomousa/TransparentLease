@@ -8,10 +8,10 @@ class Make(db.Model):
     name = db.Column(db.String(100), nullable=False)
     luxury = db.Column(db.Boolean)
 
-    models = db.relationship("Model", back_populates="makes")
-    trims = db.relationship("Trim", back_populates="makes")
-    broker_deals = db.relationship("BrokerDeal", back_populates="makes")
-    alerts = db.relationship("DealAlert", back_populates="makes")
+    models = db.relationship("Model")
+    trims = db.relationship("Trim")
+    broker_deals = db.relationship("BrokerDeal")
+    alerts = db.relationship("DealAlert")
 
     def to_dict(self):
         return {

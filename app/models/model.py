@@ -8,9 +8,9 @@ class Model(db.Model):
     make_id = db.Column(db.Integer, db.ForeignKey('makes.id'), nullable=False)
     name = db.Column(db.String(100), nullable=False)
 
-    make = db.relationship("Make", back_populates="models")
-    trims = db.relationship("Trim", back_populates="models")
-    alerts = db.relationship("DealAlert", back_populates="models")
+    make = db.relationship("Make")
+    trims = db.relationship("Trim")
+    alerts = db.relationship("DealAlert")
 
     def to_dict(self):
         return {

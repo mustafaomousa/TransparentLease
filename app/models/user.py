@@ -22,13 +22,13 @@ class User(db.Model, UserMixin):
     zip_code = db.Column(db.Integer, nullable=True)
     created_at = db.Column(db.Date, nullable=True)
 
-    broker_lease_infos = db.relationship("LeaseInfo", back_populates="users")
-    broker_deals = db.relationship("BrokerDeal", back_populates="users")
+    broker_lease_infos = db.relationship("LeaseInfo")
+    broker_deals = db.relationship("BrokerDeal")
     broker_notes = db.relationship(
-        "BrokerDealNote", back_populates="users")
+        "BrokerDealNote")
     broker_pictures = db.relationship(
-        "BrokerDealPicture", back_populates="users")
-    user_alerts = db.relationship("DealAlert", back_populates="users")
+        "BrokerDealPicture")
+    user_alerts = db.relationship("DealAlert")
 
     @property
     def password(self):

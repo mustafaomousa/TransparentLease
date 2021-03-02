@@ -13,7 +13,7 @@ class BrokerReply(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
-    comment = db.relationship("UserComment", back_populates="broker_replies")
+    comment = db.relationship("UserComment")
 
     def to_dict(self):
         return {

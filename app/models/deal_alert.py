@@ -11,9 +11,9 @@ class DealAlert(db.Model):
         "models.id"), nullable=False)
     trim = db.Column(db.String(100), nullable=False)
 
-    user = db.relationship("User", back_populates="deal_alerts")
-    make = db.relationship("Make", back_populates="deal_alerts")
-    model = db.relationship("Model", back_populates="deal_alerts")
+    user = db.relationship("User")
+    make = db.relationship("Make")
+    model = db.relationship("Model")
 
     def to_dict(self):
         return {
