@@ -49,9 +49,9 @@ export const signUp = async (username, email, password, address, bio, broker, ci
       dealer,
       header,
       name,
-      profile_image=profileImage,
+      profile_image: profileImage,
       state,
-      zip_code=zipcode
+      zip_code: zipcode
     }),
   });
   return await response.json();
