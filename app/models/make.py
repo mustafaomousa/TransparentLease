@@ -14,6 +14,6 @@ class Make(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "luxury": self.luxury
-
+            "luxury": self.luxury,
+            "models": self.models
         }

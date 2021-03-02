@@ -14,6 +14,5 @@ class Model(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "luxury": self.luxury
-
+            "make": self.make
         }
