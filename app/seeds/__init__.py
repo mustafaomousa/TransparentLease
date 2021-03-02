@@ -4,6 +4,7 @@ from .makes import seed_makes, undo_makes
 from .models import seed_models, undo_models
 from .styles import seed_styles, undo_styles
 from .trims import seed_trims, undo_trims
+from .broker_deals import seed_broker_deals, undo_broker_deals
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -19,6 +20,7 @@ def seed():
     seed_models()
     seed_styles()
     seed_trims()
+    seed_broker_deals()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
@@ -31,4 +33,5 @@ def undo():
     undo_models()
     undo_styles()
     undo_trims()
+    undo_broker_deals()
     # Add other undo functions here
