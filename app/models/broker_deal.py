@@ -22,6 +22,8 @@ class BrokerDeal(db.Model):
     make = db.relationship("Make", back_populates="broker_deals")
     lease_info = db.relationship("LeaseInfo", back_populates="broker_deals")
     notes = db.relationship("BrokerDealNote", back_populates="broker_deals")
+    broker_pictures = db.relationship(
+        "BrokerDealPicture", back_populates="broker_deals")
 
     def to_dict(self):
         return {
