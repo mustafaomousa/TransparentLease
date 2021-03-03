@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
-import { Menu, Dropdown, Icon, Button, Form, Input, Search, Grid, Sidebar, Segment, Header, Image, HorizontalDivider, Label } from "semantic-ui-react";
+import { Menu, User as UserIcon } from "grommet-icons"
+import { Avatar, Anchor, Nav, Grommet, Header, Box, Sidebar, Button, Collapsible, Heading } from 'grommet';
+import { grommet } from "grommet";
+
 import configureStore from "./store";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
@@ -12,6 +15,7 @@ import User from "./components/User";
 import { authenticate } from "./services/auth";
 import 'semantic-ui-css/semantic.min.css'
 import MakeDealsComponent from "./components/MakeDealsComponent";
+
 
 function App() {
   const history = useHistory();
@@ -37,40 +41,35 @@ function App() {
   return (
     <ReduxProvider store={store}>
       <BrowserRouter>
-        <NavBarComponent setAuthenticated={setAuthenticated} loaded={loaded} setVisible={setVisible} visible={visible} />
-        <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='push' direction='left' icon='labeled' vertical visible={visible} width="large">
-            <Menu.Item as="a" onClick={() => { history.push('/') }}>
-              <h3>Home</h3>
-            </Menu.Item>
-          </Sidebar>
-          <Sidebar.Pusher dimmed={visible}>
-            <Segment basic id="body">
-              <Switch>
-                <Route path="/make/:makeName" exact={true}>
-                  <MakeDealsComponent />
-                </Route>
-                <Route path="/login" exact={true}>
-                  <LoginForm
-                    authenticated={authenticated}
-                    setAuthenticated={setAuthenticated}
-                  />
-                </Route>
-                <Route path="/sign-up" exact={true}>
-                  <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-                </Route>
-                <Route path="/:userId" exact={true}>
-                  <User />
-                </Route>
-                <Route path="/" exact={true} >
-                  <HomePageComponent />
-                </Route>
-              </Switch>
-            </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-
-
+        <Grommet full>
+          <NavBarComponent>
+            <Button icon={<Menu />} />
+            <Heading level="3">TransparentLease</Heading>
+            <Button icon={<UserIcon />} />
+          </NavBarComponent>
+          <Box flex align="center" justify="center">
+            <Switch>
+              <Route path="/make/:makeName" exact={true}>
+                <MakeDealsComponent />
+              </Route>
+              <Route path="/login" exact={true}>
+                <LoginForm
+                  authenticated={authenticated}
+                  setAuthenticated={setAuthenticated}
+                />
+              </Route>
+              <Route path="/sign-up" exact={true}>
+                <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+              </Route>
+              <Route path="/:userId" exact={true}>
+                <User />
+              </Route>
+              <Route path="/" exact={true} >
+                <HomePageComponent />
+              </Route>
+            </Switch>
+          </Box>
+        </Grommet>
       </BrowserRouter>
     </ReduxProvider >
   );
