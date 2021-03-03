@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Close as CloseIcon, Alert as AlertIcon } from "grommet-icons"
 import { getAllLatestDeals } from '../../store/deals';
+import CalculatorBasicComponent from "../CalculatorComponents/CalculatorBasicComponent";
 import './homepage.css'
+
+
 const HomePageComponent = () => {
     const dispatch = useDispatch();
     const [hideAlert, setHideAlert] = useState(false);
@@ -36,9 +39,7 @@ const HomePageComponent = () => {
                 </div>
                 <div className="basic-calculator-container">
                     <div className="basic-calculator">
-                        <div className="basic-calculator-button-container">
-                            <Button>Advanced</Button>
-                        </div>
+                        <CalculatorBasicComponent />
                     </div>
                 </div>
             </div>
