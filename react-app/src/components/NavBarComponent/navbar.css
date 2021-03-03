@@ -1,3 +1,8 @@
+
+.navbar {
+    margin: 5px;
+}
+
 .nav-footer {
     display: flex;
     align-items: center;
@@ -15,5 +20,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 75px;
+    height: 60px;
 }

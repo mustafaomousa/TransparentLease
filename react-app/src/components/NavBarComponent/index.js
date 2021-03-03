@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Menu, Dropdown, Icon, Button } from "semantic-ui-react";
+import { Menu, Dropdown, Icon, Button, Form, Input, Search, Grid, Sidebar, Segment, Header, Image } from "semantic-ui-react";
 
 import LogoutButton from "../auth/LogoutButton"
 import './navbar.css'
 
-const NavBarComponent = ({ setAuthenticated, authenticated }) => {
+const NavBarComponent = ({ setAuthenticated, authenticated, setVisible, visible }) => {
     const history = useHistory();
     const [activeItem, setActiveItem] = useState("")
 
@@ -17,24 +17,23 @@ const NavBarComponent = ({ setAuthenticated, authenticated }) => {
     return (
         <div className='navbar'>
             <Menu className='menu-navbar' attached='top'>
-                <Menu.Item position="left">
+                <Menu.Item position="left" onClick={() => setVisible(!visible)}>
+                    <Icon name="bars" size="big" />
+                </Menu.Item>
+                <Menu.Item onClick={() => history.push('/')}>
                     <h1>TransparentLease</h1>
                 </Menu.Item>
-                <Menu.Item position='right' id='deals' active={activeItem === "deals"} onClick={updateActiveItem}>
-                    Deals
-                </Menu.Item>
-                <Menu.Item name="brokers" id="brokers" active={activeItem === "brokers"} onClick={updateActiveItem}>
-                    Brokers
-                </Menu.Item>
-                <Menu.Item name="calculator" id="calculator" active={activeItem === "calculator"} onClick={updateActiveItem}>
-                    Calculator
-                </Menu.Item>
-                <Menu.Item>
-                    <Button>Profile</Button>
-                </Menu.Item>
-                <Menu.Item>
-                    <Icon name="search" />
-                </Menu.Item>
+                <Menu.Menu position="right" id='nav-search'>
+                    <div className='ui right aligned category search'>
+                        <div className="ui transparent icon input">
+                            <input className='prompt' type='text'>
+                            </input>
+                            <i className='search link icon' />
+                        </div>
+                        <div className="results">
+                        </div>
+                    </div>
+                </Menu.Menu>
                 {authenticated === true && (<LogoutButton setAuthenticated={setAuthenticated} />)}
             </Menu >
             <div className='nav-footer'>
@@ -45,7 +44,9 @@ const NavBarComponent = ({ setAuthenticated, authenticated }) => {
                     <p>Already a member? <Link to='/login'>Click here!</Link></p>
                 </div>
             </div>
+            <div>
 
+            </div>
         </div >
 
     )

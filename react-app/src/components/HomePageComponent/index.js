@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllLatestDeals } from '../../store/deals';
-
+import './homepage.css'
 const HomePageComponent = () => {
     const dispatch = useDispatch();
 
@@ -9,6 +9,7 @@ const HomePageComponent = () => {
 
     return (
         <div>
+            <h1>Home Page</h1>
             <div>
 
             </div>
