@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getAllLatestDeals, getMakeDeals } from '../../store/deals';
+import { getAllLatestDeals } from '../../store/deals';
 
 const HomePageComponent = () => {
     const dispatch = useDispatch();

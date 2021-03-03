@@ -36,5 +36,6 @@ def specific_broker_deals(broker_id):
 
 @deal_routes.route('/make/<make_name>')
 def specific_make_deals(make_name):
-    make_deals = BrokerDeal.query.join(Make, Make.name.ilike(make_name))
-    return {"make_deals": {broker_deal.id: broker_deal.to_dict() for broker_deal in make_deals}}
+    make_deals = BrokerDeal.query.join(Make, Make.name.like(make_name))
+    return {"make_deals": [make_deal.to_dict() for make_deal in make_deals]}
+    # return {"make_deals": {broker_deal.id: broker_deal.to_dict() for broker_deal in make_deals}}

@@ -7,10 +7,10 @@ import SignUpForm from "./components/auth/SignUpForm";
 import HomePageComponent from "./components/HomePageComponent";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
 import 'semantic-ui-css/semantic.min.css'
+import MakeDealsComponent from "./components/MakeDealsComponent";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -37,6 +37,9 @@ function App() {
       <BrowserRouter>
         <NavBar setAuthenticated={setAuthenticated} />
         <Switch>
+          <Route path="/make/:makeName" exact={true}>
+            <MakeDealsComponent />
+          </Route>
           <Route path="/login" exact={true}>
             <LoginForm
               authenticated={authenticated}
