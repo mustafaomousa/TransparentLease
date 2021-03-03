@@ -15,6 +15,7 @@ import User from "./components/User";
 import { authenticate } from "./services/auth";
 import 'semantic-ui-css/semantic.min.css'
 import MakeDealsComponent from "./components/MakeDealsComponent";
+import SideBarComponent from "./components/NavBarComponent/SideBarComponent";
 
 
 function App() {
@@ -43,31 +44,37 @@ function App() {
       <BrowserRouter>
         <Grommet full>
           <NavBarComponent>
-            <Button icon={<Menu />} />
+            <Button icon={<Menu />} onClick={() => setVisible(!visible)} />
             <Heading level="3">TransparentLease</Heading>
             <Button icon={<UserIcon />} />
           </NavBarComponent>
-          <Box flex align="center" justify="center">
-            <Switch>
-              <Route path="/make/:makeName" exact={true}>
-                <MakeDealsComponent />
-              </Route>
-              <Route path="/login" exact={true}>
-                <LoginForm
-                  authenticated={authenticated}
-                  setAuthenticated={setAuthenticated}
-                />
-              </Route>
-              <Route path="/sign-up" exact={true}>
-                <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-              </Route>
-              <Route path="/:userId" exact={true}>
-                <User />
-              </Route>
-              <Route path="/" exact={true} >
-                <HomePageComponent />
-              </Route>
-            </Switch>
+          <Box direction="row" flex>
+            <Collapsible direction="horizontal" open={visible}>
+              <SideBarComponent />
+            </Collapsible>
+            <Box>
+              <Switch>
+                <Route path="/make/:makeName" exact={true}>
+                  <MakeDealsComponent />
+                </Route>
+                <Route path="/login" exact={true}>
+                  <LoginForm
+                    authenticated={authenticated}
+                    setAuthenticated={setAuthenticated}
+                  />
+                </Route>
+                <Route path="/sign-up" exact={true}>
+                  <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+                </Route>
+                <Route path="/:userId" exact={true}>
+                  <User />
+                </Route>
+                <Route path="/" exact={true} >
+                  <HomePageComponent />
+                </Route>
+              </Switch>
+            </Box>
+
           </Box>
         </Grommet>
       </BrowserRouter>
