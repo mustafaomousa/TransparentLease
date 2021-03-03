@@ -1,6 +1,6 @@
-const LOAD = "spot/getLatestDeals";
+const LOAD = "spot/getDeals";
 
-const getLatestDeals = (deals) => {
+const getDeals = (deals) => {
     return {
         type: LOAD,
         payload: deals,
@@ -10,8 +10,14 @@ const getLatestDeals = (deals) => {
 export const getAllLatestDeals = () => async (dispatch) => {
     const response = await fetch("/api/deals");
     const deals = await response.json();
-    return dispatch(getLatestDeals(deals));
+    return dispatch(getDeals(deals));
 };
+
+export const getMakeDeals = (makeName) => async (dispatch) => {
+    const response = await fetch(`/api/deals/make/${makeName}`);
+    const deals = await response.json();
+    return dispatch(getDeals(deals));
+}
 
 const initialState = {};
 
