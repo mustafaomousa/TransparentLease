@@ -1,8 +1,9 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
+import dealReducer from "./deals";
 
 const rootReducer = combineReducers({
-
+    deals: dealReducer
 });
 
 let enhancer;
