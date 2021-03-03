@@ -11,3 +11,7 @@ p, a, button, span {
     font-family: 'Metrophobic', sans-serif;
     font-size: 17px;
 }
+
+body {
+    background-color: whitesmoke;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
-import { Menu, Search as SearchIcon } from "grommet-icons"
+import { Menu, Notification as AlertIcon } from "grommet-icons"
 import { Avatar, Anchor, Nav, Grommet, Header, Box, Sidebar, Button, Collapsible, Heading, Footer } from 'grommet';
 import { grommet } from "grommet";
 
@@ -45,7 +45,7 @@ function App() {
           <NavBarComponent>
             <Button icon={<Menu />} onClick={() => setVisible(!visible)} />
             <Heading level="3">TransparentLease</Heading>
-            <Button icon={<SearchIcon />} />
+            <Button icon={<AlertIcon />} />
           </NavBarComponent>
           <Box direction="row" flex>
             <Collapsible direction="horizontal" open={visible}>
@@ -74,9 +74,9 @@ function App() {
               </Switch>
             </Box>
           </Box>
-          <Footer className="nav-footer" pad="small">
+          {/* <Footer className="nav-footer" pad="small">
             test
-          </Footer>
+          </Footer> */}
         </Grommet>
       </BrowserRouter>
     </ReduxProvider >

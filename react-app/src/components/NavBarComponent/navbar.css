@@ -5,6 +5,8 @@
     width: 100%;
     background-color: #3D5A80;
     padding: 0px 20px;
+    height: 65px;
+    z-index: 2;
 }
 
 #sidebar {
@@ -12,8 +14,9 @@
 
     position: fixed;
     top: 65px;
-    background-color: whitesmoke;
+    background-color: #3D5A80;
     height: 730px;
+    z-index: 1;
 }
 
 .nav-footer {

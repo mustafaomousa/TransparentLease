@@ -2,25 +2,36 @@
 .home-body {
     width: 100%;
     height: 100%;
+    padding: 105px 0px;
 }
 
 .home-header {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    background-color: lightgray;
+    position: fixed;
+    top:    65px;
     width: 100%;
-    height: 300px;
-    padding-bottom: 50px;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #3D5A80;
+    height: 50px;
+    z-index: 0;
 }
 
 .home-brands {
+    padding: 20px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightblue;
+    /* background-color: #3D5A80; */
+    height: 85px;
+}
+
+.brands {
     width: 100%;
-    height: 80px;
+    height: 100%;
+    background-color: #293241;
 }
 
 .home-1-container {
@@ -31,11 +42,38 @@
 }
 
 .advertised-deal-container {
-    background-color: lightcyan;
+    padding: 20px 20px;
+}
+
+.advertised-deal {
+    border-radius: 0.25em;
+    width: 100%;
+    height: 100%;
+    background-color: #293241;
 }
 
 .basic-calculator-container {
-    background-color: lightgreen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background-color: lightgreen; */
+    padding: 20px 20px;
+}
+
+.basic-calculator-button-container {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.basic-calculator {
+    border-radius: 0.25em;
+    width: 100%;
+    height: 100%;
+    background-color: #293241;
 }
 
 .how-it-works-container {
@@ -43,17 +81,24 @@
 }
 
 .how-it-works-1-container {
-    background-color: lightpink;
+    padding: 20px 20px;
     height: 500px;
 }
 
+.how-it-works-1, .how-it-works-2, .how-it-works-3 {
+    border-radius: 0.25em;
+    width: 100%;
+    height: 100%;
+    background-color: #293241;
+}
+
 .how-it-works-2-container {
-    background-color: lightblue;
+    padding: 20px 20px;
     height: 500px;
 }
 
 .how-it-works-3-container {
-    background-color: lightyellow;
+    padding: 20px 20px;
     height: 500px;
 }
 
@@ -83,4 +128,8 @@
     width: 100%;
     height: 50px;
     background-color: darkblue;
+}
+
+.hidden {
+    display: none;
 }
