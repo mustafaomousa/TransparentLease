@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "semantic-ui-react";
 import { logout } from "../../services/auth";
 
 const LogoutButton = ({ setAuthenticated }) => {
@@ -7,7 +8,7 @@ const LogoutButton = ({ setAuthenticated }) => {
     setAuthenticated(false);
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return <Button onClick={onLogout}>Logout</Button>;
 };
 
 export default LogoutButton;
