@@ -1,0 +1,19 @@
+.nav-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.nav-footer-content {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
+.menu-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+}

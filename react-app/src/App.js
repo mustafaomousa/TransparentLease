@@ -35,7 +35,7 @@ function App() {
   return (
     <ReduxProvider store={store}>
       <BrowserRouter>
-        <NavBarComponent setAuthenticated={setAuthenticated} />
+        <NavBarComponent setAuthenticated={setAuthenticated} loaded={loaded} />
         <Switch>
           <Route path="/make/:makeName" exact={true}>
             <MakeDealsComponent />
