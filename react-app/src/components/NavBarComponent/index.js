@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Menu, Dropdown, Icon } from "semantic-ui-react";
+import { Menu, Dropdown, Icon, Button } from "semantic-ui-react";
 
 import LogoutButton from "../auth/LogoutButton"
 import './navbar.css'
@@ -17,7 +17,9 @@ const NavBarComponent = ({ setAuthenticated, authenticated }) => {
     return (
         <div className='navbar'>
             <Menu className='menu-navbar' attached='top'>
-                <h1>TransparentLease</h1>
+                <Menu.Item position="left">
+                    <h1>TransparentLease</h1>
+                </Menu.Item>
                 <Menu.Item position='right' id='deals' active={activeItem === "deals"} onClick={updateActiveItem}>
                     Deals
                 </Menu.Item>
@@ -26,6 +28,12 @@ const NavBarComponent = ({ setAuthenticated, authenticated }) => {
                 </Menu.Item>
                 <Menu.Item name="calculator" id="calculator" active={activeItem === "calculator"} onClick={updateActiveItem}>
                     Calculator
+                </Menu.Item>
+                <Menu.Item>
+                    <Button>Profile</Button>
+                </Menu.Item>
+                <Menu.Item>
+                    <Icon name="search" />
                 </Menu.Item>
                 {authenticated === true && (<LogoutButton setAuthenticated={setAuthenticated} />)}
             </Menu >
