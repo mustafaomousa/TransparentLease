@@ -25,6 +25,10 @@ class BrokerDeal(db.Model):
     broker_pictures = db.relationship(
         "BrokerDealPicture")
 
+    @property
+    def deal_make(self):
+        return self.make.make_name
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -34,5 +38,7 @@ class BrokerDeal(db.Model):
             "advertised": self.advertise,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "lease_info": self.lease_info.to_dict()
+            "lease_info": self.lease_info.to_dict(),
+            "make": self.make.to_dict(),
+            "broker": self.broker.to_dict()
         }

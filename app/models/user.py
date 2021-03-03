@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.Date, nullable=True)
 
     broker_lease_infos = db.relationship("LeaseInfo")
-    broker_deals = db.relationship("BrokerDeal")
+    broker_deals = db.relationship("BrokerDeal", backref="users")
     broker_notes = db.relationship(
         "BrokerDealNote")
     broker_pictures = db.relationship(

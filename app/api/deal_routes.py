@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db, BrokerDeal
+from app.models import User, db, BrokerDeal, Make
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import *
 from sqlalchemy import and_
@@ -32,3 +32,9 @@ def specific_broker_deals(broker_id):
         BrokerDeal.broker_id == int(broker_id)).all()
 
     return {"current_broker_deals": {broker_deal.id: broker_deal.to_dict() for broker_deal in broker_deals}}
+
+
+@deal_routes.route('/make/<make_name>')
+def specific_make_deals(make_name):
+    make_deals = BrokerDeal.query.join(Make, Make.name.ilike(make_name))
+    return {"make_deals": {broker_deal.id: broker_deal.to_dict() for broker_deal in make_deals}}

@@ -10,8 +10,12 @@ class Make(db.Model):
 
     models = db.relationship("Model")
     trims = db.relationship("Trim")
-    broker_deals = db.relationship("BrokerDeal")
+    broker_deals = db.relationship("BrokerDeal", backref="makes")
     alerts = db.relationship("DealAlert")
+
+    @property
+    def make_name(self):
+        return self.name
 
     def to_dict(self):
         return {
