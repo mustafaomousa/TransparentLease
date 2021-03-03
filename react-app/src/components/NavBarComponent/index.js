@@ -16,14 +16,14 @@ const NavBarComponent = ({ setAuthenticated, authenticated, setVisible, visible 
 
     return (
         <div className='navbar'>
-            <Menu className='menu-navbar' attached='top'>
-                <Menu.Item position="left" onClick={() => setVisible(!visible)}>
+            <Menu className='menu-navbar' widths='3' attached='top' fixed='top'>
+                <Menu.Item onClick={() => setVisible(!visible)}>
                     <Icon name="bars" size="big" />
                 </Menu.Item>
                 <Menu.Item onClick={() => history.push('/')}>
                     <h1>TransparentLease</h1>
                 </Menu.Item>
-                <Menu.Menu position="right" id='nav-search'>
+                <Menu.Menu id='nav-search'>
                     <div className='ui right aligned category search'>
                         <div className="ui transparent icon input">
                             <input className='prompt' type='text'>

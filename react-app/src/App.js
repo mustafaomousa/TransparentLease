@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import { Menu, Dropdown, Icon, Button, Form, Input, Search, Grid, Sidebar, Segment, Header, Image, HorizontalDivider, Label } from "semantic-ui-react";
 import configureStore from "./store";
@@ -14,6 +14,7 @@ import 'semantic-ui-css/semantic.min.css'
 import MakeDealsComponent from "./components/MakeDealsComponent";
 
 function App() {
+  const history = useHistory();
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -39,7 +40,7 @@ function App() {
         <NavBarComponent setAuthenticated={setAuthenticated} loaded={loaded} setVisible={setVisible} visible={visible} />
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='push' direction='left' icon='labeled' vertical visible={visible} width="large">
-            <Menu.Item as="a">
+            <Menu.Item as="a" onClick={() => { history.push('/') }}>
               <h3>Home</h3>
             </Menu.Item>
           </Sidebar>
