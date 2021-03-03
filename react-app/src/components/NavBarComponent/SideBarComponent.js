@@ -1,14 +1,17 @@
 import { Box, Nav, Sidebar, Button, Stack, Avatar, Text } from 'grommet';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './navbar.css'
+
+const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
 
 const SideBarHeader = () => (
-    <Box align="center" gap="small" direction="row" margin={{ bottom: "large" }}>
+    <Box align="flex-start" gap="small" direction="row" margin={{ bottom: "large" }}>
         <Stack alignSelf="start" align="center" anchor="top-right">
-            <Avatar />
+            <Avatar src={src} />
             {/* <Box>Mustafa Mousa</Box> */}
         </Stack>
-        <Text>Mustafa Mousa</Text>
+        <Text>Guest</Text>
     </Box>
 )
 
@@ -25,7 +28,7 @@ const SideBarFooter = () => (
 
 const SideBarComponent = () => {
     return (
-        <Box width="medium" elevation='small' align='center' justify='center' flex>
+        <Box id="sidebar" width="230px" height="100%" elevation='large' align='start' justify='center' flex>
             <Sidebar height="100%" footer={<SideBarFooter />} header={<SideBarHeader />}>
                 <Nav>
                     <Button>

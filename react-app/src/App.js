@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import { Menu, User as UserIcon } from "grommet-icons"
-import { Avatar, Anchor, Nav, Grommet, Header, Box, Sidebar, Button, Collapsible, Heading } from 'grommet';
+import { Avatar, Anchor, Nav, Grommet, Header, Box, Sidebar, Button, Collapsible, Heading, Footer } from 'grommet';
 import { grommet } from "grommet";
 
 import configureStore from "./store";
@@ -52,7 +52,7 @@ function App() {
             <Collapsible direction="horizontal" open={visible}>
               <SideBarComponent />
             </Collapsible>
-            <Box>
+            <Box width="100%">
               <Switch>
                 <Route path="/make/:makeName" exact={true}>
                   <MakeDealsComponent />
@@ -74,8 +74,10 @@ function App() {
                 </Route>
               </Switch>
             </Box>
-
           </Box>
+          <Footer className="nav-footer" pad="small">
+            test
+          </Footer>
         </Grommet>
       </BrowserRouter>
     </ReduxProvider >

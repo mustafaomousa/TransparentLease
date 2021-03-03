@@ -1,6 +1,18 @@
 
-.navbar {
-    margin: 5px;
+#navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: darkblue;
+}
+
+#sidebar {
+    padding: 30px 20px;
+
+    position: fixed;
+    top: 65px;
+    background-color: whitesmoke;
+    height: 730px;
 }
 
 .nav-footer {
@@ -8,13 +20,11 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    background-color: darkblue;
+    position: fixed;
+    bottom: 0;
 }
 
-.nav-footer-content {
-    display: flex;
-    justify-content: center;
-    width: 30%;
-}
 
 .menu-navbar {
     /* display: flex;
