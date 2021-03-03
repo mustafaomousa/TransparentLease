@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
-import { Menu, User as UserIcon } from "grommet-icons"
+import { Menu, Search as SearchIcon } from "grommet-icons"
 import { Avatar, Anchor, Nav, Grommet, Header, Box, Sidebar, Button, Collapsible, Heading, Footer } from 'grommet';
 import { grommet } from "grommet";
 
@@ -13,7 +13,6 @@ import NavBarComponent from "./components/NavBarComponent";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
-import 'semantic-ui-css/semantic.min.css'
 import MakeDealsComponent from "./components/MakeDealsComponent";
 import SideBarComponent from "./components/NavBarComponent/SideBarComponent";
 
@@ -46,7 +45,7 @@ function App() {
           <NavBarComponent>
             <Button icon={<Menu />} onClick={() => setVisible(!visible)} />
             <Heading level="3">TransparentLease</Heading>
-            <Button icon={<UserIcon />} />
+            <Button icon={<SearchIcon />} />
           </NavBarComponent>
           <Box direction="row" flex>
             <Collapsible direction="horizontal" open={visible}>

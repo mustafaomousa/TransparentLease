@@ -23,7 +23,14 @@ const HomePageComponent = () => {
                 <div className="basic-calculator-container"></div>
             </div>
             <div className="how-it-works-container">
-                <div className="how-it-works-1-container"></div>
+                <div className="how-it-works-1-container">
+                    <h1>this is a h1</h1>
+                    <h2>this is a h2</h2>
+                    <h3>this is a h3</h3>
+                    <h4>this is a h4</h4>
+                    <p>this is a p</p>
+                    <a>this is a a</a>
+                </div>
                 <div className="how-it-works-2-container"></div>
                 <div className="how-it-works-3-container"></div>
             </div>
