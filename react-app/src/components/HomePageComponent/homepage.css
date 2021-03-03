@@ -1,3 +1,32 @@
+#deal-carousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#carousel-part {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    width: 100%;
+    height: 100%;
+}
+
+#card {
+    border-radius: 0.15em;
+    width: 200px;
+    height: 240px;
+    margin: 0px 20px;
+}
+
+#card-footer {
+    height: 100px;
+    background-color: #EE6C4D;
+}
 
 .home-body {
     width: 100%;
@@ -35,40 +64,32 @@
     border-radius: 0.25em;
 }
 
-.home-1-container {
-    display: grid;
-    grid-template-columns: 30% 70%;
-    width: 100%;
-    height: 300px;
+@media (max-width: 1300px) {
+    .home-1-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .basic-calculator-container {
+        height: 280px;
+    }
+}
+
+@media (min-width: 1300px) {
+    .home-1-container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        width: 100%;
+        height: 300px;
+    }
 }
 
 .advertised-deal-container {
     border-radius: 0.25em;
-    margin: 0px 20px;
+    margin: 0px 0px;
     padding: 10px;
-    background-color: #293241;
 }
 
-.advertised-deal {
-    display: grid;
-    grid-template-rows: 12% 87% ;
-    width: 100%;
-    height: 100%;
-    border-radius: 0.25em;
-    color: white;
-}
 
-.advertised-deal-header, .advertised-deal-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.advertised-deal-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .basic-calculator-container {
     display: flex;
@@ -208,4 +229,42 @@
 
 .hidden {
     display: none;
+}
+
+p.speech-bubble {
+    color: whitesmoke;
+    font-weight: bold;
+    position: relative;
+    width: 96px;
+    height: 24px;
+    text-align: center;
+    line-height: 25px;
+    background-color: #EE6C4D;
+    border: 2px solid #EE6C4D;
+    bottom: 64px;
+    left: -43px;
+    transform: rotate(-90deg);
+}
+
+p.speech-bubble:before {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 98px;
+    top: -2px;
+    border: 13.5px solid;
+    border-color: #9c4833 transparent transparent #9c4833;
+    transform: rotate(270deg);
+}
+
+p.speech:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 38px;
+  top: 100px;
+  border: 15px solid;
+  border-color: #fff transparent transparent #fff;
 }
