@@ -16,5 +16,5 @@ class Model(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "make": self.make
+            "make": self.make.to_dict()
         }

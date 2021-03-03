@@ -28,13 +28,11 @@ class BrokerDeal(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "broker": self.broker,
-            "make": self.make,
-            "lease_info": self.lease_info,
             "fee": self.fee,
             "active_month_year": self.active_month_year,
             "listed": self.listed,
             "advertised": self.advertise,
             "created_at": self.created_at,
-            "updated_at": self.updated_at
+            "updated_at": self.updated_at,
+            "lease_info": self.lease_info.to_dict()
         }

@@ -28,8 +28,8 @@ class LeaseInfo(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "broker": self.broker,
-            "trim": self.trim,
+            "broker": self.broker.to_dict(),
+            "trim": self.trim.to_dict(),
             "months": self.months,
             "miles_yearly": self.miles_yearly,
             "money_factor": self.money_factor,
@@ -40,6 +40,5 @@ class LeaseInfo(db.Model):
             "lease_cash": self.lease_cash,
             "conquest": self.conquest,
             "additional_fees": self.additional_fees,
-            "payment": self.payment,
-            "broker_deal": self.broker_deal
+            "payment": self.payment
         }

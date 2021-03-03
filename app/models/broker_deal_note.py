@@ -17,8 +17,7 @@ class BrokerDealNote(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "broker": self.broker,
-            "deal": self.deal,
-            "broker": self.broker,
+            "broker": self.broker.to_dict(),
+            "deal": self.deal.to_dict(),
             "note": self.note
         }

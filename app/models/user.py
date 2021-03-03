@@ -42,6 +42,7 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        print(self.broker_deals)
         return {
             "id": self.id,
             "name": self.name,
@@ -53,5 +54,4 @@ class User(db.Model, UserMixin):
             "header": self.header,
             "bio": self.bio,
             "profile_image": self.profile_image
-
         }

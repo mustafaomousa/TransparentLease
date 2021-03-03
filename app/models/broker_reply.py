@@ -23,5 +23,5 @@ class BrokerReply(db.Model):
             "reply": self.reply,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "comment": self.comment
+            "comment": self.comment.to_dict()
         }

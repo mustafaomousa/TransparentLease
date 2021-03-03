@@ -26,9 +26,9 @@ class Trim(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "style": self.style,
-            "make": self.make,
-            "model": self.model,
+            "style": self.style.to_dict(),
+            "make": self.make.to_dict(),
+            # "model": self.model.to_dict(),
             "doors": self.doors,
             "fuel_type": self.fuel_type,
             "awd": self.awd,

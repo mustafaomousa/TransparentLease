@@ -18,8 +18,8 @@ class DealAlert(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "user": self.user,
-            "make": self.make,
-            "model": self.model,
+            "user": self.user.to_dict(),
+            "make": self.make.to_dict(),
+            "model": self.model.to_dict(),
             "trim": self.trim
         }
