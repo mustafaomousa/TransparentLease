@@ -8,7 +8,7 @@ const getLatestDeals = (deals) => {
 };
 
 export const getAllLatestDeals = () => async (dispatch) => {
-    const response = await fetch("/api/broker/deals");
+    const response = await fetch("/api/deals");
     const deals = await response.json();
     return dispatch(getLatestDeals(deals));
 };
