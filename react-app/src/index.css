@@ -3,7 +3,7 @@ h1, h2 {
     font-family: 'Neuton', serif;
 }
 
-h3, h4, h5, label {
+h3, h4, h5, label, input, select {
     font-family: 'Hind', sans-serif;
 }
 
@@ -13,7 +13,7 @@ p, a, button, span {
 }
 
 body {
-    background-color: #E0FBFC;
+    background-color: #293241;
 }
 
 p, h1, h3, h2, h4, h5 {

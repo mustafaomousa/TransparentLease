@@ -1,10 +1,13 @@
-import { Box, Button, Card, CardBody, CardFooter, CardHeader, Carousel, Footer, WorldMap } from 'grommet';
+import { Box, Button, Card, CardBody, CardFooter, CardHeader, Carousel, Footer, WorldMap, Select, RangeInput } from 'grommet';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Close as CloseIcon, Alert as AlertIcon } from "grommet-icons"
+import { Close as CloseIcon, Alert as AlertIcon, Search } from "grommet-icons"
 import { getAllLatestDeals } from '../../store/deals';
 import CalculatorBasicComponent from "../CalculatorComponents/CalculatorBasicComponent";
 import './homepage.css'
+
+const allMiles = [2500, 5000, 7500, 10000, 12000, 15000];
+const allMonths = [12, 24, 36, 48];
 
 const DealCard = ({ latestDeals }) => (
     <div>
@@ -12,9 +15,7 @@ const DealCard = ({ latestDeals }) => (
             <CardBody id="card-body">
                 Body
         </CardBody>
-
             <CardFooter background="light-5" id="card-footer">
-
                 <p>Broker: {latestDeals && latestDeals[1].broker.username}</p>
             </CardFooter>
         </Card>
@@ -26,6 +27,8 @@ const DealCard = ({ latestDeals }) => (
 const HomePageComponent = () => {
     const dispatch = useDispatch();
     const [hideAlert, setHideAlert] = useState(false);
+    const [selectedMiles, setSelectedMiles] = useState();
+    const [selectedMonths, setSelectedMonths] = useState();
     const latestDeals = useSelector(state => state.deals.latest_deals)
     useEffect(() => dispatch(getAllLatestDeals()), [dispatch])
 
@@ -43,9 +46,12 @@ const HomePageComponent = () => {
                 </div>
             </div>
             <div className="home-brands">
-                <div className="brands">
-
+                <div className="locate-deal-search-container">
+                    <Select id="locate-deal-select" options={allMiles} value={selectedMiles} placeholder="Miles per year" onChange={({ option }) => setSelectedMiles(option)} />
+                    <Select id="locate-deal-select" options={allMonths} value={selectedMonths} placeholder="Months" onChange={({ option }) => setSelectedMonths(option)} />
+                    <RangeInput id="locate-deal-range" plain="full" min="50" step="100" max="3000" />
                 </div>
+                <Search id="locate-deal-search-button" color="white" size="medium" />
             </div>
             <div className="home-1-container">
                 <div className="advertised-deal-container">
@@ -105,7 +111,7 @@ const HomePageComponent = () => {
             <div className="simple-deal-alert-container">
 
             </div>
-        </div>
+        </div >
     )
 };
 
