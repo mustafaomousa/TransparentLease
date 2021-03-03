@@ -5,7 +5,7 @@ import configureStore from "./store";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import HomePageComponent from "./components/HomePageComponent";
-import NavBar from "./components/NavBar";
+import NavBarComponent from "./components/NavBarComponent";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
@@ -35,7 +35,7 @@ function App() {
   return (
     <ReduxProvider store={store}>
       <BrowserRouter>
-        <NavBar setAuthenticated={setAuthenticated} />
+        <NavBarComponent setAuthenticated={setAuthenticated} />
         <Switch>
           <Route path="/make/:makeName" exact={true}>
             <MakeDealsComponent />

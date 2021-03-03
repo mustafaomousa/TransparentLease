@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Menu } from 'semantic-ui-react';
 import LogoutButton from './auth/LogoutButton';
 
 const NavBar = ({ setAuthenticated }) => {
   return (
-    <nav>
+    <Menu fixed={'top'}>
       <ul>
         <li>
           <NavLink to="/" exact={true} activeClassName="active">
@@ -30,7 +31,7 @@ const NavBar = ({ setAuthenticated }) => {
           <LogoutButton setAuthenticated={setAuthenticated} />
         </li>
       </ul>
-    </nav>
+    </Menu>
   );
 }
 
