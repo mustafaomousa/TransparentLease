@@ -1,6 +1,6 @@
-import { Button, Footer, WorldMap } from 'grommet';
+import { Button, Card, CardBody, CardFooter, CardHeader, Footer, WorldMap } from 'grommet';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Close as CloseIcon, Alert as AlertIcon } from "grommet-icons"
 import { getAllLatestDeals } from '../../store/deals';
 import CalculatorBasicComponent from "../CalculatorComponents/CalculatorBasicComponent";
@@ -10,7 +10,7 @@ import './homepage.css'
 const HomePageComponent = () => {
     const dispatch = useDispatch();
     const [hideAlert, setHideAlert] = useState(false);
-
+    const latestDeals = useSelector(state => state.deals.latest_deals)
     useEffect(() => dispatch(getAllLatestDeals()), [dispatch])
 
     return (
@@ -34,7 +34,23 @@ const HomePageComponent = () => {
             <div className="home-1-container">
                 <div className="advertised-deal-container">
                     <div className="advertised-deal">
-
+                        <div className="advertised-deal-header">
+                            <h4>Check out this deal</h4>
+                        </div>
+                        <div className="advertised-deal-body">
+                            {latestDeals && (
+                                <Card width="95%" height="95%" background="light-1">
+                                    <CardHeader background="light-5" height="40px" width="100%" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                        <h5>{latestDeals[1].make.name} {latestDeals[1].lease_info.trim.name}</h5>
+                                    </CardHeader>
+                                    <CardBody>
+                                        Body
+                                    </CardBody>
+                                    <CardFooter background="light-5" height="40px" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                        <p>Broker: {latestDeals && latestDeals[1].broker.username}</p>
+                                    </CardFooter>
+                                </Card>)}
+                        </div>
                     </div>
                 </div>
                 <div className="basic-calculator-container">

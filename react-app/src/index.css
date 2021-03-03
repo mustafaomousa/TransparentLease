@@ -13,5 +13,9 @@ p, a, button, span {
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: #e0fbfc75;
+}
+
+p, h1, h3, h2, h4, h5 {
+    margin: 0;
 }

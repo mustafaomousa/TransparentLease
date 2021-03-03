@@ -16,7 +16,7 @@
     align-items: center;
     background-color: #3D5A80;
     height: 50px;
-    z-index: 0;
+    z-index: 1;
 }
 
 .home-brands {
@@ -32,6 +32,7 @@
     width: 100%;
     height: 100%;
     background-color: #293241;
+    border-radius: 0.25em;
 }
 
 .home-1-container {
@@ -42,14 +43,31 @@
 }
 
 .advertised-deal-container {
-    padding: 20px 20px;
+    border-radius: 0.25em;
+    margin: 0px 20px;
+    padding: 10px;
+    background-color: #293241;
 }
 
 .advertised-deal {
-    border-radius: 0.25em;
+    display: grid;
+    grid-template-rows: 12% 87% ;
     width: 100%;
     height: 100%;
-    background-color: #293241;
+    border-radius: 0.25em;
+    color: white;
+}
+
+.advertised-deal-header, .advertised-deal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.advertised-deal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .basic-calculator-container {
@@ -66,7 +84,7 @@
     border-radius: 0.25em;
     width: 100%;
     height: 100%;
-    background-color: #EE6C4D;
+    background-color: #3D5A80;
 }
 
 .simple-calculator-form {
@@ -123,6 +141,7 @@
     background-color: rgba(255, 255, 255, 0.445);
     border-radius: 0.25em;
     margin: 0px 10px;
+    padding: 0px 40px;
 }
 
 .simple-calculator-form-3 p {
@@ -143,6 +162,10 @@
     width: 100%;
     height: 100%;
     background-color: #293241;
+}
+
+.how-it-works-2 {
+   background-color: #3D5A80;
 }
 
 .how-it-works-2-container {

@@ -6,7 +6,7 @@
     background-color: #3D5A80;
     padding: 0px 20px;
     height: 65px;
-    z-index: 2;
+    z-index: 3;
 }
 
 #sidebar {
@@ -16,7 +16,7 @@
     top: 65px;
     background-color: #3D5A80;
     height: 730px;
-    z-index: 1;
+    z-index: 2;
 }
 
 .nav-footer {
