@@ -1,4 +1,5 @@
-import { Box, Form, TextInput, Text } from "grommet";
+import { Box, Form, TextInput, Text, Button } from "grommet";
+import { CircleQuestion } from "grommet-icons"
 import React, { useEffect, useState } from "react";
 import "./deal.css";
 
@@ -13,9 +14,9 @@ const DealCreateComponent = ({ user }) => {
     const [discount, setDiscount] = useState();
     const [residual, setResidual] = useState();
     const [moneyFactor, setMoneyFactor] = useState();
-    const [loyalty, setLoyalty] = useState();
-    const [leaseCash, setLeaseCash] = useState();
-    const [conquest, setConquest] = useState();
+    const [loyalty, setLoyalty] = useState(0);
+    const [leaseCash, setLeaseCash] = useState(0);
+    const [conquest, setConquest] = useState(0);
     const [monthlyPayment, setMonthlyPayment] = useState();
     const [brokerFee, setBrokerFee] = useState();
     const [listed, setListed] = useState();
@@ -42,9 +43,6 @@ const DealCreateComponent = ({ user }) => {
     }, [year, make, model, trim, months, miles, msrp, discount, residual, moneyFactor, monthlyPayment, brokerFee, activeMonth])
 
 
-    const updateYear = (e) => {
-        setYear(e.target.value);
-    };
     return (
         <div className="deal-create-body">
 
@@ -53,17 +51,13 @@ const DealCreateComponent = ({ user }) => {
                     <div className="deal-create-header">
                         <div className="h4">
                             <h4>Create a deal</h4>
-
                         </div>
                         <div className="h4-underline" />
-                    </div>
-                    <div className="progress-bar">
-                        <div className="progress-bar-filler" id="progress-bar-filler" />
                     </div>
                     <div className="deal-create">
                         <div className="deal-create-1">
                             <div style={{ display: "flex", flexDirection: "row" }}>
-                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Year</label>
                                     <TextInput type="number" value={year} suggestions={[2019, 2020, 2021]} onSelect={(e) => setYear(e.suggestion)} onChange={(e) => setYear(e.target.value)} />
                                 </div>
@@ -73,7 +67,7 @@ const DealCreateComponent = ({ user }) => {
                                 </div>
                             </div>
                             <div style={{ display: "flex", flexDirection: "row" }}>
-                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Model</label>
                                     <TextInput type="text" value={model} onChange={(e) => setModel(e.target.value)} />
                                 </div>
@@ -82,9 +76,7 @@ const DealCreateComponent = ({ user }) => {
                                     <TextInput type="text" value={trim} onChange={(e) => setTrim(e.target.value)} />
                                 </div>
                             </div>
-                            <div>
-
-                            </div>
+                            <div id="horizontal-divider" />
                             <div>
                                 <label>Months</label>
                                 <TextInput type="number" value={months} onChange={(e) => setMonths(e.target.value)} />
@@ -93,43 +85,54 @@ const DealCreateComponent = ({ user }) => {
                                 <label>Miles per year</label>
                                 <TextInput type="number" value={miles} onChange={(e) => setMiles(e.target.value)} />
                             </div>
-                            <div>
-                                <label>Msrp</label>
-                                <TextInput type="number" value={msrp} onChange={(e) => setMsrp(e.target.value)} />
-                            </div>
-                            <div>
-                                <label>Discount</label>
-                                <TextInput type="number" value={discount} onChange={(e) => setDiscount(e.target.value)} />
+                            <div id="horizontal-divider" />
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Msrp</label>
+                                    <TextInput type="number" value={msrp} onChange={(e) => setMsrp(e.target.value)} />
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Discount</label>
+                                    <TextInput type="number" value={discount} onChange={(e) => setDiscount(e.target.value)} />
+                                </div>
                             </div>
                         </div>
                         <div className="deal-create-2">
-                            <div>
-                                <label>Residual</label>
-                                <TextInput type="number" value={residual} onChange={(e) => setResidual(e.target.value)} />
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Residual</label>
+                                    <TextInput type="number" value={residual} onChange={(e) => setResidual(e.target.value)} />
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Money factor</label>
+                                    <TextInput type="number" value={moneyFactor} onChange={(e) => setMoneyFactor(e.target.value)} />
+                                </div>
                             </div>
-                            <div>
-                                <label>Money factor</label>
-                                <TextInput type="number" value={moneyFactor} onChange={(e) => setMoneyFactor(e.target.value)} />
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Loyalty</label>
+                                    <TextInput type="number" value={loyalty} onChange={(e) => setLoyalty(e.target.value)} />
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Lease cash</label>
+                                    <TextInput type="number" value={leaseCash} onChange={(e) => setLeaseCash(e.target.value)} />
+                                </div>
                             </div>
-                            <div>
-                                <label>Loyalty</label>
-                                <TextInput type="number" value={loyalty} onChange={(e) => setLoyalty(e.target.value)} />
-                            </div>
-                            <div>
-                                <label>Lease cash</label>
-                                <TextInput type="number" value={leaseCash} onChange={(e) => setLeaseCash(e.target.value)} />
-                            </div>
+
                             <div>
                                 <label>Conquest</label>
                                 <TextInput type="number" value={conquest} onChange={(e) => setConquest(e.target.value)} />
                             </div>
-                            <div>
-                                <label>Monthly payment</label>
-                                <TextInput type="number" value={monthlyPayment} onChange={(e) => setMonthlyPayment(e.target.value)} />
-                            </div>
-                            <div>
-                                <label>Broker fee</label>
-                                <TextInput type="number" value={brokerFee} onChange={(e) => setBrokerFee(e.target.value)} />
+                            <div id="horizontal-divider" />
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Payment</label>
+                                    <TextInput type="number" value={monthlyPayment} onChange={(e) => setMonthlyPayment(e.target.value)} />
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Broker fee</label>
+                                    <TextInput type="number" value={brokerFee} onChange={(e) => setBrokerFee(e.target.value)} />
+                                </div>
                             </div>
                             <div>
                                 <label>Listed</label>
@@ -137,11 +140,24 @@ const DealCreateComponent = ({ user }) => {
                                 <TextInput type="text" placeholder="MM/YYYY active" value={activeMonth} onChange={(e) => setActiveMonth(e.target.value)} />
                             </div>
                         </div>
-
+                    </div>
+                    <div className="deal-create-footer">
+                        <div id="next-button" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                            <CircleQuestion color="white" size="medium" />
+                        </div>
+                        <div>
+                            <Button id="next-button">Upload Google Sheets</Button>
+                        </div>
+                        <div>
+                            <Button id="next-button">Next</Button>
+                        </div>
+                    </div>
+                    <div className="progress-bar">
+                        <div className="progress-bar-filler" id="progress-bar-filler" />
                     </div>
                 </div>
             </Form>
-        </div>
+        </div >
     )
 };
 
