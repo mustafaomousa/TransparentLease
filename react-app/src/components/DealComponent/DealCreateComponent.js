@@ -1,52 +1,63 @@
-import { Box, Form, TextInput, Text, Button } from "grommet";
+import { Box, Form, TextInput, Text, Button, DateInput } from "grommet";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { CircleQuestion } from "grommet-icons"
 import React, { useEffect, useState } from "react";
 import "./deal.css";
+import { createNewDeal } from "../../store/deals";
 
 const DealCreateComponent = ({ user }) => {
+    const dispatch = useDispatch();
+    const history = useHistory();
     const [year, setYear] = useState(0);
-    const [make, setMake] = useState();
-    const [model, setModel] = useState();
-    const [trim, setTrim] = useState();
+    const [makeId, setMake] = useState();
+    const [model_name, setModel] = useState();
+    const [trim_name, setTrim] = useState();
     const [months, setMonths] = useState();
     const [miles, setMiles] = useState();
     const [msrp, setMsrp] = useState();
     const [discount, setDiscount] = useState();
     const [residual, setResidual] = useState();
-    const [moneyFactor, setMoneyFactor] = useState();
+    const [money_factor, setMoneyFactor] = useState();
     const [loyalty, setLoyalty] = useState(0);
-    const [leaseCash, setLeaseCash] = useState(0);
+    const [lease_cash, setLeaseCash] = useState(0);
     const [conquest, setConquest] = useState(0);
-    const [monthlyPayment, setMonthlyPayment] = useState();
-    const [brokerFee, setBrokerFee] = useState();
+    const [payment, setMonthlyPayment] = useState();
+    const [broker_fee, setBrokerFee] = useState();
     const [listed, setListed] = useState();
     const [advertise, setAdvertise] = useState();
-    const [activeMonth, setActiveMonth] = useState();
+    const [listed_date, setActiveMonth] = useState();
     let progressPercentage = 0
 
     useEffect(() => {
         if (year) progressPercentage += 7.69231
-        if (make) progressPercentage += 7.69231
-        if (model) progressPercentage += 7.69231
-        if (trim) progressPercentage += 7.69231
+        if (makeId) progressPercentage += 7.69231
+        if (model_name) progressPercentage += 7.69231
+        if (trim_name) progressPercentage += 7.69231
         if (months) progressPercentage += 7.69231
         if (miles) progressPercentage += 7.69231
         if (msrp) progressPercentage += 7.69231
         if (discount) progressPercentage += 7.69231
         if (residual) progressPercentage += 7.69231
-        if (moneyFactor) progressPercentage += 7.69231
-        if (monthlyPayment) progressPercentage += 7.69231
-        if (brokerFee) progressPercentage += 7.69231
-        if (activeMonth) progressPercentage += 7.69231
+        if (money_factor) progressPercentage += 7.69231
+        if (payment) progressPercentage += 7.69231
+        if (broker_fee) progressPercentage += 7.69231
+        if (listed_date) progressPercentage += 7.69231
 
         document.getElementById("progress-bar-filler").style.width = `${progressPercentage}%`
-    }, [year, make, model, trim, months, miles, msrp, discount, residual, moneyFactor, monthlyPayment, brokerFee, activeMonth])
+    }, [year, makeId, model_name, trim_name, months, miles, msrp, discount, residual, money_factor, payment, broker_fee, listed_date])
 
+    const onSubmit = async () => {
+        let newDeal = {
+            year, makeId, model_name, trim_name, months, miles, msrp, discount, residual, money_factor, payment, broker_fee, listed_date, lease_cash, loyalty, conquest
+        };
+        dispatch(createNewDeal(newDeal));
+        return history.push('/test')
+    }
 
     return (
         <div className="deal-create-body">
-
-            <Form>
+            <Form onSubmit={onSubmit}>
                 <div className="deal-create-container">
                     <div className="deal-create-header">
                         <div className="h4">
@@ -63,17 +74,17 @@ const DealCreateComponent = ({ user }) => {
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Make</label>
-                                    <TextInput type="text" value={make} suggestions={['Audi', 'BMW', 'Mercedes'].filter(car => car.includes(make))} onSelect={(e) => setMake(e.suggestion)} onChange={(e) => setMake(e.target.value)} />
+                                    <TextInput type="number" value={makeId} suggestions={['Audi', 'BMW', 'Mercedes'].filter(car => car.includes(makeId))} onSelect={(e) => setMake(e.suggestion)} onChange={(e) => setMake(e.target.value)} />
                                 </div>
                             </div>
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Model</label>
-                                    <TextInput type="text" value={model} onChange={(e) => setModel(e.target.value)} />
+                                    <TextInput type="text" value={model_name} onChange={(e) => setModel(e.target.value)} />
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Trim</label>
-                                    <TextInput type="text" value={trim} onChange={(e) => setTrim(e.target.value)} />
+                                    <TextInput type="text" value={trim_name} onChange={(e) => setTrim(e.target.value)} />
                                 </div>
                             </div>
                             <div id="horizontal-divider" />
@@ -105,7 +116,7 @@ const DealCreateComponent = ({ user }) => {
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Money factor</label>
-                                    <TextInput type="number" value={moneyFactor} onChange={(e) => setMoneyFactor(e.target.value)} />
+                                    <TextInput type="number" value={money_factor} onChange={(e) => setMoneyFactor(e.target.value)} />
                                 </div>
                             </div>
                             <div style={{ display: "flex", flexDirection: "row" }}>
@@ -115,7 +126,7 @@ const DealCreateComponent = ({ user }) => {
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Lease cash</label>
-                                    <TextInput type="number" value={leaseCash} onChange={(e) => setLeaseCash(e.target.value)} />
+                                    <TextInput type="number" value={lease_cash} onChange={(e) => setLeaseCash(e.target.value)} />
                                 </div>
                             </div>
 
@@ -127,17 +138,17 @@ const DealCreateComponent = ({ user }) => {
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Payment</label>
-                                    <TextInput type="number" value={monthlyPayment} onChange={(e) => setMonthlyPayment(e.target.value)} />
+                                    <TextInput type="number" value={payment} onChange={(e) => setMonthlyPayment(e.target.value)} />
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Broker fee</label>
-                                    <TextInput type="number" value={brokerFee} onChange={(e) => setBrokerFee(e.target.value)} />
+                                    <TextInput type="number" value={broker_fee} onChange={(e) => setBrokerFee(e.target.value)} />
                                 </div>
                             </div>
                             <div>
                                 <label>Listed</label>
                                 <label>Advertise</label>
-                                <TextInput type="text" placeholder="MM/YYYY active" value={activeMonth} onChange={(e) => setActiveMonth(e.target.value)} />
+                                <DateInput placeholder="MM/YYYY active" value={listed_date} onChange={(e) => setActiveMonth(e.value)} />
                             </div>
                         </div>
                     </div>
@@ -149,7 +160,7 @@ const DealCreateComponent = ({ user }) => {
                             <Button id="next-button">Upload Google Sheets</Button>
                         </div>
                         <div>
-                            <Button id="next-button">Next</Button>
+                            <Button id="next-button" type="submit">Next</Button>
                         </div>
                     </div>
                     <div className="progress-bar">

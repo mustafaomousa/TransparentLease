@@ -3,7 +3,7 @@ from app.models import User, db, BrokerDeal, Make
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import *
 from sqlalchemy import and_
-from ..forms import DealForm
+from app.forms import DealForm
 
 deal_routes = Blueprint('broker', __name__)
 
@@ -27,12 +27,34 @@ def latest_deals():
     return {"latest_deals": {broker_deal.id: broker_deal.to_dict() for broker_deal in broker_deals}}
 
 
-@deal_routes.route('/', methods=['POST'])
-def new_deal():
+@deal_routes.route('/create', methods=['POST'])
+def create_deal():
     form = DealForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        # new_deal = User(
+        #     username=form.data['username'],
+        #     email=form.data['email'],
+        #     password=form.data['password'],
+        #     address=form.data['address'],
+        #     bio=form.data['bio'],
+        #     broker=form.data['broker'],
+        #     city=form.data['city'],
+        #     created_at=datetime.now(),
+        #     dealer=form.data['dealer'],
+        #     header=form.data['header'],
+        #     name=form.data['name'],
+        #     profile_image=form.data['profile_image'],
+        #     state=form.data['state'],
+        #     zip_code=form.data['zip_code']
+        # )
         print(form.data)
+        # db.session.add(user)
+        # db.session.commit()
+        # login_user(user)
+        # return user.to_dict()
+        return {"sucess": "true"}
+    return {"sucess": "false"}
 
 
 @deal_routes.route('/deals/<broker_id>')
