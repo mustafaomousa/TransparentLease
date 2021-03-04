@@ -17,7 +17,7 @@ class BrokerDeal(db.Model):
     advertise = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
-
+    demo = db.Column(db.Boolean)
     broker = db.relationship("User")
     make = db.relationship("Make")
     lease_info = db.relationship("LeaseInfo")

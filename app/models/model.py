@@ -7,6 +7,7 @@ class Model(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     make_id = db.Column(db.Integer, db.ForeignKey('makes.id'), nullable=False)
     name = db.Column(db.String(100), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
 
     make = db.relationship("Make")
     trims = db.relationship("Trim")

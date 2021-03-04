@@ -12,10 +12,10 @@ class Trim(db.Model):
     style_id = db.Column(db.Integer, db.ForeignKey(
         "styles.id"), nullable=False)
     name = db.Column(db.String(100), nullable=False)
-    doors = db.Column(db.Integer, nullable=False)
-    fuel_type = db.Column(db.String(20), nullable=False)
+    doors = db.Column(db.Integer, nullable=True)
+    fuel_type = db.Column(db.String(20), nullable=True)
     awd = db.Column(db.Boolean)
-    cylinders = db.Column(db.Integer, nullable=False)
+    cylinders = db.Column(db.Integer, nullable=True)
 
     model = db.relationship("Model")
     make = db.relationship("Make")
