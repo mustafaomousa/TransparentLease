@@ -316,10 +316,6 @@
     background-color: darkblue;
 }
 
-.hidden {
-    display: none;
-}
-
 p.speech-bubble {
     color: whitesmoke;
     font-weight: bold;

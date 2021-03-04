@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Redirect, Route, Switch, useHistory } from "react-router-dom";
-import { Provider as ReduxProvider, useSelector } from "react-redux";
+import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
+import { Provider as ReduxProvider } from "react-redux";
 import { Menu, Notification as AlertIcon } from "grommet-icons"
-import { Avatar, Anchor, Nav, Grommet, Header, Box, Sidebar, Button, Collapsible, Heading, Footer } from 'grommet';
-import { grommet } from "grommet";
+import { Grommet, Button, Heading } from 'grommet';
 
 import configureStore from "./store";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import HomePageComponent from "./components/HomePageComponent";
 import NavBarComponent from "./components/NavBarComponent";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
 import MakeDealsComponent from "./components/MakeDealsComponent";
 import SideBarComponent from "./components/NavBarComponent/SideBarComponent";
-
 
 
 function App() {
@@ -25,7 +22,6 @@ function App() {
   const [visible, setVisible] = useState(false);
   const [currentUser, setUser] = useState({});
   const store = configureStore();
-
 
   useEffect(() => {
     (async () => {
@@ -46,7 +42,9 @@ function App() {
       <BrowserRouter>
         <Grommet full>
           <NavBarComponent>
-            <Button icon={<Menu />} onClick={() => setVisible(!visible)} />
+            <Button icon={<Menu />} onClick={(e) => {
+              setVisible(!visible)
+            }} />
             <Heading level="3">TransparentLease</Heading>
             <Button icon={<AlertIcon />} />
           </NavBarComponent>

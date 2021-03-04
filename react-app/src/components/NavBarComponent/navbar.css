@@ -19,7 +19,7 @@
     background-color: #FFF;
     border-radius: 0.25em;
     height: 390px;
-    width: 200px;
+    width: 300px;
     z-index: 10;
 }
 
@@ -50,6 +50,6 @@
     height: 60px;
 }
 
-#hidden {
+#sidebar-hidden {
     display: none;
 }

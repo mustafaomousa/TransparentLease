@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardBody, CardFooter, CardHeader, Carousel, Footer, WorldMap, Select, RangeInput } from 'grommet';
+import { Box, Button, Card, CardBody, CardFooter, Carousel, WorldMap, Select, RangeInput } from 'grommet';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Close as CloseIcon, Alert as AlertIcon, Search, Workshop, Semantics } from "grommet-icons"
@@ -26,7 +26,6 @@ const DealCard = ({ latestDeals }) => (
 
 const HomePageComponent = () => {
     const dispatch = useDispatch();
-    const [hideAlert, setHideAlert] = useState(false);
     const [selectedMiles, setSelectedMiles] = useState();
     const [selectedMonths, setSelectedMonths] = useState();
     const latestDeals = useSelector(state => state.deals.latest_deals)
@@ -34,17 +33,6 @@ const HomePageComponent = () => {
 
     return (
         <div className="home-body">
-            {/* <div className={hideAlert ? "hidden" : "home-header"}>
-                <div>
-                    <CloseIcon color="white" size="small" onClick={() => setHideAlert(!hideAlert)} />
-                </div>
-                <div>
-                    <p style={{ fontSize: "13px", color: "white" }}>TransparentLease will be offline 03/10/2021 at 12:00PST for maintenance</p>
-                </div>
-                <div>
-                    <AlertIcon color="white" size="small" />
-                </div>
-            </div> */}
             <div className="home-brands">
                 <div className="locate-deal-search-container">
                     <Select id="locate-deal-select" options={allMiles} value={selectedMiles} placeholder="Miles per year" onChange={({ option }) => setSelectedMiles(option)} />
