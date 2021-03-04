@@ -345,6 +345,10 @@
     background-color: wheat;
 }
 
+button:focus {
+    box-shadow: 0;
+}
+
 .home-footer {
     position: fixed;
     bottom: 0;

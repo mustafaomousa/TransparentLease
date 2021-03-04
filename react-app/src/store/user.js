@@ -11,7 +11,8 @@ export const getUser = (user) => {
 
 export const getCurrentUser = () => async dispatch => {
     const user = await authenticate();
-    dispatch(getUser(user))
+    dispatch(getUser(user));
+    return user;
 };
 
 const initialState = {};

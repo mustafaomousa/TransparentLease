@@ -36,14 +36,9 @@ const SideBarFooter = ({ setAuthenticated }) => (
 )
 
 const SideBarComponent = ({ setAuthenticated, visible }) => {
-    const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state.user);
 
-
-    useEffect(() => {
-        dispatch(getCurrentUser())
-    }, [dispatch])
 
     if (user) return (
         <div id={visible ? "sidebar-hidden" : "sidebar"} width="280px" flex style={{ boxShadow: "0" }}>

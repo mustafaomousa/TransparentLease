@@ -62,21 +62,28 @@ const DealCreateComponent = ({ user }) => {
                     </div>
                     <div className="deal-create">
                         <div className="deal-create-1">
-                            <div>
-                                <label>Year</label>
-                                <TextInput type="number" value={year} suggestions={[2019, 2020, 2021]} onSelect={(e) => setYear(e.suggestion)} onChange={(e) => setYear(e.target.value)} />
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Year</label>
+                                    <TextInput type="number" value={year} suggestions={[2019, 2020, 2021]} onSelect={(e) => setYear(e.suggestion)} onChange={(e) => setYear(e.target.value)} />
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Make</label>
+                                    <TextInput type="text" value={make} suggestions={['Audi', 'BMW', 'Mercedes'].filter(car => car.includes(make))} onSelect={(e) => setMake(e.suggestion)} onChange={(e) => setMake(e.target.value)} />
+                                </div>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Model</label>
+                                    <TextInput type="text" value={model} onChange={(e) => setModel(e.target.value)} />
+                                </div>
+                                <div style={{ display: "flex", flexDirection: "column" }}>
+                                    <label>Trim</label>
+                                    <TextInput type="text" value={trim} onChange={(e) => setTrim(e.target.value)} />
+                                </div>
                             </div>
                             <div>
-                                <label>Make</label>
-                                <TextInput type="text" value={make} suggestions={['Audi', 'BMW', 'Mercedes'].filter(car => car.includes(make))} onSelect={(e) => setMake(e.suggestion)} onChange={(e) => setMake(e.target.value)} />
-                            </div>
-                            <div>
-                                <label>Model</label>
-                                <TextInput type="text" value={model} onChange={(e) => setModel(e.target.value)} />
-                            </div>
-                            <div>
-                                <label>Trim</label>
-                                <TextInput type="text" value={trim} onChange={(e) => setTrim(e.target.value)} />
+
                             </div>
                             <div>
                                 <label>Months</label>
