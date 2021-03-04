@@ -3,6 +3,7 @@ from app.models import User, db, BrokerDeal, Make
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import *
 from sqlalchemy import and_
+from ..forms import DealForm
 
 deal_routes = Blueprint('broker', __name__)
 
@@ -24,6 +25,14 @@ def latest_deals():
         BrokerDeal.created_at.desc()).limit(20)
 
     return {"latest_deals": {broker_deal.id: broker_deal.to_dict() for broker_deal in broker_deals}}
+
+
+@deal_routes.route('/', methods=['POST'])
+def new_deal():
+    form = DealForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        print(form.data)
 
 
 @deal_routes.route('/deals/<broker_id>')
