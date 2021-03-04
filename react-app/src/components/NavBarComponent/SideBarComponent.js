@@ -51,6 +51,9 @@ const SideBarComponent = ({ setAuthenticated, visible }) => {
                 <Nav id="sidebar-nav" style={{ display: "flex", alignItems: "center" }}>
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="/make/BMW">Deals</NavLink>
+                    {user.broker === true && (
+                        <NavLink to="/deal/create">New deal</NavLink>
+                    )}
                 </Nav>
             </Sidebar>
         </div>

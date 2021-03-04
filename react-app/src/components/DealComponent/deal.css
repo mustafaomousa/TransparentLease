@@ -1,0 +1,66 @@
+.deal-create-body {
+    margin-top: 120px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.deal-create-container {
+    width: 1000px;   
+    height: 620px;
+}
+
+.deal-create-header {
+    font-size: 36px;
+    color: whitesmoke;
+    margin-bottom: 30px;
+    line-height: 0px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    margin: 10px 0px;
+    background-color: whitesmoke;
+    border-radius: 1em;
+}
+
+.progress-bar-filler {
+    height: 10px;
+    border-radius: 1em;
+    background-color: green;
+    width: 0%;
+    transition: width 2s ease;
+}
+
+.h4-underline {
+    width: 200px;
+    border-bottom: #EE6C4D 5px solid;
+    position: relative;
+    z-index: -1;
+    bottom: -15px;
+}
+
+.deal-create {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 100%;
+    background-color: rgba(245, 245, 245, 0.815);
+    border-radius: 0.25em;
+}
+
+.deal-create-1 {
+    height: 90%;
+    width: 420px;
+    /* border: 1px black solid; */
+}
+
+.deal-create-2 {
+    height: 90%;
+    width: 420px;
+    /* border: 1px black solid; */
+}

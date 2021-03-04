@@ -42,6 +42,12 @@ const HomePageComponent = () => {
                 <Search id="locate-deal-search-button" color="white" size="medium" />
             </div>
             <div className="home-1-container">
+                <div className="advertised-header">
+                    <div className="advertised-h4">
+                        <h4>Checkout these latest deals</h4>
+                    </div>
+                    <div className="advertised-h4-underline" />
+                </div>
                 <div className="advertised-deal-container">
                     {latestDeals && (
                         <Carousel fill="true" id="deal-carousel">
@@ -64,6 +70,12 @@ const HomePageComponent = () => {
 
                     )}
                 </div>
+                <div className="calculator-header">
+                    <div className="calculator-h4">
+                        <h4>Simple auto lease calculator</h4>
+                    </div>
+                    <div className="calculator-h4-underline" />
+                </div>
                 <div className="basic-calculator-container">
                     <div className="basic-calculator">
                         <CalculatorBasicComponent />
@@ -85,7 +97,7 @@ const HomePageComponent = () => {
                     </div>
                 </div>
                 <div className="how-it-works-3-container">
-                    <div className="triangle-up" />
+                    <div className="triangle-up" id="dark" />
                     <div className="how-it-works-3">
                         <div>
                             <h3>Brokers have connections. <Workshop size="150px" color="whitesmoke" /></h3>

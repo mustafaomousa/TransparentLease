@@ -13,13 +13,13 @@ import User from "./components/User";
 import { authenticate } from "./services/auth";
 import MakeDealsComponent from "./components/MakeDealsComponent";
 import SideBarComponent from "./components/NavBarComponent/SideBarComponent";
-
+import DealCreateComponent from "./components/DealComponent/DealCreateComponent";
 
 function App() {
   const history = useHistory();
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [currentUser, setUser] = useState({});
   const store = configureStore();
 
@@ -52,6 +52,9 @@ function App() {
           <Switch>
             <Route path="/make/:makeName" exact={true}>
               <MakeDealsComponent />
+            </Route>
+            <Route path="/deal/create">
+              <DealCreateComponent />
             </Route>
             <Route path="/login" exact={true}>
               <LoginForm

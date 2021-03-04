@@ -18,7 +18,7 @@
     left: 12px;
     background-color: #FFF;
     border-radius: 0.25em;
-    height: 390px;
+    height: auto;
     width: 300px;
     z-index: 10;
 }
