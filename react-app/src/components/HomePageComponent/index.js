@@ -1,7 +1,7 @@
 import { Box, Button, Card, CardBody, CardFooter, CardHeader, Carousel, Footer, WorldMap, Select, RangeInput } from 'grommet';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Close as CloseIcon, Alert as AlertIcon, Search } from "grommet-icons"
+import { Close as CloseIcon, Alert as AlertIcon, Search, Workshop, Semantics } from "grommet-icons"
 import { getAllLatestDeals } from '../../store/deals';
 import CalculatorBasicComponent from "../CalculatorComponents/CalculatorBasicComponent";
 import './homepage.css'
@@ -85,16 +85,35 @@ const HomePageComponent = () => {
             <div className="how-it-works-container">
                 <div className="how-it-works-1-container">
                     <div className="how-it-works-1">
-
+                        <h3 className="how-it-works-1-text">So... how does TransparentLease work?</h3>
                     </div>
                 </div>
                 <div className="how-it-works-2-container">
+                    <div className="triangle-up" />
                     <div className="how-it-works-2">
-
+                        <p id="how-it-works-2-p">New car prices are skyrocketting and now that the average American keeps a vehicle for no longer than 4 years,
+                        leasing has become extremely favorable. But you know what hasn't...? </p>
+                        <h2 id="how-it-works-2-h2">Negotiating at the dealership for the fairest deal possible.</h2>
                     </div>
                 </div>
                 <div className="how-it-works-3-container">
+                    <div className="triangle-up" />
                     <div className="how-it-works-3">
+                        <div>
+                            <h3>Brokers have connections. <Workshop size="150px" color="whitesmoke" /></h3>
+                            <p>Thank goodness they exist. Brokers typically have access to
+                            some of the greatest lease deals available through dealerships whether that be on a new or a demo vehicle. Brokers
+                            list many of their deals on websites such as ours! TransparentLease.
+                            </p>
+                            <br />
+                            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", }}>
+                                <p style={{ color: "whitesmoke" }}>  Browse </p>
+                                <Semantics size="large" color="#E0FBFC" style={{ transform: "rotate(90deg)" }} />
+                                <p style={{ color: "whitesmoke" }}> Inquire </p>
+                                <Semantics size="large" color="#E0FBFC" style={{ transform: "rotate(90deg)" }} />
+                                <p style={{ color: "whitesmoke" }}> Purchase </p>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

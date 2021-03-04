@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 300px;
 }
 
 #locate-deal-search-button {
@@ -109,12 +109,16 @@
         width: 100%;
         height: 300px;
     }
+
+    .advertised-deal-container {
+        margin-top: 20px;
+    }
 }
 
 .advertised-deal-container {
     border-radius: 0.25em;
-    margin: 0px 0px;
-    padding: 10px;
+    margin: 0px 10px;
+    padding: 20px;
 }
 
 
@@ -202,29 +206,102 @@
 }
 
 .how-it-works-1-container {
+    position: sticky;
     padding: 20px 20px;
     height: 500px;
+    top: 0px;
 }
 
 .how-it-works-1, .how-it-works-2, .how-it-works-3 {
-    border-radius: 0.25em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 0.25em; */
     width: 100%;
     height: 100%;
     background-color: #293241;
 }
 
+.how-it-works-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #3D5A80;
+    padding: 0px 30px;
+}
+
+.how-it-works-3 h3 {
+    font-size: 80px;
+    line-height: 80px;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.how-it-works-3 p {
+    font-size: 30px;
+    line-height: 30px;
+    color: #EE6C4D;
+    padding: 0px 80px;
+}
+
+.how-it-works-1-text {
+    font-size: 60px;
+    color: #EE6C4D;
+    text-align: center;
+    line-height: 60px;
+    /* font-style: italic; */
+}
+
 .how-it-works-2 {
-   background-color: #3D5A80;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #3D5A80;
+}
+
+#how-it-works-2-p {
+    text-align: center;
+    color: whitesmoke;
+    font-size: 35px;
+    line-height: 50px;
+}
+
+#how-it-works-2-h2 {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 60px;
+    line-height: 80px;
+    color: #EE6C4D;
+}
+
+.triangle-up {
+    width: 0;
+    height: 0;
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    border-bottom: 100px solid #3D5A80;
+    position: absolute;
+    top: -100px;
 }
 
 .how-it-works-2-container {
+    display:flex;
+    justify-content: center;
+    position: sticky;
     padding: 20px 20px;
-    height: 500px;
+    height: 700px;
+    top: 0px;
+    background-color: #3D5A80;
 }
 
 .how-it-works-3-container {
-    padding: 20px 20px;
-    height: 500px;
+    height: 1000px;
+    display:flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
 }
 
 .join-button-container {
