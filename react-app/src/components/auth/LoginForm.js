@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
-import { Form } from "semantic-ui-react";
+import { Button, Form, TextInput } from "grommet"
+import { useDispatch } from "react-redux";
+import { getUser } from "../../store/user";
 
-const LoginForm = ({ authenticated, setAuthenticated }) => {
+const LoginForm = ({ authenticated, setAuthenticated, setUser }) => {
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +16,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
+      dispatch(getUser(user))
     } else {
       setErrors(user.errors);
     }
@@ -32,32 +36,32 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
   return (
     <Form onSubmit={onLogin}>
-      <Form.Field>
+      <div>
         {errors.map((error) => (
           <div>{error}</div>
         ))}
-      </Form.Field>
-      <Form.Field className="field">
+      </div>
+      <div className="field">
         <label htmlFor="email">Email</label>
-        <Form.Input
+        <TextInput
           name="email"
           type="text"
           placeholder="Email"
           value={email}
           onChange={updateEmail}
         />
-      </Form.Field>
-      <Form.Field>
+      </div>
+      <div>
         <label htmlFor="password">Password</label>
-        <Form.Input
+        <TextInput
           name="password"
           type="password"
           placeholder="Password"
           value={password}
           onChange={updatePassword}
         />
-        <Form.Button type="submit">Login</Form.Button>
-      </Form.Field>
+        <Button type="submit">Login</Button>
+      </div>
     </Form>
   );
 };

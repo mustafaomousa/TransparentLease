@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
-import { Form } from "semantic-ui-react";
+import { Form } from "grommet";
 import { signUp } from '../../services/auth';
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {

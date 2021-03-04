@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Redirect, Route, Switch, useHistory } from "react-router-dom";
-import { Provider as ReduxProvider } from "react-redux";
+import { Provider as ReduxProvider, useSelector } from "react-redux";
 import { Menu, Notification as AlertIcon } from "grommet-icons"
 import { Avatar, Anchor, Nav, Grommet, Header, Box, Sidebar, Button, Collapsible, Heading, Footer } from 'grommet';
 import { grommet } from "grommet";
@@ -17,12 +17,15 @@ import MakeDealsComponent from "./components/MakeDealsComponent";
 import SideBarComponent from "./components/NavBarComponent/SideBarComponent";
 
 
+
 function App() {
   const history = useHistory();
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [currentUser, setUser] = useState({});
   const store = configureStore();
+
 
   useEffect(() => {
     (async () => {
@@ -47,33 +50,28 @@ function App() {
             <Heading level="3">TransparentLease</Heading>
             <Button icon={<AlertIcon />} />
           </NavBarComponent>
-          <Box direction="row" flex>
-            <Collapsible direction="horizontal" open={visible}>
-              <SideBarComponent />
-            </Collapsible>
-            <Box width="100%">
-              <Switch>
-                <Route path="/make/:makeName" exact={true}>
-                  <MakeDealsComponent />
-                </Route>
-                <Route path="/login" exact={true}>
-                  <LoginForm
-                    authenticated={authenticated}
-                    setAuthenticated={setAuthenticated}
-                  />
-                </Route>
-                <Route path="/sign-up" exact={true}>
-                  <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-                </Route>
-                <Route path="/:userId" exact={true}>
-                  <User />
-                </Route>
-                <Route path="/" exact={true} >
-                  <HomePageComponent />
-                </Route>
-              </Switch>
-            </Box>
-          </Box>
+          <SideBarComponent visible={visible} user={currentUser} setAuthenticated={setAuthenticated} />
+          <Switch>
+            <Route path="/make/:makeName" exact={true}>
+              <MakeDealsComponent />
+            </Route>
+            <Route path="/login" exact={true}>
+              <LoginForm
+                authenticated={authenticated}
+                setAuthenticated={setAuthenticated}
+                setUser={setUser}
+              />
+            </Route>
+            <Route path="/sign-up" exact={true}>
+              <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+            </Route>
+            <Route path="/:userId" exact={true}>
+              <User />
+            </Route>
+            <Route path="/" exact={true} >
+              <HomePageComponent />
+            </Route>
+          </Switch>
           {/* <Footer className="nav-footer" pad="small">
             test
           </Footer> */}

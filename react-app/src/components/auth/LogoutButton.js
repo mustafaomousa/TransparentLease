@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "semantic-ui-react";
+import { Button } from "grommet";
 import { logout } from "../../services/auth";
 
 const LogoutButton = ({ setAuthenticated }) => {
@@ -8,7 +8,7 @@ const LogoutButton = ({ setAuthenticated }) => {
     setAuthenticated(false);
   };
 
-  return <Button onClick={onLogout}>Logout</Button>;
+  return <Button id="logout-button" style={{ width: "70px", height: "30px", textAlign: "center" }} onClick={onLogout}>Logout</Button>;
 };
 
 export default LogoutButton;

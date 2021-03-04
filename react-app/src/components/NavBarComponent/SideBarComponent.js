@@ -1,49 +1,55 @@
 import { Box, Nav, Sidebar, Button, Stack, Avatar, Text } from 'grommet';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { getCurrentUser } from '../../store/user';
+import LogoutButton from '../auth/LogoutButton';
 import './navbar.css'
 
 const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
 
-const SideBarHeader = () => (
-    <Box align="flex-start" gap="small" direction="row" margin={{ bottom: "large" }}>
+const SideBarHeader = ({ user }) => (
+    < Box align="flex-start" gap="small" direction="row" margin={{ bottom: "large" }}>
         <Stack alignSelf="start" align="center" anchor="top-right">
-            <Avatar src={src} />
-            {/* <Box>Mustafa Mousa</Box> */}
+            <Avatar src={user.profile_image ? user.profile_image : src} />
+            {console.log(user)}
         </Stack>
-        <Text>Guest</Text>
-    </Box>
+        <Text>{user.username}</Text>
+    </Box >
 )
 
-const SideBarFooter = () => (
-    <Nav>
+const SideBarFooter = ({ setAuthenticated }) => (
+    <Nav style={{ width: "100%", textAlign: "center" }}>
         <Box>
             <NavLink to="/about">About us</NavLink>
         </Box>
         <Box>
             <NavLink to="/contact">Contact us</NavLink>
         </Box>
+        <div style={{ textAlign: "center" }}>
+            <LogoutButton setAuthenticated={setAuthenticated} />
+        </div>
     </Nav>
 )
 
-const SideBarComponent = () => {
-    return (
-        <Box id="sidebar" width="230px" height="100%" elevation='large' align='start' justify='center' flex>
-            <Sidebar height="100%" footer={<SideBarFooter />} header={<SideBarHeader />}>
-                <Nav>
-                    <Button>
-                        <Box>
-                            <NavLink to="/">Home</NavLink>
-                        </Box>
-                    </Button>
-                    <Button>
-                        <Box>
-                            <NavLink to="/make/BMW">Deals</NavLink>
-                        </Box>
-                    </Button>
+const SideBarComponent = ({ setAuthenticated, visible }) => {
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
+
+
+    useEffect(() => {
+        dispatch(getCurrentUser())
+    }, [])
+
+    if (user) return (
+        <div id={visible ? "hidden" : "sidebar"} width="280px" flex style={{ boxShadow: "0" }}>
+            <Sidebar footer={<SideBarFooter setAuthenticated={setAuthenticated} />} header={<SideBarHeader user={user} />}>
+                <Nav id="sidebar-nav" style={{ display: "flex", alignItems: "center" }}>
+                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/make/BMW">Deals</NavLink>
                 </Nav>
             </Sidebar>
-        </Box>
+        </div>
     )
 };
 

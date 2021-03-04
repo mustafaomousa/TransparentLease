@@ -10,17 +10,30 @@
 }
 
 #sidebar {
+    display: flex;
+    justify-content: center;
     padding: 30px 20px;
-
     position: fixed;
-    top: 65px;
-    background-color: #3D5A80;
-    height: 730px;
-    z-index: 2;
+    top: 60px;
+    left: 12px;
+    background-color: #FFF;
+    border-radius: 0.25em;
+    height: 390px;
+    width: 200px;
+    z-index: 10;
+}
+
+#logout-button {
+    font-family: 'Hind', sans-serif;
+}
+
+#logout-button:hover {
+    font-family: 'Hind', sans-serif;
+    border-bottom: 2px solid black;
 }
 
 .nav-footer {
-    display: flex;
+    display: hidden;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -35,4 +48,8 @@
     align-items: center;
     justify-content: space-evenly; */
     height: 60px;
+}
+
+#hidden {
+    display: none;
 }

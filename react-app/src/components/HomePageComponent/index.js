@@ -34,7 +34,7 @@ const HomePageComponent = () => {
 
     return (
         <div className="home-body">
-            <div className={hideAlert ? "hidden" : "home-header"}>
+            {/* <div className={hideAlert ? "hidden" : "home-header"}>
                 <div>
                     <CloseIcon color="white" size="small" onClick={() => setHideAlert(!hideAlert)} />
                 </div>
@@ -44,7 +44,7 @@ const HomePageComponent = () => {
                 <div>
                     <AlertIcon color="white" size="small" />
                 </div>
-            </div>
+            </div> */}
             <div className="home-brands">
                 <div className="locate-deal-search-container">
                     <Select id="locate-deal-select" options={allMiles} value={selectedMiles} placeholder="Miles per year" onChange={({ option }) => setSelectedMiles(option)} />
