@@ -1,7 +1,7 @@
 import { Box, Nav, Sidebar, Stack, Avatar, Text } from 'grommet';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory, useLocation } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './navbar.css'
 
@@ -34,13 +34,14 @@ const SideBarFooter = ({ setAuthenticated }) => (
     </Nav>
 )
 
-const SideBarComponent = ({ setAuthenticated, visible }) => {
+const SideBarComponent = ({ setAuthenticated, sideHidden, setSideHidden }) => {
     const history = useHistory();
+    const location = useLocation();
     const user = useSelector(state => state.user);
 
 
     if (user) return (
-        <div id={visible ? "sidebar-hidden" : "sidebar"} width="280px" flex style={{ boxShadow: "0" }}>
+        <div id={sideHidden ? "sidebar" : "sidebar-hidden"} width="280px" flex style={{ boxShadow: "0" }} onMouseLeave={e => setSideHidden(false)}>
             <Sidebar footer={<SideBarFooter setAuthenticated={setAuthenticated} />} header={<SideBarHeader user={user} history={history} />}>
                 <Nav id="sidebar-nav" style={{ display: "flex", alignItems: "center" }}>
                     <NavLink to="/">Home</NavLink>
@@ -48,6 +49,7 @@ const SideBarComponent = ({ setAuthenticated, visible }) => {
                     {user.broker === true && (
                         <NavLink to="/deal/create">New deal</NavLink>
                     )}
+                    <NavLink to="/deal/manage">Manage deals</NavLink>
                 </Nav>
             </Sidebar>
         </div>

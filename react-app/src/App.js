@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider as ReduxProvider, useDispatch } from "react-redux";
 import { Menu, Notification as AlertIcon } from "grommet-icons"
 import { Grommet, Button, Heading } from 'grommet';
@@ -15,24 +15,14 @@ import SideBarComponent from "./components/NavBarComponent/SideBarComponent";
 import DealCreateComponent from "./components/DealComponent/DealCreateComponent";
 import { getCurrentUser } from "./store/user";
 import BrokerPageComponent from "./components/BrokerPageComponent";
+import DealManageComponent from "./components/DealComponent/DealManageComponent";
 
 function App() {
   const dispatch = useDispatch();
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [visible, setVisible] = useState(true);
   const [currentUser, setUser] = useState({});
 
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const user = await authenticate();
-  //     if (!user.errors) {
-  //       setAuthenticated(true);
-  //     }
-  //     setLoaded(true);
-  //   })();
-  // }, []);
 
   useEffect(() => {
     (async () => {
@@ -51,19 +41,17 @@ function App() {
   return (
     <BrowserRouter>
       <Grommet full>
-        <NavBarComponent>
-          <Button icon={<Menu />} focusIndicator={false} id="sidebar-toggle" onClick={(e) => {
-            setVisible(!visible)
-          }} />
-          <Heading level="3">TransparentLease</Heading>
-          <Button icon={<AlertIcon />} />
+        <NavBarComponent user={currentUser} setAuthenticated={setAuthenticated}>
         </NavBarComponent>
-        <SideBarComponent visible={visible} user={currentUser} setAuthenticated={setAuthenticated} />
+        {/* <SideBarComponent sideVisible={sideVisible} setSideVisible={setSideVisible} user={currentUser} setAuthenticated={setAuthenticated} /> */}
         <Switch>
           <Route path="/make/:makeName" exact={true}>
             <MakeDealsComponent />
           </Route>
-          <Route path="/deal/create">
+          <Route exact path="/deal/manage">
+            <DealManageComponent />
+          </Route>
+          <Route exact path="/deal/create">
             <DealCreateComponent />
           </Route>
           <Route path="/login" exact={true}>
