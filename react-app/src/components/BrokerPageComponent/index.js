@@ -59,18 +59,37 @@ const columns = [
     },
 ];
 
-const data = [
-    {
-        make: 'BMW'
-    }
-];
+// const data = [
+//     {
+//         make: 'BMW'
+//     }
+// ];
 
 const BrokerPageComponent = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { brokerUsername } = useParams();
     const user = useSelector(state => state.user.profile_user);
-    console.log(user)
+    const brokerDeals = useSelector(state => state.user.broker_deals)
+
+    let data = []
+    if (brokerDeals) {
+        brokerDeals.map(brokerDeal => data.push({
+            make: brokerDeal.make.name,
+            model: brokerDeal.lease_info.trim.model.name,
+            trim: brokerDeal.lease_info.trim.name,
+            msrp: brokerDeal.lease_info.msrp,
+            discount: brokerDeal.lease_info.discount,
+            months: brokerDeal.lease_info.months,
+            miles: brokerDeal.lease_info.miles_yearly,
+            residual: brokerDeal.lease_info.residual,
+            moneyFactor: brokerDeal.lease_info.money_factor,
+            rebates: brokerDeal.lease_info.lease_cash + brokerDeal.lease_info.loyalty + brokerDeal.lease_info.conquest,
+            additionalFees: brokerDeal.fee + brokerDeal.lease_info.additional_fees,
+            payment: brokerDeal.lease_info.payment
+
+        }))
+    }
 
     useEffect(() => {
         dispatch(getUserByUsername(brokerUsername))
@@ -85,11 +104,13 @@ const BrokerPageComponent = () => {
 
                 </div>
                 <div className="broker-info">
-                    <h1>{user.name}</h1>
-                    {/* <button onClick={() => dispatch(getUserByUsername(brokerUsername))} /> */}
-                    <h5>{user.username}</h5>
-                    <p>{user.header}</p>
-                    <p>{user.bio}</p>
+                    <div style={{ paddingLeft: "50px", textAlign: "center" }}>
+                        <h1>{user.name}</h1>
+                    </div>
+                    <div style={{ paddingLeft: "50px", paddingTop: "15px" }}>
+                        <p>{user.header}</p>
+                        <p>{user.bio}</p>
+                    </div>
                 </div>
             </div>
             <div className="broker-table-container">
@@ -99,6 +120,11 @@ const BrokerPageComponent = () => {
                     data={data}
                     step={10}
                 />
+            </div>
+            <div className="broker-comments-container">
+                <div className="broker-comments">
+                    <div className="broker-comments-top" ><p>Comments</p></div>
+                </div>
             </div>
             <div className="broker-page-bottom-bar"></div>
         </div >

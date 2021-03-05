@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import User, BrokerDeal
 
 user_routes = Blueprint('users', __name__)
 
@@ -15,7 +15,8 @@ def users():
 @user_routes.route('/<username>')
 def find_user(username):
     user = User.query.filter(User.username == username).one()
-    return {"profile_user": user.to_dict()}
+    broker_deals = BrokerDeal.query.filter(BrokerDeal.broker_id == user.id)
+    return {"profile_user": user.to_dict(), "broker_deals": [broker_deal.to_dict() for broker_deal in broker_deals]}
 
 
 @user_routes.route('/<int:id>')
