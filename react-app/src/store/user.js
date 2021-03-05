@@ -9,10 +9,25 @@ export const getUser = (user) => {
     };
 };
 
+export const getUserByUserName = (user) => {
+    return {
+        type: LOAD,
+        payload: user
+    }
+}
+
+
 export const getCurrentUser = () => async dispatch => {
     const user = await authenticate();
     dispatch(getUser(user));
     return user;
+};
+
+export const getUserByUsername = (brokerUsername) => async dispatch => {
+    const response = await fetch(`/api/users/${brokerUsername}`);
+    const user = await response.json()
+    dispatch(getUserByUserName(user))
+    return user
 };
 
 const initialState = {};
@@ -21,7 +36,7 @@ const userReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD:
-            newState = Object.assign({}, state, { ...action.payload });
+            newState = Object.assign({}, state, action.payload);
             return newState;
         default:
             return state;
