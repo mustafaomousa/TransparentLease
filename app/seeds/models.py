@@ -3,7 +3,6 @@ from app.models import db, Model
 
 
 def seed_models():
-
     audi_a3 = Model(make_id=1, name="A3", year=2021)
     audi_a5 = Model(make_id=1, name="A5 Sportback", year=2021)
     audi_a8 = Model(make_id=1, name="A8L", year=2021)

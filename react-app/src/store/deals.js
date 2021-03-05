@@ -7,24 +7,23 @@ const getDeals = (deals) => {
     };
 };
 
-export const createNewDeal = (newDeal) => async (dispatch) => {
-    const response = await fetch("/api/deals", {
+export const createNewDeal = (body) => async (dispatch) => {
+    const response = await fetch("/api/deals/create", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-            ...newDeal
-
-        })
+        body: JSON.stringify(body)
     });
-    return await response.json()
+    const res = await response.json()
+    console.log(res)
+    return res
     // const new_deal = await response.json();
     // return dispatch(getDeals(new_deal));
 }
 
 export const getAllLatestDeals = () => async (dispatch) => {
-    const response = await fetch("/api/deals/create");
+    const response = await fetch("/api/deals/");
     const deals = await response.json();
     return dispatch(getDeals(deals));
 };

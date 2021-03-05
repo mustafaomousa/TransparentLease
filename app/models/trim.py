@@ -22,13 +22,17 @@ class Trim(db.Model):
     style = db.relationship("Style")
     lease_infos = db.relationship("LeaseInfo")
 
+    @property
+    def model_name(self):
+        return self.model.to_dict().name
+
     def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
             "style": self.style.to_dict(),
             "make": self.make.to_dict(),
-            # "model": self.model.to_dict(),
+            "model": self.model.to_dict(),
             "doors": self.doors,
             "fuel_type": self.fuel_type,
             "awd": self.awd,

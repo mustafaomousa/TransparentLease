@@ -11,6 +11,11 @@ def seed_makes():
     honda = Make(name='Honda', luxury=False)
     toyota = Make(name='Toyota', luxury=False)
     nissan = Make(name='Nissan', luxury=False)
+    volvo = Make(name='Volvo', luxury=True)
+    alfa = Make(name='Alfa Romeo', luxury=True)
+    infiniti = Make(name='Infiniti', luxury=True)
+    volkswagen = Make(name='Volkswagen', luxury=False)
+    jaguar = Make(name='Jaguar', luxury=True)
 
     db.session.add(audi)
     db.session.add(bmw)
@@ -18,6 +23,11 @@ def seed_makes():
     db.session.add(honda)
     db.session.add(toyota)
     db.session.add(nissan)
+    db.session.add(volvo)
+    db.session.add(alfa)
+    db.session.add(infiniti)
+    db.session.add(volkswagen)
+    db.session.add(jaguar)
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.

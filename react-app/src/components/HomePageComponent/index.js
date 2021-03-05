@@ -28,6 +28,7 @@ const HomePageComponent = () => {
     const dispatch = useDispatch();
     const [selectedMiles, setSelectedMiles] = useState();
     const [selectedMonths, setSelectedMonths] = useState();
+
     const latestDeals = useSelector(state => state.deals.latest_deals)
     useEffect(() => dispatch(getAllLatestDeals()), [dispatch])
 

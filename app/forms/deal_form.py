@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, FloatField, DateField
+from wtforms import StringField, IntegerField, FloatField, DateField, BooleanField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import BrokerDeal
 
@@ -20,4 +20,9 @@ class DealForm(FlaskForm):
     conquest = FloatField('conquest')
     payment = FloatField('payment', validators=[DataRequired()])
     broker_fee = FloatField('broker fee', validators=[DataRequired()])
-    listed_date = DateField('listed date', validators=[DataRequired()])
+    listed_date = StringField('listed date')
+    additional_fees = FloatField(
+        'additional fees', validators=[DataRequired()])
+    demo = BooleanField('demo')
+    advertise = BooleanField('advertise')
+    listed = BooleanField('listed')

@@ -1,4 +1,4 @@
-import { Box, Form, TextInput, Text, Button, DateInput } from "grommet";
+import { Box, Form, TextInput, Text, Button, DateInput, Select, RadioButton } from "grommet";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CircleQuestion } from "grommet-icons"
@@ -9,25 +9,64 @@ import { createNewDeal } from "../../store/deals";
 const DealCreateComponent = ({ user }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [year, setYear] = useState(0);
-    const [makeId, setMake] = useState();
-    const [model_name, setModel] = useState();
-    const [trim_name, setTrim] = useState();
-    const [months, setMonths] = useState();
-    const [miles, setMiles] = useState();
-    const [msrp, setMsrp] = useState();
-    const [discount, setDiscount] = useState();
-    const [residual, setResidual] = useState();
-    const [money_factor, setMoneyFactor] = useState();
+    const [year, setYear] = useState(null);
+    const [makeId, setMake] = useState(0);
+    const [makeName, setMakeName] = useState("")
+    const [model_name, setModel] = useState("");
+    const [trim_name, setTrim] = useState("");
+    const [months, setMonths] = useState(null);
+    const [miles, setMiles] = useState(null);
+    const [msrp, setMsrp] = useState(null);
+    const [discount, setDiscount] = useState(null);
+    const [residual, setResidual] = useState(null);
+    const [money_factor, setMoneyFactor] = useState(null);
     const [loyalty, setLoyalty] = useState(0);
     const [lease_cash, setLeaseCash] = useState(0);
     const [conquest, setConquest] = useState(0);
-    const [payment, setMonthlyPayment] = useState();
-    const [broker_fee, setBrokerFee] = useState();
-    const [listed, setListed] = useState();
-    const [advertise, setAdvertise] = useState();
-    const [listed_date, setActiveMonth] = useState();
+    const [payment, setMonthlyPayment] = useState(null);
+    const [broker_fee, setBrokerFee] = useState(null);
+    const [listed_date, setActiveMonth] = useState(new Date());
+    const [makeOptions, setMakeOptions] = useState([]);
+    const [modelOptions, setModelOptions] = useState([]);
+    const [additional_fees, setAdditionalFees] = useState(895)
+    const [listed, setListed] = useState(false)
+    const [advertise, setAdvertise] = useState(false)
+    const [demo, setDemo] = useState(false)
     let progressPercentage = 0
+
+    useEffect(() => {
+        (async () => {
+            const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/${makeName}?format=json`);
+            const { Results } = await response.json()
+            let currentMakeOptions = []
+            if (Results) {
+                Results.forEach(make => currentMakeOptions.push({ label: make.Model_Name, value: make.Model_Name }))
+                setModelOptions(currentMakeOptions)
+            }
+        })();
+    }, [makeId])
+
+    useEffect(() => {
+        (async () => {
+            const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/${makeName}?format=json`);
+            const { Results } = await response.json()
+            let currentMakeOptions = []
+            if (Results) {
+                Results.forEach(make => currentMakeOptions.push({ label: make.Model_Name, value: make.Model_Name }))
+                setModelOptions(currentMakeOptions)
+            }
+        })();
+    }, [makeId])
+
+    useEffect(() => {
+        (async () => {
+            const response = await fetch('/api/deals/make');
+            const options = await response.json()
+            if (!options.errors) {
+                setMakeOptions(options.makes)
+            }
+        })();
+    }, [])
 
     useEffect(() => {
         if (year) progressPercentage += 7.69231
@@ -47,12 +86,32 @@ const DealCreateComponent = ({ user }) => {
         document.getElementById("progress-bar-filler").style.width = `${progressPercentage}%`
     }, [year, makeId, model_name, trim_name, months, miles, msrp, discount, residual, money_factor, payment, broker_fee, listed_date])
 
+
     const onSubmit = async () => {
         let newDeal = {
-            year, makeId, model_name, trim_name, months, miles, msrp, discount, residual, money_factor, payment, broker_fee, listed_date, lease_cash, loyalty, conquest
+            year: Number(year),
+            makeId: makeId.value,
+            model_name: model_name.value,
+            trim_name,
+            months: Number(months),
+            miles: Number(miles),
+            msrp: Number(msrp),
+            discount: Number(discount),
+            residual: Number(residual),
+            money_factor: Number(money_factor),
+            payment: Number(payment),
+            broker_fee: Number(broker_fee),
+            listed_date,
+            lease_cash: Number(lease_cash),
+            loyalty: Number(loyalty),
+            conquest: Number(conquest),
+            additional_fees: Number(additional_fees),
+            listed,
+            advertise,
+            demo
         };
         dispatch(createNewDeal(newDeal));
-        return history.push('/test')
+        return history.push('/')
     }
 
     return (
@@ -74,13 +133,26 @@ const DealCreateComponent = ({ user }) => {
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Make</label>
-                                    <TextInput type="number" value={makeId} suggestions={['Audi', 'BMW', 'Mercedes'].filter(car => car.includes(makeId))} onSelect={(e) => setMake(e.suggestion)} onChange={(e) => setMake(e.target.value)} />
+                                    <Select options={makeOptions}
+                                        labelKey="label"
+                                        valueKey={{ key: "value" }}
+                                        value={makeId}
+                                        onChange={({ value: newValue }) => {
+                                            setMake(newValue)
+                                            setMakeName(newValue.label)
+                                            console.log(newValue.value)
+                                        }} />
                                 </div>
                             </div>
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Model</label>
-                                    <TextInput type="text" value={model_name} onChange={(e) => setModel(e.target.value)} />
+                                    <Select
+                                        options={modelOptions}
+                                        labelKey="label"
+                                        valueKey={{ key: "value" }}
+                                        value={model_name}
+                                        onChange={({ value: newValue }) => setModel(newValue)} />
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Trim</label>
@@ -145,10 +217,13 @@ const DealCreateComponent = ({ user }) => {
                                     <TextInput type="number" value={broker_fee} onChange={(e) => setBrokerFee(e.target.value)} />
                                 </div>
                             </div>
-                            <div>
-                                <label>Listed</label>
-                                <label>Advertise</label>
-                                <DateInput placeholder="MM/YYYY active" value={listed_date} onChange={(e) => setActiveMonth(e.value)} />
+                            <div style={{ marginTop: "50px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                                <div style={{ width: "100px" }}>
+                                    <RadioButton style={{ width: "0px", height: "0px" }} label="Listed" value={listed} checked={listed === true} onClick={e => setListed(!listed)} />
+                                    <RadioButton style={{ width: "0px", height: "0px" }} label="Advertise" value={advertise} checked={advertise === true} onClick={e => setAdvertise(!advertise)} />
+                                    <RadioButton style={{ width: "0px", height: "0px" }} label="Demo" value={demo} checked={demo === true} onClick={e => setDemo(!demo)} />
+                                </div>
+                                <DateInput placeholder="MM/YYYY active" value={listed_date} onChange={(e) => setActiveMonth(e.value)} /> <p>Active month</p>
                             </div>
                         </div>
                     </div>
