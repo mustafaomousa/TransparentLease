@@ -14,9 +14,9 @@ import MakeDealsComponent from "./components/MakeDealsComponent";
 import SideBarComponent from "./components/NavBarComponent/SideBarComponent";
 import DealCreateComponent from "./components/DealComponent/DealCreateComponent";
 import { getCurrentUser } from "./store/user";
+import BrokerPageComponent from "./components/BrokerPageComponent";
 
 function App() {
-  const history = useHistory();
   const dispatch = useDispatch();
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -76,8 +76,8 @@ function App() {
           <Route path="/sign-up" exact={true}>
             <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
           </Route>
-          <Route path="/:userId" exact={true}>
-            <User />
+          <Route path="/:brokerUsername" exact={true}>
+            <BrokerPageComponent />
           </Route>
           <Route path="/" exact={true} >
             <HomePageComponent />

@@ -12,6 +12,12 @@ def users():
     return {"users": [user.to_dict() for user in users]}
 
 
+@user_routes.route('/<username>')
+def find_user(username):
+    user = User.query.filter(User.username == username).one()
+    return {"user": user.to_dict()}
+
+
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):

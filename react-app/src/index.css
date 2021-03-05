@@ -13,6 +13,7 @@ p, a, button, span {
 }
 
 body {
+    padding-top: 65px;
     background-color: #293241;
 }
 

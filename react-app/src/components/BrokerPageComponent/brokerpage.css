@@ -1,0 +1,26 @@
+.broker-page-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 35px;
+}
+
+.broker-page-header-container {
+    display: flex;
+    flex-direction: row;
+    width: 800px;
+    height: 250px;
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+    background-color: #ffffffd8;
+}
+
+.broker-image-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    border-top-left-radius: 0.25em;
+    background-color: #EE6C4D;
+}

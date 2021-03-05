@@ -1,8 +1,7 @@
-import { Box, Nav, Sidebar, Button, Stack, Avatar, Text } from 'grommet';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Box, Nav, Sidebar, Stack, Avatar, Text } from 'grommet';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
-import { getCurrentUser } from '../../store/user';
 import LogoutButton from '../auth/LogoutButton';
 import './navbar.css'
 
