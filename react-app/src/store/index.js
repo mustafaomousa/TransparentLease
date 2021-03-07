@@ -1,11 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import dealReducer from "./deals";
+import notificationsReducer from "./notifications";
 import userReducer from "./user";
 
 const rootReducer = combineReducers({
     deals: dealReducer,
-    user: userReducer
+    user: userReducer,
+    notifications: notificationsReducer,
 });
 
 let enhancer;

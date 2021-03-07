@@ -62,7 +62,7 @@ function App() {
             />
           </Route>
           <Route path="/sign-up" exact={true}>
-            <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+            <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} setLoaded={setLoaded} />
           </Route>
           <Route path="/:brokerUsername" exact={true}>
             <BrokerPageComponent />

@@ -1,9 +1,12 @@
 import React from "react";
 import { Checkmark } from "grommet-icons"
 import "../NavBarComponent/navbar.css"
+import { useSelector } from "react-redux";
 
 const NotificationComponent = () => {
-    const notifications = [{ "new_deal": { "message": "New deal created" } }]
+    const notifications = useSelector(state => state.notifications.notifications)
+
+
 
     return (
         <div className="notification-component-container">

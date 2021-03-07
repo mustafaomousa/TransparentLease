@@ -5,6 +5,7 @@ import { CircleQuestion } from "grommet-icons"
 import React, { useEffect, useState } from "react";
 import "./deal.css";
 import { createNewDeal } from "../../store/deals";
+import { createNotification } from "../../store/notifications";
 
 const DealCreateComponent = ({ user }) => {
     const dispatch = useDispatch();
@@ -111,6 +112,7 @@ const DealCreateComponent = ({ user }) => {
             demo
         };
         dispatch(createNewDeal(newDeal));
+        dispatch(createNotification({ message: "New deal created!" }))
         return history.push('/')
     }
 

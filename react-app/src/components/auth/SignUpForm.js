@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
-import { Form } from "grommet";
+import { Button, CheckBox, Form, TextArea, TextInput } from "grommet";
 import { signUp } from '../../services/auth';
 
-const SignUpForm = ({ authenticated, setAuthenticated }) => {
+const SignUpForm = ({ authenticated, setAuthenticated, setLoaded }) => {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -106,142 +106,142 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
 
 
   return (
-    <Form onSubmit={onSignUp}>
-      <Form.Field>
+    <Form onSubmit={onSignUp} style={{ backgroundColor: "whitesmoke" }}>
+      <div>
         <label>User Name</label>
-        <Form.Input
+        <TextInput
           type="text"
           name="username"
           onChange={updateUsername}
           value={username}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Field>
+        ></TextInput>
+      </div>
+      <div>
         <label>Name</label>
-        <Form.Input
+        <TextInput
           type="text"
           name="name"
           onChange={updateName}
           value={name}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Field>
+        ></TextInput>
+      </div>
+      <div>
         <label>Email</label>
-        <Form.Input
+        <TextInput
           type="text"
           name="email"
           onChange={updateEmail}
           value={email}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Field>
+        ></TextInput>
+      </div>
+      <div>
         <label>Password</label>
-        <Form.Input
+        <TextInput
           type="password"
           name="password"
           onChange={updatePassword}
           value={password}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Field>
+        ></TextInput>
+      </div>
+      <div>
         <label>Repeat Password</label>
-        <Form.Input
+        <TextInput
           type="password"
           name="repeat_password"
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Field>
+        ></TextInput>
+      </div>
+      <div>
         <label>Address</label>
-        <Form.Input
+        <TextInput
           type="text"
           name="address"
           onChange={updateAddress}
           value={address}
           required={false}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Field>
+        ></TextInput>
+      </div>
+      <div>
         <label>City</label>
-        <Form.Input
+        <TextInput
           type="text"
           name="city"
           onChange={updateCity}
           value={city}
           required={false}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Field>
+        ></TextInput>
+      </div>
+      <div>
         <label>State</label>
-        <Form.Input
+        <TextInput
           type="text"
           name="state"
           onChange={updateState}
           value={state}
           required={false}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Field>
+        ></TextInput>
+      </div>
+      <div>
         <label>Zip Code</label>
-        <Form.Input
+        <TextInput
           type="number"
           name="zipcode"
           onChange={updateZipcode}
           value={zipcode}
           required={false}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Field>
+        ></TextInput>
+      </div>
+      <div>
         <label>Are you a broker?</label>
-        <Form.Checkbox
+        <CheckBox
           name="broker"
           onChange={updateBroker}
           defaultChecked={broker}
-        ></Form.Checkbox>
-      </Form.Field>
+        ></CheckBox>
+      </div>
       {broker && (
-        <Form.Field>
+        <div>
           <label>Are you a dealer?</label>
-          <Form.Checkbox
+          <CheckBox
             name="dealer"
             onChange={updateDealer}
             defaultChecked={dealer}
-          ></Form.Checkbox>
-        </Form.Field>
+          ></CheckBox>
+        </div>
       )}
-      <Form.Field>
+      <div>
         <label>Header</label>
-        <Form.Input
+        <TextInput
           type="text"
           name="header"
           onChange={updateHeader}
           value={header}
           required={false}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Field>
+        ></TextInput>
+      </div>
+      <div>
         <label>Bio</label>
-        <Form.Input
+        <TextArea
           type="text"
           name="bio"
           onChange={updateBio}
           value={bio}
           required={false}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Field>
+        ></TextArea>
+      </div>
+      <div>
         <label>Profile Picture</label>
-        <Form.Input
+        <TextInput
           type="file"
           name="profileImage"
           onChange={updateProfileImage}
           value={profileImage}
           required={false}
-        ></Form.Input>
-      </Form.Field>
-      <Form.Button type="submit">Sign Up</Form.Button>
+        ></TextInput>
+      </div>
+      <Button type="submit">Sign Up</Button>
     </Form>
   );
 };
