@@ -59,11 +59,6 @@ const columns = [
     },
 ];
 
-// const data = [
-//     {
-//         make: 'BMW'
-//     }
-// ];
 
 const BrokerPageComponent = () => {
     const history = useHistory();
