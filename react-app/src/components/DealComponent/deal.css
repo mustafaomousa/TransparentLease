@@ -34,7 +34,7 @@
 }
 
 .deal-manage-container {
-    width: 1120px;   
+    width: 1220px;   
     height: 620px;
 }
 
@@ -75,8 +75,12 @@
     border-bottom-right-radius: 0;
 }
 
+.h4 h4 {
+    text-transform: uppercase;
+}
+
 .h4-underline {
-    width: 200px;
+    width: 237px;
     border-bottom: #EE6C4D 5px solid;
     position: relative;
     z-index: -1;
@@ -118,7 +122,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 150px;
+    height: 100%;
     overflow: hidden;
     position: relative;
     z-index: 1;
@@ -130,10 +134,14 @@
 
 #upload-field {
     margin-top: 5px;
-    border: 2px dotted #EE6C4D;
+    border: 2px solid rgba(128, 128, 128, 0.089);
     font-weight: bolder;
-    color: whitesmoke;
-    padding: 20px 75px;
+    color: black;
+    padding: 50px 75px;
+}
+
+#upload-field:hover {
+    border-color: rgba(0, 128, 0, 0.363);
 }
 
 .picture-manage-container {
@@ -145,6 +153,19 @@
     height: auto;
     min-width: 200px;
     border-radius: 0.5em;
+}
+
+.checkbox-container {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 100px;
+}
+
+.checkbox-container label {
+    padding: 10px 10px;
 }
 
 .picture-manage-button {
@@ -169,7 +190,6 @@
 
 
 #caret {
-    /* display: block; */
     background-color: #EE6C4D;
     position: relative;
     left: 162px;
@@ -179,16 +199,37 @@
     border-bottom-left-radius: 0.25em;
 }
 
+.deal-manage table {
+    padding-top: 11px;
+}
+
+thead {
+    color: whitesmoke;
+    background-color: #293241;
+}
+
+tbody {
+    background-color: whitesmoke;
+}
+
 .deal-manage-controls-set {
-    color: white;
+    padding-top: 40px;
+    color: black;
     display: grid;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: whitesmoke;
     grid-template-columns: 1fr 1fr 1fr;
+    border-bottom-right-radius: 0.25em;
+    border-bottom-left-radius: 0.25em;
+    padding-bottom: 30px;
 }
 
 #deal-notes {
     color: black;
+    border-top-right-radius: 0;
     background-color: #ecba13;
-    height: 115px;
+    height: 175px;
     width: 320px;
 }
 
@@ -283,5 +324,6 @@
 
 
 #manage-deals-table {
+    margin-top: 10px;
     background-color: whitesmoke;
 }

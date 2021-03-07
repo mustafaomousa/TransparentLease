@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { DataTable, Form, Button, RadioButton, TextInput, Layer, Image, Box, TextArea, CheckBox } from "grommet";
+import { DataTable, Form, Button, RadioButton, TextInput, Layer, Image, Box, TextArea, CheckBox, Grommet } from "grommet";
 import ImageUploading from "react-images-uploading";
+import { grommet } from 'grommet/themes'
 import { CaretUp } from "grommet-icons"
 import { FileInput } from "grommet";
 import { useSelector } from "react-redux";
@@ -9,12 +10,11 @@ import "./deal.css";
 const columns = [
     {
         property: 'id',
-        header: <p>Deal</p>,
+        header: <p>Deal</p>
     },
     {
         property: 'make',
         header: <p>Make</p>,
-        primary: true
     },
     {
         property: 'model',
@@ -63,55 +63,61 @@ const columns = [
 ];
 
 
-
-
-
 const DealManageComponent = () => {
     const brokerDeals = useSelector(state => state.user.user_deals);
     const [selectedDeal, setSelectedDeal] = useState(null)
     const [images, setImages] = useState([])
     const [pictureLayerOpen, setPictureLayerOpen] = useState(false);
+    const [select, setSelect] = useState([]);
+
+    useEffect(() => console.log(select), [select])
 
     const onChange = (imageList, idx) => {
         setImages(imageList)
     };
 
     const ManageDealTable = ({ columns, data }) => (
-        <div>
-            <DataTable
-                columns={columns}
-                data={data}
-                step={10}
-                onClickRow={e => console.log('hi')} />
-        </div>
+        <Grommet >
+            <Box size="large">
+                <DataTable
+                    columns={columns}
+                    data={data}
+                    step={10}
+                    select={select}
+                    onSelect={id => {
+                        setSelect(id)
+                    }
+                    }
+                    onClickRow={({ datum }) => {
+                        setSelectedDeal(datum)
+                    }}
+                />
+            </Box>
+        </Grommet>
+
+
     );
-    ManageDealTable.storyName = 'Clickable';
 
     useEffect(() => {
-        let uploadImagesContainer = document.getElementById('upload-images-container')
         if (images.length) {
             setPictureLayerOpen(true)
-            // uploadImagesContainer.style.backgroundColor = "#EE6C4D";
-            // uploadImagesContainer.style.minHeight = "155px"
-            // uploadImagesContainer.style.borderBottomLeftRadius = "0.5em";
-            // uploadImagesContainer.style.borderBottomRightRadius = "0.5em";
-            // uploadImagesContainer.style.boxShadow = "0px 4px 8px rgb(0 0 0 / 20%)";
         }
     }, [images])
 
     useEffect(() => {
-        if (selectedDeal === null) {
+        if (select.length === 1) {
             let controlsContainer = document.getElementById('control-container')
             let controlsSet = document.getElementById('control-set')
-            controlsContainer.style.height = "55px"
-            controlsSet.style.display = "none"
+            controlsContainer.style.height = "230px"
+            setTimeout(() => controlsSet.style.display = "grid", 1200)
         } else {
             let controlsContainer = document.getElementById('control-container')
             let controlsSet = document.getElementById('control-set')
-            controlsContainer.style.height = "150px"
-            controlsSet.style.display = "grid"
+            controlsSet.style.display = "none"
+            setTimeout(() => controlsContainer.style.height = "5px", 200)
         }
-    }, [selectedDeal])
+
+    }, [selectedDeal, select.length])
 
     let data = []
     if (brokerDeals) {
@@ -143,10 +149,14 @@ const DealManageComponent = () => {
                     <div className="deal-manage-header">
                         <div className="h4">
                             <h4>Manage your deals</h4>
-                            <div className="h4-underline" style={{ width: "288px" }} />
+                            <div className="h4-underline" style={{ width: "345px", marginBottom: "45px" }} />
                         </div>
                     </div>
                     <div className="deal-manage">
+
+                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "1200px", overflowY: "scroll" }}>
+                            <ManageDealTable columns={columns} setSelectedDeal={setSelectedDeal} data={data} />
+                        </div>
                         <div className="deal-manage-controls-container" id="control-container">
                             <div className="deal-manage-controls-set" id="control-set">
                                 <div className="deal-manage-upload">
@@ -201,26 +211,13 @@ const DealManageComponent = () => {
                                 <div className="deal-manage-radio" style={{ textAlign: "center" }}>
                                     <h5>Deal settings</h5>
                                     {selectedDeal && (
-                                        <div>
+                                        <div className="checkbox-container">
                                             <CheckBox checked={selectedDeal.listed} label="Listed" />
                                             <CheckBox checked={selectedDeal.advertise} label="Advertised" />
                                             <CheckBox checked={selectedDeal.demo} label="Demo" />
                                         </div>)}
                                 </div>
                             </div>
-                        </div>
-                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "1100px", overflowY: "scroll" }}>
-
-                            <DataTable
-                                columns={columns}
-                                data={data}
-                                step={10}
-                                onClickRow={({ datum }) => {
-                                    setSelectedDeal(datum)
-                                    console.log(datum)
-                                }}
-                                id="manage-deals-table"
-                            />
                         </div>
                     </div>
                     {/* <div className="deal-manage-footer">
@@ -230,5 +227,6 @@ const DealManageComponent = () => {
         </div >
     )
 };
+
 
 export default DealManageComponent
