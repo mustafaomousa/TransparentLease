@@ -6,7 +6,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import getStore from "./store/persist";
 import { PersistGate } from 'redux-persist/integration/react';
 
-const { store, persistor } = getStore();
+export const { store, persistor } = getStore();
 
 const render = () => {
   const App = require("./App").default;

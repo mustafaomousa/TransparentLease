@@ -27,6 +27,8 @@ export const logout = async () => {
       "Content-Type": "application/json",
     }
   });
+  // storage.removeItem('persist:root');
+  // persistor.flush()
   return await response.json();
 };
 

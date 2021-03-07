@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Provider as ReduxProvider, useDispatch } from "react-redux";
+import { Provider as ReduxProvider, useDispatch, useSelector } from "react-redux";
 import { Menu, Notification as AlertIcon } from "grommet-icons"
 import { Grommet, Button, Heading } from 'grommet';
 import './components/NavBarComponent/navbar.css'
@@ -16,13 +16,20 @@ import DealCreateComponent from "./components/DealComponent/DealCreateComponent"
 import { getCurrentUser } from "./store/user";
 import BrokerPageComponent from "./components/BrokerPageComponent";
 import DealManageComponent from "./components/DealComponent/DealManageComponent";
+import { deleteNotification } from "./store/notifications";
 
 function App() {
   const dispatch = useDispatch();
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [currentUser, setUser] = useState({});
+  const notifications = useSelector(state => state.notifications.notifications);
 
+  useEffect(() => {
+    if (notifications) {
+      setTimeout(() => dispatch(deleteNotification(notifications[0])), 10000)
+    }
+  }, [dispatch, notifications])
 
   useEffect(() => {
     (async () => {

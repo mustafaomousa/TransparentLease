@@ -1,14 +1,24 @@
 import React from "react";
 import { Button } from "grommet";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { logout } from "../../services/auth";
+import { createNotification } from "../../store/notifications";
+import { persistor, store } from "../../index";
 
 const LogoutButton = ({ setAuthenticated }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const onLogout = async (e) => {
     await logout();
     setAuthenticated(false);
+    history.push('/')
+    window.location.reload(true)
+    return dispatch(createNotification({ "message": "Sucessfully logged out" }))
   };
 
-  return <Button id="logout-button" style={{ width: "70px", height: "30px", textAlign: "center" }} onClick={onLogout}>Logout</Button>;
+  return <Button id="navlink" style={{ marginBottom: "-12px" }} onClick={onLogout}>Logout</Button>;
 };
 
 export default LogoutButton;

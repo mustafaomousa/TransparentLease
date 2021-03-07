@@ -4,6 +4,7 @@ import { login } from "../../services/auth";
 import { Button, Form, TextInput } from "grommet"
 import { useDispatch } from "react-redux";
 import { getUser } from "../../store/user";
+import { createNotification } from "../../store/notifications";
 
 const LoginForm = ({ authenticated, setAuthenticated, setUser }) => {
   const dispatch = useDispatch();
@@ -16,7 +17,8 @@ const LoginForm = ({ authenticated, setAuthenticated, setUser }) => {
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
-      dispatch(getUser(user))
+      dispatch(getUser(user));
+      dispatch(createNotification({ "message": "Logged in" }))
     } else {
       setErrors(user.errors);
     }

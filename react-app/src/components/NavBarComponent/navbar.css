@@ -11,16 +11,44 @@
 
 #sidebar {
     display: flex;
-    justify-content: center;
-    padding: 30px 20px;
     position: fixed;
-    top: 60px;
-    left: 12px;
-    background-color: #FFF;
+    top: 65px;
+    left: 0px;
     border-radius: 0.25em;
     height: auto;
-    width: 300px;
+    width: auto;
     z-index: 10;
+    box-shadow: 0px 4px 8px rgb(0 0 0 / 20%);
+}
+
+#navlink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #383331;
+    color: whitesmoke;
+    height: 50px;
+    margin: 0px -12px;
+}
+
+#navlink:hover {
+    background-color: #EE6C4D;
+}
+
+
+.sidebar-profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #383331;
+    color: whitesmoke;
+    margin: -12px -12px;
+    padding: 15px 10px;
+}
+
+.sidebar-profile-container a {
+    color: whitesmoke;
+    font-size: 20px;
 }
 
 #logout-button {
@@ -63,8 +91,9 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
-    width: 100%;
-    z-index: 1000;
+    top: 75px;
+    right: 10px;
+    z-index: 9;
 }
 
 .new-deal-notification-container {
@@ -72,17 +101,16 @@
     flex-direction: row;
     align-items: center;
     width: 300px;
-    height: 80px;
+    height: 50px;
     background-color: green;
     border-radius: 2em;
-    margin: 20px -230px;
     box-shadow: 0px 4px 8px rgb(0 0 0 / 20%);
     transition: transform 2s;
 }
 
 .new-deal-notification-container:hover {
     transform: scale(1.1);
-    margin: 20px 35px;
+    /* margin: 20px 35px; */
 }
 
 .new-deal-notification-icon-container {

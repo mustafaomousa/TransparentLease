@@ -1,9 +1,11 @@
 import React from "react";
-import { Checkmark } from "grommet-icons"
+import { Checkmark, Close } from "grommet-icons"
 import "../NavBarComponent/navbar.css"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteNotification } from "../../store/notifications";
 
 const NotificationComponent = () => {
+    const dispatch = useDispatch();
     const notifications = useSelector(state => state.notifications.notifications)
 
 
@@ -19,6 +21,7 @@ const NotificationComponent = () => {
                             </div>
                             <div className="new-deal-notification-message-container">
                                 <p>{notification.new_deal.message}</p>
+                                {/* <Close style={{ position: "relative", bottom: "15px", left: "15px" }} size="small" onClick={() => dispatch(deleteNotification(notification))} /> */}
                             </div>
                         </div>
                     )
