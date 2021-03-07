@@ -9,17 +9,25 @@ import './homepage.css'
 const allMiles = [2500, 5000, 7500, 10000, 12000, 15000];
 const allMonths = [12, 24, 36, 48];
 
-const DealCard = ({ latestDeals }) => (
+const DealCard = ({ latestDeal }) => (
     <div>
         <Card background="light-1" id="card">
             <CardBody id="card-body">
-                Body
-        </CardBody>
+                {latestDeal && (
+                    <div>
+                        <p>{latestDeal.lease_info.trim.make.name} {latestDeal.lease_info.trim.model.name}</p>
+                        <p>{latestDeal.lease_info.trim.name}</p>
+                        <p>{latestDeal.lease_info.months}/{latestDeal.lease_info.miles_yearly}</p>
+                        <p>${latestDeal.lease_info.payment} per month</p>
+                    </div>
+                )}
+            </CardBody>
             <CardFooter background="light-5" id="card-footer">
-                <p>Broker: {latestDeals && latestDeals[1].broker.username}</p>
+                <p>Broker: {latestDeal && latestDeal.broker.username}</p>
             </CardFooter>
         </Card>
-        <p class="speech-bubble">Great deal!</p>
+        {latestDeal && (latestDeal.lease_info.msrp * 0.01) <= latestDeal.lease_info.payment && <p class="speech-bubble">Great deal!</p>}
+
     </div>
 
 )
@@ -53,19 +61,19 @@ const HomePageComponent = () => {
                     {latestDeals && (
                         <Carousel fill="true" id="deal-carousel">
                             <Box direction="row" id="carousel-part">
-                                <DealCard latestDeals={latestDeals} />
-                                <DealCard latestDeals={latestDeals} />
-                                <DealCard latestDeals={latestDeals} />
+                                <DealCard latestDeal={latestDeals[1]} />
+                                <DealCard latestDeal={latestDeals[2]} />
+                                <DealCard latestDeal={latestDeals[3]} />
                             </Box>
                             <Box direction="row" id="carousel-part">
-                                <DealCard latestDeals={latestDeals} />
-                                <DealCard latestDeals={latestDeals} />
-                                <DealCard latestDeals={latestDeals} />
+                                <DealCard latestDeal={latestDeals[4]} />
+                                <DealCard latestDeal={latestDeals[5]} />
+                                <DealCard latestDeal={latestDeals[6]} />
                             </Box>
                             <Box id="carousel-part">
-                                <DealCard latestDeals={latestDeals} />
-                                <DealCard latestDeals={latestDeals} />
-                                <DealCard latestDeals={latestDeals} />
+                                <DealCard latestDeal={latestDeals[7]} />
+                                <DealCard latestDeal={latestDeals[8]} />
+                                <DealCard latestDeal={latestDeals[9]} />
                             </Box>
                         </Carousel>
 

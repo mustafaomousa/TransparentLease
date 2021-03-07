@@ -3,7 +3,7 @@ import { Box, Button, Heading } from 'grommet';
 import { Menu, Notification as AlertIcon } from "grommet-icons"
 import './navbar.css';
 import SideBarComponent from "./SideBarComponent";
-
+import NotificationComponent from "../NotificationComponent";
 
 const NavBarComponent = ({ user, setAuthenticated, }) => {
     const [sideHidden, setSideHidden] = useState(false)
@@ -15,6 +15,7 @@ const NavBarComponent = ({ user, setAuthenticated, }) => {
                 <Button icon={<AlertIcon />} />
 
             </Box>
+            <NotificationComponent />
             <SideBarComponent user={user} sideHidden={sideHidden} setSideHidden={setSideHidden} setAuthenticated={setAuthenticated} />
         </>
     )

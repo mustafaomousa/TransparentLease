@@ -57,3 +57,48 @@
 #sidebar-hidden {
     display: none;
 }
+
+.notification-component-container {
+    position: fixed;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 100%;
+    z-index: 1000;
+}
+
+.new-deal-notification-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 300px;
+    height: 80px;
+    background-color: green;
+    border-radius: 2em;
+    margin: 20px -230px;
+    box-shadow: 0px 4px 8px rgb(0 0 0 / 20%);
+    transition: transform 2s;
+}
+
+.new-deal-notification-container:hover {
+    transform: scale(1.1);
+    margin: 20px 35px;
+}
+
+.new-deal-notification-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+}
+
+.new-deal-notification-message-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+}
