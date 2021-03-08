@@ -15,15 +15,16 @@ class UserComment(db.Model):
 
     broker_reply = db.relationship(
         "BrokerReply")
+    user = db.relationship('User', foreign_keys=[user_id])
 
     def to_dict(self):
         return {
             "id": self.id,
             "broker_id": self.broker_id,
             "user_id": self.user_id,
+            "user": self.user.to_dict(),
             "comment": self.comment,
             "pinned": self.pinned,
             "created_at": self.created_at,
             "updated_at": self.updated_at
-
         }

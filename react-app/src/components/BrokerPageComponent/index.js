@@ -5,6 +5,7 @@ import { Send } from "grommet-icons"
 import { Avatar, DataTable, Form, TextInput } from "grommet";
 import "./brokerpage.css";
 import { getCurrentUser, getUserByUserName, getUserByUsername } from "../../store/user";
+import { getBrokerInformation } from "../../store/broker";
 
 const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
 
@@ -65,10 +66,9 @@ const BrokerPageComponent = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { brokerUsername } = useParams();
-    const user = useSelector(state => state.user.profile_user);
-    const currentUser = useSelector(state => state.user);
-    const brokerDeals = useSelector(state => state.user.broker_deals)
-    const comments = [{ username: "mustafam1", image: "www.image.com", comment: "Do you provide nationwide shipping?", likes: [{ name: "Justin" }] }, { username: "mustafam1", image: "www.image.com", comment: "Do you provide nationwide shipping?", likes: [{ name: "Justin" }] }, { username: "mustafam1", image: "www.image.com", comment: "Do you provide nationwide shipping?", likes: [{ name: "Justin" }] }, { username: "mustafam1", image: "www.image.com", comment: "Do you provide nationwide shipping?", likes: [{ name: "Justin" }] }, { username: "mustafam1", image: "www.image.com", comment: "Do you provide nationwide shipping?", likes: [{ name: "Justin" }] }, { username: "mustafam1", image: "www.image.com", comment: "Do you provide nationwide shipping?", likes: [{ name: "Justin" }] }]
+    const broker = useSelector(state => state.broker.broker_information);
+    const brokerDeals = useSelector(state => state.broker.broker_deals);
+    const comments = useSelector(state => state.broker.broker_comments)
 
     let data = []
     if (brokerDeals) {
@@ -91,25 +91,11 @@ const BrokerPageComponent = () => {
 
 
     useEffect(() => {
-        dispatch(getUserByUsername(brokerUsername))
-        dispatch(getCurrentUser())
-    }, [dispatch]);
+        dispatch(getBrokerInformation(brokerUsername))
+    }, [dispatch, brokerUsername]);
 
-    if (brokerDeals) return (
+    if (brokerDeals && broker) return (
         <div className="broker-page-body">
-            {/* <div style={{ width: "20%" }}>
-                <div className="selected-deal-container">
-                    <div className="selected-deal-header">
-
-                    </div>
-                    <div className="selected-deal-body">
-
-                    </div>
-                    <div className="selected-deal-footer">
-
-                    </div>
-                </div>
-            </div> */}
             <div className="broker-right-body">
                 <div className="broker-page-top-bar"></div>
                 <div className="broker-page-header-container">
@@ -119,11 +105,11 @@ const BrokerPageComponent = () => {
                     </div>
                     <div className="broker-info">
                         <div style={{ paddingLeft: "50px", textAlign: "center" }}>
-                            <h1>{user.name}</h1>
+                            <h1>{broker.name}</h1>
                         </div>
                         <div style={{ paddingLeft: "50px", paddingTop: "15px" }}>
-                            <p>{user.header}</p>
-                            <p>{user.bio}</p>
+                            <p>{broker.header}</p>
+                            <p>{broker.bio}</p>
                         </div>
                     </div>
                 </div>
@@ -155,7 +141,7 @@ const BrokerPageComponent = () => {
                                                 <p>{comment.comment}</p>
                                             </div>
                                             <div className="comment-body-footer">
-                                                <p>{comment.username}</p>
+                                                <p>{comment.user.username}</p>
                                             </div>
                                         </div>
                                     </div>

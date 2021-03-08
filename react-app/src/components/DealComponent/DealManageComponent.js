@@ -77,25 +77,23 @@ const DealManageComponent = () => {
     };
 
     const ManageDealTable = ({ columns, data }) => (
-        <Grommet >
-            <Box size="large">
-                <DataTable
-                    columns={columns}
-                    data={data}
-                    step={10}
-                    select={select}
-                    onSelect={id => {
-                        setSelect(id)
-                    }
-                    }
-                    onClickRow={({ datum }) => {
-                        setSelectedDeal(datum)
-                    }}
-                />
-            </Box>
-        </Grommet>
-
-
+        <div>
+            <DataTable
+                columns={columns}
+                data={data}
+                step={5}
+                paginate={true}
+                sortable={true}
+                select={select}
+                onSelect={id => {
+                    setSelect(id)
+                }
+                }
+                onClickRow={({ datum }) => {
+                    setSelectedDeal(datum)
+                }}
+            />
+        </div>
     );
 
     useEffect(() => {
@@ -109,14 +107,12 @@ const DealManageComponent = () => {
             let controlsContainer = document.getElementById('control-container')
             let controlsSet = document.getElementById('control-set')
             controlsContainer.style.height = "230px"
-            const style = setTimeout(() => controlsSet.style.display = "grid", 1200)
-            clearTimeout(style);
+            setTimeout(() => controlsSet.style.display = "grid", 1200)
         } else {
             let controlsContainer = document.getElementById('control-container')
             let controlsSet = document.getElementById('control-set')
             controlsSet.style.display = "none"
-            const style = setTimeout(() => controlsContainer.style.height = "5px", 200)
-            clearTimeout(style);
+            setTimeout(() => controlsContainer.style.height = "5px", 200)
         }
 
     }, [selectedDeal, select.length])

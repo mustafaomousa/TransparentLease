@@ -24,7 +24,7 @@ export const getCurrentUser = () => async dispatch => {
 };
 
 export const getUserByUsername = (brokerUsername) => async dispatch => {
-    const response = await fetch(`/api/users/${brokerUsername}`);
+    const response = await fetch(`/api/users/broker/${brokerUsername}`);
     const user = await response.json()
     dispatch(getUserByUserName(user))
     return user

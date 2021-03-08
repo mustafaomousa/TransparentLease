@@ -4,11 +4,13 @@ import reduxReset from "redux-reset";
 import dealReducer from "./deals";
 import notificationsReducer from "./notifications";
 import userReducer from "./user";
+import brokerReducer from "./broker";
 
 export const appReducer = combineReducers({
     deals: dealReducer,
     user: userReducer,
     notifications: notificationsReducer,
+    broker: brokerReducer
 });
 
 

@@ -52,5 +52,5 @@ class User(db.Model, UserMixin):
             "dealer": self.dealer,
             "header": self.header,
             "bio": self.bio,
-            "profile_image": self.profile_image
+            "profile_image": self.profile_image,
         }

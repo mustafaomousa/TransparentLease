@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider as ReduxProvider, useDispatch, useSelector } from "react-redux";
 import { Menu, Notification as AlertIcon } from "grommet-icons"
 import { Grommet, Button, Heading } from 'grommet';
+import { grommet } from "grommet/themes"
 import './components/NavBarComponent/navbar.css'
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
@@ -41,6 +42,7 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
+
 
   if (!loaded) {
     return null;
