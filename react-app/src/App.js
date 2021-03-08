@@ -27,7 +27,8 @@ function App() {
 
   useEffect(() => {
     if (notifications) {
-      setTimeout(() => dispatch(deleteNotification(notifications[0])), 10000)
+      const removeNotification = setTimeout(() => dispatch(deleteNotification(notifications[0])), 10000)
+      clearTimeout(removeNotification);
     }
   }, [dispatch, notifications])
 

@@ -1,9 +1,14 @@
 .broker-page-body {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: stretch;
     padding-top: 35px;
     padding-bottom: 35px;
+}
+
+.broker-right-body {
+    display: flex;
+    flex-direction: column;
 }
 
 #broker-table {
@@ -33,13 +38,111 @@
     padding-bottom: 20px;
 }
 
+.broker-page-interactions-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 1100px;
+    background-color: #ffffffd8;
+    padding: 20px 0px;
+}
+
 .broker-comments-container {
     display: flex;
     justify-content: center;
-    width: 1100px;
-    height: auto;
-    background-color: #ffffffd8;
-    padding-bottom: 20px;
+    width: 550px;
+    /* min-height: 600px; */
+    background-color:0;
+}
+
+.selected-deal-container {
+    background-color: whitesmoke;
+    height: 700px;
+    width: 260px;
+    margin: 10px 30px;
+    box-shadow: 0px 4px 8px rgb(0 0 0 / 20%);
+    border-top-right-radius: 0.25em;
+    border-top-left-radius: 0.25em;
+    position: sticky;
+    top: 30px;
+}
+
+.selected-deal-header {
+    height: 50px;
+    width: 100%;
+    border-top-right-radius: 0.25em;
+    border-top-left-radius: 0.25em;
+    background-color: #485771;
+}
+
+.pinned-comment-container {
+    height: 100px;
+}
+
+.broker-comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-container {
+    display: flex;
+    background-color: white;
+    height:auto;
+    width: 500px;
+    margin: 10px 0px;
+    padding: 15px 0px;
+}
+
+.send-icon:hover {
+    color: white;
+}
+
+#comment-input {
+    height: 35px;
+    width: 390px;
+    margin-right: 80px;
+    color: black;
+    background-color: white;
+    border: 0;
+
+}
+
+.broker-comment-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.broker-comments-holder {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.comment-avatar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+}
+
+.comment-body-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-body-header {
+    display: flex;
+    align-items: center;
+    height: 60%;
+}
+
+.comment-body-footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 40%;
 }
 
 .broker-comments-top {
@@ -48,16 +151,31 @@
     justify-content: center;
     font-weight: bolder;
     width: 100%;
-    height: 40px;
-    background-color: orange;
+    height: 50px;
+    background-color: #485771;
+    color: white;
     border-top-right-radius: 0.25em;
     border-top-left-radius: 0.25em;
+    box-shadow: 0px 4px 8px rgb(0 0 0 / 20%);
+}
+
+.broker-comments-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    width: 100%;
+    height: 70px;
+    background-color: #EE6C4D;
+    border-bottom-right-radius: 0.25em;
+    border-bottom-left-radius: 0.25em;
+    box-shadow: 0px 4px 8px rgb(0 0 0 / 20%);
 }
 
 .broker-comments {
     background-color: whitesmoke;
     width: 1050px;
-    height: 400px;
+    height: 700px;
     border-radius: 0.25em;
     box-shadow: 0px 4px 8px rgb(0 0 0 / 20%);
 }

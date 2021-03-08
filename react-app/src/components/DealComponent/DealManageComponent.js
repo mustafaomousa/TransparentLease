@@ -109,12 +109,14 @@ const DealManageComponent = () => {
             let controlsContainer = document.getElementById('control-container')
             let controlsSet = document.getElementById('control-set')
             controlsContainer.style.height = "230px"
-            setTimeout(() => controlsSet.style.display = "grid", 1200)
+            const style = setTimeout(() => controlsSet.style.display = "grid", 1200)
+            clearTimeout(style);
         } else {
             let controlsContainer = document.getElementById('control-container')
             let controlsSet = document.getElementById('control-set')
             controlsSet.style.display = "none"
-            setTimeout(() => controlsContainer.style.height = "5px", 200)
+            const style = setTimeout(() => controlsContainer.style.height = "5px", 200)
+            clearTimeout(style);
         }
 
     }, [selectedDeal, select.length])
