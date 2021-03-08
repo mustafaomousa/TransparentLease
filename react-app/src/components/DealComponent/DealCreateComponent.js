@@ -1,7 +1,8 @@
-import { Box, Form, TextInput, Text, Button, DateInput, Select, RadioButton } from "grommet";
+import { Form, TextInput, Button, DateInput, RadioButton } from "grommet";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { CircleQuestion } from "grommet-icons"
+import { CircleQuestion } from "grommet-icons";
+import { Input, Checkbox, Select, MenuItem } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import "./deal.css";
 import { createNewDeal } from "../../store/deals";
@@ -41,19 +42,8 @@ const DealCreateComponent = ({ user }) => {
             const { Results } = await response.json()
             let currentMakeOptions = []
             if (Results) {
-                Results.forEach(make => currentMakeOptions.push({ label: make.Model_Name, value: make.Model_Name }))
-                setModelOptions(currentMakeOptions)
-            }
-        })();
-    }, [makeId])
-
-    useEffect(() => {
-        (async () => {
-            const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/${makeName}?format=json`);
-            const { Results } = await response.json()
-            let currentMakeOptions = []
-            if (Results) {
-                Results.forEach(make => currentMakeOptions.push({ label: make.Model_Name, value: make.Model_Name }))
+                console.log(Results)
+                Results.forEach(make => currentMakeOptions.push(<MenuItem value={`${make.Model_Name}`}>{make.Model_Name}</MenuItem>))
                 setModelOptions(currentMakeOptions)
             }
         })();
@@ -112,7 +102,7 @@ const DealCreateComponent = ({ user }) => {
             demo
         };
         dispatch(createNewDeal(newDeal));
-        dispatch(createNotification({ message: "New deal created!" }))
+        dispatch(createNotification("New deal created!"))
         return history.push('/')
     }
 
@@ -131,54 +121,57 @@ const DealCreateComponent = ({ user }) => {
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Year</label>
-                                    <TextInput type="number" value={year} suggestions={[2019, 2020, 2021]} onSelect={(e) => setYear(e.suggestion)} onChange={(e) => setYear(e.target.value)} />
+                                    {/* <Input type="number" value={year} suggestions={[2019, 2020, 2021]} onSelect={(e) => setYear(e.suggestion)} onChange={(e) => setYear(e.target.value)} /> */}
+                                    <Select value={year} onChange={(e) => setYear(e.target.value)}>
+                                        <MenuItem value={2020}>2020</MenuItem>
+                                        <MenuItem value={2020}>2021</MenuItem>
+                                    </Select>
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Make</label>
-                                    <Select options={makeOptions}
-                                        labelKey="label"
-                                        valueKey={{ key: "value" }}
+                                    <Select
                                         value={makeId}
-                                        onChange={({ value: newValue }) => {
-                                            setMake(newValue)
-                                            setMakeName(newValue.label)
-                                            console.log(newValue.value)
-                                        }} />
+                                        onChange={(e) => {
+                                            setMake(e.target.value)
+                                            setMakeName(e.target.value)
+                                            console.log(e.target.value)
+                                        }} >
+                                        <MenuItem value="BMW">BMW</MenuItem>
+                                    </Select>
                                 </div>
                             </div>
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Model</label>
                                     <Select
-                                        options={modelOptions}
-                                        labelKey="label"
-                                        valueKey={{ key: "value" }}
                                         value={model_name}
-                                        onChange={({ value: newValue }) => setModel(newValue)} />
+                                        onChange={(e) => setModel(e.target.value)} >
+                                        {modelOptions && modelOptions.map((model, idx) => model)}
+                                    </Select>
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Trim</label>
-                                    <TextInput type="text" value={trim_name} onChange={(e) => setTrim(e.target.value)} />
+                                    <Input type="text" value={trim_name} onChange={(e) => setTrim(e.target.value)} />
                                 </div>
                             </div>
                             <div id="horizontal-divider" />
                             <div>
                                 <label>Months</label>
-                                <TextInput type="number" value={months} onChange={(e) => setMonths(e.target.value)} />
+                                <Input type="number" value={months} onChange={(e) => setMonths(e.target.value)} />
                             </div>
                             <div>
                                 <label>Miles per year</label>
-                                <TextInput type="number" value={miles} onChange={(e) => setMiles(e.target.value)} />
+                                <Input type="number" value={miles} onChange={(e) => setMiles(e.target.value)} />
                             </div>
                             <div id="horizontal-divider" />
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Msrp</label>
-                                    <TextInput type="number" value={msrp} onChange={(e) => setMsrp(e.target.value)} />
+                                    <Input type="number" value={msrp} onChange={(e) => setMsrp(e.target.value)} />
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Discount</label>
-                                    <TextInput type="number" value={discount} onChange={(e) => setDiscount(e.target.value)} />
+                                    <Input type="number" value={discount} onChange={(e) => setDiscount(e.target.value)} />
                                 </div>
                             </div>
                         </div>
@@ -186,44 +179,44 @@ const DealCreateComponent = ({ user }) => {
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Residual</label>
-                                    <TextInput type="number" value={residual} onChange={(e) => setResidual(e.target.value)} />
+                                    <Input type="number" value={residual} onChange={(e) => setResidual(e.target.value)} />
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Money factor</label>
-                                    <TextInput type="number" value={money_factor} onChange={(e) => setMoneyFactor(e.target.value)} />
+                                    <Input type="number" value={money_factor} onChange={(e) => setMoneyFactor(e.target.value)} />
                                 </div>
                             </div>
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Loyalty</label>
-                                    <TextInput type="number" value={loyalty} onChange={(e) => setLoyalty(e.target.value)} />
+                                    <Input type="number" value={loyalty} onChange={(e) => setLoyalty(e.target.value)} />
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Lease cash</label>
-                                    <TextInput type="number" value={lease_cash} onChange={(e) => setLeaseCash(e.target.value)} />
+                                    <Input type="number" value={lease_cash} onChange={(e) => setLeaseCash(e.target.value)} />
                                 </div>
                             </div>
 
                             <div>
                                 <label>Conquest</label>
-                                <TextInput type="number" value={conquest} onChange={(e) => setConquest(e.target.value)} />
+                                <Input type="number" value={conquest} onChange={(e) => setConquest(e.target.value)} />
                             </div>
                             <div id="horizontal-divider" />
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <div id="quad" style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Payment</label>
-                                    <TextInput type="number" value={payment} onChange={(e) => setMonthlyPayment(e.target.value)} />
+                                    <Input type="number" value={payment} onChange={(e) => setMonthlyPayment(e.target.value)} />
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <label>Broker fee</label>
-                                    <TextInput type="number" value={broker_fee} onChange={(e) => setBrokerFee(e.target.value)} />
+                                    <Input type="number" value={broker_fee} onChange={(e) => setBrokerFee(e.target.value)} />
                                 </div>
                             </div>
                             <div style={{ marginTop: "50px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                                 <div style={{ width: "100px" }}>
-                                    <RadioButton style={{ width: "0px", height: "0px" }} label="Listed" value={listed} checked={listed === true} onClick={e => setListed(!listed)} />
-                                    <RadioButton style={{ width: "0px", height: "0px" }} label="Advertise" value={advertise} checked={advertise === true} onClick={e => setAdvertise(!advertise)} />
-                                    <RadioButton style={{ width: "0px", height: "0px" }} label="Demo" value={demo} checked={demo === true} onClick={e => setDemo(!demo)} />
+                                    <Checkbox style={{ width: "0px", height: "0px" }} label="Listed" value={listed} checked={listed === true} onClick={e => setListed(!listed)} />
+                                    <Checkbox style={{ width: "0px", height: "0px" }} label="Advertise" value={advertise} checked={advertise === true} onClick={e => setAdvertise(!advertise)} />
+                                    <Checkbox style={{ width: "0px", height: "0px" }} label="Demo" value={demo} checked={demo === true} onClick={e => setDemo(!demo)} />
                                 </div>
                                 <DateInput placeholder="MM/YYYY active" value={listed_date} onChange={(e) => setActiveMonth(e.value)} /> <p>Active month</p>
                             </div>

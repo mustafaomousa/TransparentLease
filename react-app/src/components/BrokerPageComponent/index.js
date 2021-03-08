@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { Send } from "grommet-icons"
-import { Avatar, DataTable, Form, TextInput } from "grommet";
+import { Avatar, DataTable } from "grommet";
+import { FormControl, Input, Button } from "@material-ui/core";
 import "./brokerpage.css";
 import { getCurrentUser, getUserByUserName, getUserByUsername } from "../../store/user";
-import { getBrokerInformation } from "../../store/broker";
+import { createUserComment, getBrokerInformation } from "../../store/broker";
+import { createNotification } from "../../store/notifications";
 
 const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
 
@@ -66,9 +68,11 @@ const BrokerPageComponent = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { brokerUsername } = useParams();
+    const [newComment, setNewComment] = useState("");
     const broker = useSelector(state => state.broker.broker_information);
     const brokerDeals = useSelector(state => state.broker.broker_deals);
     const comments = useSelector(state => state.broker.broker_comments)
+    const currentUser = useSelector(state => state.user)
 
     let data = []
     if (brokerDeals) {
@@ -88,6 +92,12 @@ const BrokerPageComponent = () => {
 
         }))
     }
+
+    const submitComment = async (e) => {
+        await dispatch(createUserComment(broker.id, newComment, currentUser.id));
+        await dispatch(createNotification("Comment posted!"))
+        return setNewComment(" ");
+    };
 
 
     useEffect(() => {
@@ -144,16 +154,20 @@ const BrokerPageComponent = () => {
                                                 <p>{comment.user.username}</p>
                                             </div>
                                         </div>
+                                        {currentUser.id === comment.user_id && (<div style={{ textAlign: "end", width: "100%" }}>
+                                            <Button>Delete</Button>
+                                        </div>)}
                                     </div>
                                 ))}
                             </div>
                             <div className="broker-comments-bottom" >
-                                <Form>
-                                    <div className="broker-comment-input-container">
-                                        <TextInput id="comment-input" placeholder="Ask a question or post a comment" />
-                                        <Send color="green" />
-                                    </div>
-                                </Form>
+                                {currentUser.broker === false && (
+                                    <FormControl >
+                                        <div className="broker-comment-input-container">
+                                            <Input id="comment-input" value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Ask a question or post a comment" />
+                                            <Button type="submit" onClick={submitComment} ><Send color="white" /></Button>
+                                        </div>
+                                    </FormControl>)}
                             </div>
                         </div>
                     </div>

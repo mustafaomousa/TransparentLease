@@ -18,7 +18,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setUser }) => {
     if (!user.errors) {
       setAuthenticated(true);
       dispatch(getUser(user));
-      dispatch(createNotification({ "message": "Logged in" }))
+      dispatch(createNotification("Logged in"))
     } else {
       setErrors(user.errors);
     }

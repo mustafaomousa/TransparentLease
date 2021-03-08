@@ -7,7 +7,7 @@ import { appReducer } from "./index";
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: ['notifications']
+    blacklist: ['user', 'notifications']
 }
 
 const persistedReducer = persistReducer(persistConfig, appReducer);

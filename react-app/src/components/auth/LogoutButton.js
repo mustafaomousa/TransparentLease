@@ -13,9 +13,9 @@ const LogoutButton = ({ setAuthenticated }) => {
   const onLogout = async (e) => {
     await logout();
     setAuthenticated(false);
+    dispatch(createNotification("Successfully logged out"))
     history.push('/')
     window.location.reload(true)
-    return dispatch(createNotification({ "message": "Sucessfully logged out" }))
   };
 
   return <Button id="navlink" style={{ marginBottom: "-12px" }} onClick={onLogout}>Logout</Button>;
