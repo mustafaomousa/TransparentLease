@@ -1,12 +1,13 @@
 
 #navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     background-color: #3D5A80;
     padding: 0px 20px;
     height: 65px;
-    z-index: 3;
+    /* z-index: 3; */
 }
 
 #sidebar {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Box, Button, Heading } from 'grommet';
+import { AppBar } from "@material-ui/core"
 import { Menu, Notification as AlertIcon } from "grommet-icons"
 import './navbar.css';
 import SideBarComponent from "./SideBarComponent";
@@ -9,12 +10,11 @@ const NavBarComponent = ({ user, setAuthenticated, }) => {
     const [sideHidden, setSideHidden] = useState(false)
     return (
         <>
-            <Box id="navbar" tag="header" direction="row" align="center" justify="between" background="brand" elevation="medium" height="65px" pad >
+            <AppBar id="navbar">
                 <Button icon={<Menu />} focusIndicator={false} id="sidebar-toggle" onMouseEnter={(e) => setSideHidden(true)} />
                 <Heading level="3">TransparentLease</Heading>
                 <Button icon={<AlertIcon />} />
-
-            </Box>
+            </AppBar>
             <NotificationComponent />
             <SideBarComponent user={user} sideHidden={sideHidden} setSideHidden={setSideHidden} setAuthenticated={setAuthenticated} />
         </>
