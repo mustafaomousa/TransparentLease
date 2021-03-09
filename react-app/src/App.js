@@ -69,7 +69,10 @@ function App() {
           <BrokerPageComponent />
         </Route>
         <Route path="/" exact={true} >
-          <HomePageComponent />
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+            <HomePageComponent />
+          </div>
+
         </Route>
       </Switch>
       {/* <Footer className="nav-footer" pad="small">

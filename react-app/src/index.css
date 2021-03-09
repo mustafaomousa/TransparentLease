@@ -13,8 +13,8 @@ p, a, button, span {
 }
 
 body {
-    padding-top: 65px;
     background-color: #293241;
+    margin-top: 65px;
 }
 
 p, h1, h3, h2, h4, h5 {

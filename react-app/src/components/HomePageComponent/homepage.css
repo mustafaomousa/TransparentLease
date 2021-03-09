@@ -2,15 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    max-width: 1400px;
     height: 100%;
-    margin-top: 50px;
+    background-color: #333e51;
 }
 
 .locate-body-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 250px
 }
 
 .locate-deal-search-container {
@@ -72,6 +73,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 100px;
+    margin-right: 20px;
+    padding-bottom: 20px;
+}
+
+.advertised-deal-container:hover {
+    background-color: #293241;
 }
 
 #deal-carousel {
@@ -109,7 +117,7 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
     width: 100%;
-    height: 400px;
+    height: 800px;
 }
 
 .basic-calculator {
@@ -117,9 +125,9 @@
     justify-content: center;
     align-items: center;
     border-radius: 0.25em;
-    width:500px;
-    height: 280px;
-    background-color: #3D5A80;
+    width: 500px;
+    height: 750px;
+    background-color: #dce0e7;
 }
 
 .basic-calculator-left, .basic-calculator-right {
@@ -130,40 +138,33 @@
 
 .simple-calculator-form {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     width: 600px;
 }
 
-.simple-calculator-form-1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.445);
-    margin: 10px 10px;
+.simple-calculator-header {
+    background-color: #dce0e7;
 }
 
-.simple-calculator-form-2 {
+.simple-calculator-results-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.445);
-    margin: 10px 10px;
+    height: 130px;
+    width: 100%;
 }
 
-.simple-calculator-form-3 {
+.result-sect {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.445);
-    margin: 10px 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    height: 25px;
+    margin: 5px 20px;
 }
+
 
 .calculator-header-container {
     display: flex;
@@ -184,14 +185,16 @@
 }
 
 
-
-
-
 #card {
     border-radius: 0.15em;
     width: 200px;
     height: 240px;
     margin: 0px 40px;
+}
+
+#card-body {
+    height: 140px;
+    background-color: whitesmoke;
 }
 
 #card-footer {
@@ -245,10 +248,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border-radius: 0.25em; */
     width: 100%;
     height: 100%;
-    background-color: #293241;
+    background-color: #333e51;
 }
 
 .how-it-works-3 {
@@ -344,23 +346,36 @@
 }
 
 .join-button-container {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     width: 100%;
-    height: 60px;
+    height: 65px;
+}
+
+.join-button-container button{
+    color: whitesmoke;
 }
 
 .home-google-maps-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
     height: 600px;
     background-color: darkgrey;
 }
 
+.broker-home-sign-up:hover {
+    background-color: rgb(150, 150, 150);
+}
+
+.user-home-sign-up:hover {
+    background-color: rgb(150, 150, 150);
+}
+
 .simple-deal-alert-container {
     width: 100%;
     height: 300px;
-    background-color: wheat;
 }
 
 button:focus {
