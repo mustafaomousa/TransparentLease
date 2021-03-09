@@ -42,41 +42,39 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Grommet full>
-        <NavBarComponent user={currentUser} setAuthenticated={setAuthenticated}>
-        </NavBarComponent>
-        {/* <SideBarComponent sideVisible={sideVisible} setSideVisible={setSideVisible} user={currentUser} setAuthenticated={setAuthenticated} /> */}
-        <Switch>
-          <Route path="/make/:makeName" exact={true}>
-            <MakeDealsComponent />
-          </Route>
-          <Route exact path="/deal/manage">
-            <DealManageComponent />
-          </Route>
-          <Route exact path="/deal/create">
-            <DealCreateComponent />
-          </Route>
-          <Route path="/login" exact={true}>
-            <LoginForm
-              authenticated={authenticated}
-              setAuthenticated={setAuthenticated}
-              setUser={setUser}
-            />
-          </Route>
-          <Route path="/sign-up" exact={true}>
-            <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} setLoaded={setLoaded} />
-          </Route>
-          <Route path="/:brokerUsername" exact={true}>
-            <BrokerPageComponent />
-          </Route>
-          <Route path="/" exact={true} >
-            <HomePageComponent />
-          </Route>
-        </Switch>
-        {/* <Footer className="nav-footer" pad="small">
+      <NavBarComponent user={currentUser} setAuthenticated={setAuthenticated}>
+      </NavBarComponent>
+      {/* <SideBarComponent sideVisible={sideVisible} setSideVisible={setSideVisible} user={currentUser} setAuthenticated={setAuthenticated} /> */}
+      <Switch>
+        <Route path="/make/:makeName" exact={true}>
+          <MakeDealsComponent />
+        </Route>
+        <Route exact path="/deal/manage">
+          <DealManageComponent />
+        </Route>
+        <Route exact path="/deal/create">
+          <DealCreateComponent />
+        </Route>
+        <Route path="/login" exact={true}>
+          <LoginForm
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+            setUser={setUser}
+          />
+        </Route>
+        <Route path="/sign-up" exact={true}>
+          <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} setLoaded={setLoaded} />
+        </Route>
+        <Route path="/:brokerUsername" exact={true}>
+          <BrokerPageComponent />
+        </Route>
+        <Route path="/" exact={true} >
+          <HomePageComponent />
+        </Route>
+      </Switch>
+      {/* <Footer className="nav-footer" pad="small">
             test
           </Footer> */}
-      </Grommet>
     </BrowserRouter>
   );
 }

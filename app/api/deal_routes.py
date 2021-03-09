@@ -22,7 +22,7 @@ def validation_errors_to_error_messages(validation_errors):
 @deal_routes.route('/')
 def latest_deals():
     broker_deals = BrokerDeal.query.order_by(
-        BrokerDeal.created_at.desc()).limit(20)
+        BrokerDeal.created_at.desc()).limit(9)
 
     return {"latest_deals": {broker_deal.id: broker_deal.to_dict() for broker_deal in broker_deals}}
 

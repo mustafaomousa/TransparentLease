@@ -1,18 +1,17 @@
-import { Box, Button, Card, CardBody, CardFooter, Carousel, WorldMap, Select, RangeInput } from 'grommet';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Close as CloseIcon, Alert as AlertIcon, Search, Workshop, Semantics } from "grommet-icons"
+import Pagination from "@material-ui/lab/Pagination";
+
 import { getAllLatestDeals } from '../../store/deals';
+import LocateBar from "../LocateComponents/LocateBar";
 import CalculatorBasicComponent from "../CalculatorComponents/CalculatorBasicComponent";
 import './homepage.css'
 
-const allMiles = [2500, 5000, 7500, 10000, 12000, 15000];
-const allMonths = [12, 24, 36, 48];
 
 const DealCard = ({ latestDeal }) => (
     <div>
-        <Card background="light-1" id="card">
-            <CardBody id="card-body">
+        <div id="card">
+            <div id="card-body">
                 {latestDeal && (
                     <div>
                         <p>{latestDeal.lease_info.trim.make.name} {latestDeal.lease_info.trim.model.name}</p>
@@ -21,11 +20,11 @@ const DealCard = ({ latestDeal }) => (
                         <p>${latestDeal.lease_info.payment} per month</p>
                     </div>
                 )}
-            </CardBody>
-            <CardFooter background="light-5" id="card-footer">
+            </div>
+            <div background="light-5" id="card-footer">
                 <p>Broker: {latestDeal && latestDeal.broker.username}</p>
-            </CardFooter>
-        </Card>
+            </div>
+        </div>
         {latestDeal && (latestDeal.lease_info.msrp * 0.01) <= latestDeal.lease_info.payment && <p class="speech-bubble">Great deal!</p>}
 
     </div>
@@ -36,62 +35,62 @@ const HomePageComponent = () => {
     const dispatch = useDispatch();
     const [selectedMiles, setSelectedMiles] = useState();
     const [selectedMonths, setSelectedMonths] = useState();
-
+    const [currDeal, setCurrDeal] = useState(1);
     const latestDeals = useSelector(state => state.deals.latest_deals)
     useEffect(() => dispatch(getAllLatestDeals()), [dispatch])
 
     return (
         <div className="home-body">
-            <div className="home-brands">
-                <div className="locate-deal-search-container">
-                    <Select id="locate-deal-select" options={allMiles} value={selectedMiles} placeholder="Miles per year" onChange={({ option }) => setSelectedMiles(option)} />
-                    <Select id="locate-deal-select" options={allMonths} value={selectedMonths} placeholder="Months" onChange={({ option }) => setSelectedMonths(option)} />
-                    <RangeInput id="locate-deal-range" plain="full" min="50" step="100" max="3000" />
-                </div>
-                <Search id="locate-deal-search-button" color="white" size="medium" />
-            </div>
+            <LocateBar />
             <div className="home-1-container">
-                <div className="advertised-header">
-                    <div className="advertised-h4">
-                        <h4>Checkout these latest deals</h4>
+                <div className="home-1">
+                    <div className="advertised-header">
+                        <div className="advertised-h4">
+                            <h4>Checkout these latest deals</h4>
+                        </div>
+                        <div className="advertised-h4-underline" />
                     </div>
-                    <div className="advertised-h4-underline" />
+                    <div className="advertised-deal-container">
+                        {latestDeals && (
+                            <div>
+                                {currDeal === 1 && (<div id="carousel-part">
+                                    <DealCard latestDeal={latestDeals[1]} />
+                                    <DealCard latestDeal={latestDeals[2]} />
+                                    <DealCard latestDeal={latestDeals[3]} />
+                                </div>)}
+                                {currDeal === 2 && (<div id="carousel-part">
+                                    <DealCard latestDeal={latestDeals[4]} />
+                                    <DealCard latestDeal={latestDeals[5]} />
+                                    <DealCard latestDeal={latestDeals[6]} />
+                                </div>)}
+                                {currDeal === 3 && (<div id="carousel-part">
+                                    <DealCard latestDeal={latestDeals[7]} />
+                                    <DealCard latestDeal={latestDeals[8]} />
+                                    <DealCard latestDeal={latestDeals[9]} />
+                                </div>)}
+                            </div>
+                        )}
+                        <Pagination count={3} color="primary" size="large" page={currDeal} onChange={(e, page) => setCurrDeal(page)} />
+                    </div>
                 </div>
-                <div className="advertised-deal-container">
-                    {latestDeals && (
-                        <Carousel fill="true" id="deal-carousel">
-                            <Box direction="row" id="carousel-part">
-                                <DealCard latestDeal={latestDeals[1]} />
-                                <DealCard latestDeal={latestDeals[2]} />
-                                <DealCard latestDeal={latestDeals[3]} />
-                            </Box>
-                            <Box direction="row" id="carousel-part">
-                                <DealCard latestDeal={latestDeals[4]} />
-                                <DealCard latestDeal={latestDeals[5]} />
-                                <DealCard latestDeal={latestDeals[6]} />
-                            </Box>
-                            <Box id="carousel-part">
-                                <DealCard latestDeal={latestDeals[7]} />
-                                <DealCard latestDeal={latestDeals[8]} />
-                                <DealCard latestDeal={latestDeals[9]} />
-                            </Box>
-                        </Carousel>
 
-                    )}
-                </div>
-                <div className="calculator-header">
-                    <div className="calculator-h4">
-                        <h4>Simple auto lease calculator</h4>
+                <div className="mini-calculator-container">
+                    <div className="basic-calculator-left">
+                        <div className="basic-calculator">
+                            <CalculatorBasicComponent />
+                        </div>
                     </div>
-                    <div className="calculator-h4-underline" />
-                </div>
-                <div className="basic-calculator-container">
-                    <div className="basic-calculator">
-                        <CalculatorBasicComponent />
+                    <div className="basic-calculator-right">
+                        <div className="calculator-header-container">
+                            <div className="calculator-h4">
+                                <h4>Simple auto lease calculator</h4>
+                            </div>
+                            <div className="calculator-h4-underline" />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="how-it-works-container">
+            {/* <div className="how-it-works-container">
                 <div className="how-it-works-1-container">
                     <div className="how-it-works-1">
                         <h3 className="how-it-works-1-text">So... how does TransparentLease work?</h3>
@@ -138,7 +137,7 @@ const HomePageComponent = () => {
             </div>
             <div className="simple-deal-alert-container">
 
-            </div>
+            </div> */}
         </div >
     )
 };
