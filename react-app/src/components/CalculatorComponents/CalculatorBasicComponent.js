@@ -42,7 +42,6 @@ const CalculatorBasicComponent = () => {
 
     return (
         <FormControl className="simple-calculator-form">
-            <p>Calculate a lease</p>
             <TableContainer>
                 <Table>
                     <TableHead className="simple-calculator-header">
@@ -131,7 +130,7 @@ const CalculatorBasicComponent = () => {
                 </Table>
             </TableContainer>
             <div className="simple-calculator-results-container">
-                <div style={{ height: "100%" }}>
+                <div style={{ width: "100%", height: "100%" }}>
                     <div className="result-sect">
                         <p>Monthly</p>
                         <p>{monthlyPayment.toFixed(2)}$ for 36 months</p>

@@ -13,7 +13,8 @@ p, a, button, span {
 }
 
 body {
-    background-color: #293241;
+    /* background-color: #293241; */
+    background-color: #333e51;
     margin-top: 65px;
 }
 
