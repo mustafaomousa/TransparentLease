@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { Send } from "grommet-icons"
-import { Avatar, DataTable } from "grommet";
-import { FormControl, Input, Button } from "@material-ui/core";
+import { animateScroll } from "react-scroll";
+import { Send } from "grommet-icons";
+import { Avatar } from "@material-ui/core";
+import { DataTable } from "grommet";
+import { FormControl, Input, Button, withStyles } from "@material-ui/core";
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import "./brokerpage.css";
 import { getCurrentUser, getUserByUserName, getUserByUsername } from "../../store/user";
 import { createUserComment, getBrokerInformation } from "../../store/broker";
@@ -95,10 +99,19 @@ const BrokerPageComponent = () => {
 
     const submitComment = async (e) => {
         await dispatch(createUserComment(broker.id, newComment, currentUser.id));
-        await dispatch(createNotification("Comment posted!"))
-        return setNewComment(" ");
+        await dispatch(createNotification("Comment posted!"));
+        setNewComment(" ");
+        return animateScroll.scrollToBottom({ containerId: "broker-comments-container" })
     };
 
+    const StyledAvatar = withStyles({
+        root: {
+            width: "60px",
+            height: "60px",
+        },
+    })(Avatar);
+
+    animateScroll.scrollToBottom({ containerId: "broker-comments-container" })
 
     useEffect(() => {
         dispatch(getBrokerInformation(brokerUsername))
@@ -107,20 +120,21 @@ const BrokerPageComponent = () => {
     if (brokerDeals && broker) return (
         <div className="broker-page-body">
             <div className="broker-right-body">
-                <div className="broker-page-top-bar"></div>
                 <div className="broker-page-header-container">
                     <div className="broker-image-name">
-                        <Avatar size="120px" src={src} />
-
+                        <StyledAvatar src={src} alt="" />
+                        <p style={{ color: "white" }}>{broker.name}</p>
                     </div>
                     <div className="broker-info">
-                        <div style={{ paddingLeft: "50px", textAlign: "center" }}>
-                            <h1>{broker.name}</h1>
-                        </div>
-                        <div style={{ paddingLeft: "50px", paddingTop: "15px" }}>
-                            <p>{broker.header}</p>
+                        <div style={{ paddingLeft: "50px" }}>
+                            <p style={{ borderBottom: "2px black solid" }}>{broker.header}</p>
                             <p>{broker.bio}</p>
+                            <p style={{ fontSize: "12px", paddingTop: "15px" }}>Joined {broker.created_at}</p>
                         </div>
+                    </div>
+                    <div className="broker-info-buttons-container">
+                        <Button><QuestionAnswerIcon /></Button>
+                        <Button><ThumbUpIcon /></Button>
                     </div>
                 </div>
                 <div className="broker-table-container">
@@ -131,55 +145,52 @@ const BrokerPageComponent = () => {
                         step={10}
                     />
                 </div>
+
+            </div>
+            <div className="broker-left">
                 <div className="broker-page-interactions-container">
-                    <div className="broker-comments-container">
-                        <div className="broker-comments">
-                            <div className="broker-comments-top" >
-                                <p>Comments</p>
-                            </div>
-                            <div className="pinned-comment-container">
-                                <h5>Pinned comment:</h5>
-                            </div>
-                            <div className="broker-comments-holder">
-                                {comments && Object.entries(comments).map(([comment_id, comment]) => (
-                                    <div className="comment-container">
-                                        <div className="comment-avatar-container">
-                                            <Avatar src="https://www.angkorsingles.com/wp-content/uploads/2019/06/fake_profile.jpg" alt="" />
-                                        </div>
-                                        <div className="comment-body-container">
-                                            <div className="comment-body-header">
-                                                <p>{comment.comment}</p>
-                                            </div>
-                                            <div className="comment-body-footer">
-                                                <p>{comment.user.username}</p>
-                                            </div>
-                                        </div>
-                                        {currentUser.id === comment.user_id && (<div style={{ textAlign: "end", width: "100%" }}>
-                                            <Button>Delete</Button>
-                                        </div>)}
-                                        {currentUser.broker === true && broker.id === currentUser.id && comment.user_id !== currentUser.id && (
-                                            <div style={{ textAlign: "end", width: "100%" }}>
-                                                <Button>Reply</Button>
-                                            </div>
-                                        )}
+                    <p>Pinned comments</p>
+                    <div className="pinned-comments-container">
+                    </div>
+                    <p>Comments</p>
+                    <div className="broker-comments-container" id="broker-comments-container">
+                        {comments && Object.entries(comments).map(([comment_id, comment]) => (
+                            <div className="comment-container">
+                                <div className="comment-avatar-container">
+                                    <Avatar src="https://www.angkorsingles.com/wp-content/uploads/2019/06/fake_profile.jpg" alt="" />
+                                </div>
+                                <div className="comment-body-container">
+                                    <div className="comment-body-header">
+                                        <p>{comment.comment}</p>
                                     </div>
-                                ))}
+                                    <div className="comment-body-footer">
+                                        <p>{comment.user.username}</p>
+                                    </div>
+                                </div>
+                                {currentUser.id === comment.user_id && (<div style={{ textAlign: "end", width: "100%" }}>
+                                    <Button>Delete</Button>
+                                </div>)}
+                                {currentUser.broker === true && broker.id === currentUser.id && comment.user_id !== currentUser.id && (
+                                    <div style={{ textAlign: "end", width: "100%" }}>
+                                        <Button>Reply</Button>
+                                    </div>
+                                )}
                             </div>
-                            <div className="broker-comments-bottom" >
-                                {currentUser.broker === false && (
-                                    <FormControl >
-                                        <div className="broker-comment-input-container">
-                                            <Input id="comment-input" value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Ask a question or post a comment" />
-                                            <Button type="submit" onClick={submitComment} ><Send color="white" /></Button>
-                                        </div>
-                                    </FormControl>)}
-                            </div>
-                        </div>
+
+                        ))}
+
+                    </div>
+                    <div className="broker-comments-bottom" >
+                        {currentUser.broker === false && (
+                            <FormControl >
+                                <div className="broker-comment-input-container">
+                                    <Input id="comment-input" value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Ask a question or post a comment" />
+                                    <Button type="submit" onClick={submitComment} ><Send color="white" /></Button>
+                                </div>
+                            </FormControl>)}
                     </div>
                 </div>
-                <div className="broker-page-bottom-bar"></div>
             </div>
-
         </div >
     )
 

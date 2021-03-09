@@ -53,4 +53,5 @@ class User(db.Model, UserMixin):
             "header": self.header,
             "bio": self.bio,
             "profile_image": self.profile_image,
+            "created_at": self.created_at
         }
