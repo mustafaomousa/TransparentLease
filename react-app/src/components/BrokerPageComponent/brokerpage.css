@@ -42,8 +42,15 @@
     width: 1100px;
     height: auto;
     background-color: #293241;
-    padding-bottom: 20px;
+    margin-top: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     box-shadow: 0px 4px 8px rgb(0 0 0 / 20%);
+}
+
+#broker-page-deal-table {
+    width: 1000px;
+    height: 400px;
 }
 
 .broker-page-interactions-container {
