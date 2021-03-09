@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Box, Button, Heading } from 'grommet';
-import { AppBar } from "@material-ui/core"
-import { Menu, Notification as AlertIcon } from "grommet-icons"
+import { AppBar, Button } from "@material-ui/core"
+import MenuIcon from '@material-ui/icons/Menu';
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import './navbar.css';
 import SideBarComponent from "./SideBarComponent";
 import NotificationComponent from "../NotificationComponent";
@@ -11,9 +11,9 @@ const NavBarComponent = ({ user, setAuthenticated, }) => {
     return (
         <>
             <AppBar id="navbar">
-                <Button icon={<Menu />} focusIndicator={false} id="sidebar-toggle" onMouseEnter={(e) => setSideHidden(true)} />
-                <Heading level="3">TransparentLease</Heading>
-                <Button icon={<AlertIcon />} />
+                <Button icon={<MenuIcon />} focusIndicator={false} id="sidebar-toggle" onMouseEnter={(e) => setSideHidden(true)} />
+                <h3>TransparentLease</h3>
+                <Button icon={<NotificationsActiveIcon fontSize="20px" />} />
             </AppBar>
             <NotificationComponent />
             <SideBarComponent user={user} sideHidden={sideHidden} setSideHidden={setSideHidden} setAuthenticated={setAuthenticated} />
