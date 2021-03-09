@@ -45,7 +45,7 @@ const brokerReducer = (state = initialState, action) => {
             return newState;
         case ADD_COMMENT:
             newState = Object.assign({}, state);
-            newState.broker_comments.push(action.payload)
+            newState.broker_comments[action.payload.id] = action.payload
             return newState;
         default:
             return state;

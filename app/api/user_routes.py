@@ -18,7 +18,7 @@ def find_user(username):
     broker_deals = BrokerDeal.query.filter(BrokerDeal.broker_id == user.id)
     broker_comments = UserComment.query.filter(
         UserComment.broker_id == user.id).all()
-    return {"broker_information": user.to_dict(), "broker_deals": [broker_deal.to_dict() for broker_deal in broker_deals], "broker_comments": [broker_comment.to_dict() for broker_comment in broker_comments]}
+    return {"broker_information": user.to_dict(), "broker_deals": [broker_deal.to_dict() for broker_deal in broker_deals], "broker_comments": {broker_comment.id: broker_comment.to_dict() for broker_comment in broker_comments}}
 
 
 @user_routes.route('/<int:id>')

@@ -141,7 +141,7 @@ const BrokerPageComponent = () => {
                                 <h5>Pinned comment:</h5>
                             </div>
                             <div className="broker-comments-holder">
-                                {comments && comments.map((comment, idx) => (
+                                {comments && Object.entries(comments).map(([comment_id, comment]) => (
                                     <div className="comment-container">
                                         <div className="comment-avatar-container">
                                             <Avatar src="https://www.angkorsingles.com/wp-content/uploads/2019/06/fake_profile.jpg" alt="" />
@@ -157,6 +157,11 @@ const BrokerPageComponent = () => {
                                         {currentUser.id === comment.user_id && (<div style={{ textAlign: "end", width: "100%" }}>
                                             <Button>Delete</Button>
                                         </div>)}
+                                        {currentUser.broker === true && broker.id === currentUser.id && comment.user_id !== currentUser.id && (
+                                            <div style={{ textAlign: "end", width: "100%" }}>
+                                                <Button>Reply</Button>
+                                            </div>
+                                        )}
                                     </div>
                                 ))}
                             </div>

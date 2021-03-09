@@ -23,7 +23,7 @@ def validation_errors_to_error_messages(validation_errors):
 def get_broker_comments(brokerId):
     comments = UserComment.query.filter(
         UserComment.broker_id == brokerId).all()
-    return {"comments": [comment.to_dict() for comment in comments]}
+    return {"comments": {comment.id: comment.to_dict() for comment in comments}}
 
 
 @comment_routes.route('/user_comment/<int:brokerId>', methods=["POST"])
