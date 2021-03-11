@@ -43,5 +43,15 @@ def create_user_comment(brokerId):
         return {"new_comment": new_comment.to_dict()}
 
 
+@comment_routes.route('/user_comment/comment/<int:comment_id>', methods=["DELETE"])
+def delete_user_comment(comment_id):
+    comment = UserComment.query.filter_by(id=comment_id).first()
+    if comment:
+        db.session.delete(comment)
+        db.session.commit()
+        return {"comment_deleted": True}
+    return {"errors": ["Please try again"]}
+
+
 # @comment_routes.route('/broker_reply/<brokerId>', methods=["POST"])
 # def create_broker_reply(brokerId):
