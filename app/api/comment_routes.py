@@ -47,9 +47,10 @@ def create_user_comment(brokerId):
 def delete_user_comment(comment_id):
     comment = UserComment.query.filter_by(id=comment_id).first()
     if comment:
+        deleted_comment = comment.to_dict()
         db.session.delete(comment)
         db.session.commit()
-        return {"comment_deleted": True}
+        return {"comment_deleted": deleted_comment}
     return {"errors": ["Please try again"]}
 
 

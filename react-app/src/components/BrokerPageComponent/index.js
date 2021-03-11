@@ -8,7 +8,7 @@ import { Input, Button, withStyles, IconButton, Paper } from "@material-ui/core"
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 
-import { createUserComment, getBrokerInformation } from "../../store/broker";
+import { createUserComment, deleteUserComment, getBrokerInformation } from "../../store/broker";
 import { createNotification } from "../../store/notifications";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -96,6 +96,7 @@ const BrokerPageComponent = () => {
     }
 
     const submitComment = async (e) => {
+        e.preventDefault();
         await dispatch(createUserComment(broker.id, newComment, currentUser.id));
         await dispatch(createNotification("Comment posted!"));
         setNewComment(" ");
@@ -182,7 +183,7 @@ const BrokerPageComponent = () => {
                                 </div>
                                 <div>
                                     {currentUser.id === comment.user_id && (
-                                        <Button>Delete</Button>
+                                        <Button onClick={() => dispatch(deleteUserComment(comment.id))}>Delete</Button>
                                     )}
                                     {currentUser.broker === true && broker.id === currentUser.id && comment.user_id !== currentUser.id && (
                                         <Button>Reply</Button>

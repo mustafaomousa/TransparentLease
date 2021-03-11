@@ -1,5 +1,9 @@
+import { omit } from "lodash";
+import { createNotification } from "./notifications";
+
 const LOAD = "broker/getBroker";
 const ADD_COMMENT = "broker/addComment"
+const REMOVE_COMMENT = "broker/removeComment"
 
 const getBroker = (broker) => {
     return {
@@ -14,6 +18,13 @@ const addComment = (comment) => {
         payload: comment
     };
 };
+
+const removeComment = (comment) => {
+    return {
+        type: REMOVE_COMMENT,
+        payload: comment
+    };
+}
 
 
 export const getBrokerInformation = (brokerUsername) => async (dispatch) => {
@@ -35,6 +46,19 @@ export const createUserComment = (brokerId, comment, userId) => async (dispatch)
     return dispatch(addComment(new_comment))
 };
 
+export const deleteUserComment = (commentId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/user_comment/comment/${commentId}`, {
+        method: "DELETE"
+    });
+    const result = await response.json();
+    if (result.errors) {
+        result.errors.forEach((error) => dispatch(createNotification(error)))
+    } else {
+        dispatch(createNotification("Comment deleted!"))
+        return dispatch(removeComment(result.comment_deleted));
+    }
+};
+
 const initialState = { broker_comments: [], broker_deals: [], broker_information: {} };
 
 const brokerReducer = (state = initialState, action) => {
@@ -47,6 +71,8 @@ const brokerReducer = (state = initialState, action) => {
             newState = Object.assign({}, state);
             newState.broker_comments[action.payload.id] = action.payload
             return newState;
+        case REMOVE_COMMENT:
+            return { ...state, broker_comments: omit(state.broker_comments, action.payload.id) };
         default:
             return state;
     }
