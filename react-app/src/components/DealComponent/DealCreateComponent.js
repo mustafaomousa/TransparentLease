@@ -15,8 +15,7 @@ const DealCreateComponent = ({ user }) => {
     const makes = useSelector((state => state.utils.makes))
 
     const [year, setYear] = useState(null);
-    const [makeId, setMake] = useState(0);
-    const [makeName, setMakeName] = useState("")
+    const [makeId, setMakeId] = useState(0);
     const [model_name, setModel] = useState("");
     const [trim_name, setTrim] = useState("");
     const [months, setMonths] = useState(null);
@@ -38,8 +37,13 @@ const DealCreateComponent = ({ user }) => {
     const [advertise, setAdvertise] = useState(false)
     const [demo, setDemo] = useState(false)
 
+    const [makeName, setMakeName] = useState("")
+
     useEffect(() => {
         (async () => {
+            makes.map(make => {
+                if (make.id === makeId) return setMakeName(make.name)
+            })
             const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/${makeName}?format=json`);
             const { Results } = await response.json()
             let currentMakeOptions = []
@@ -84,15 +88,15 @@ const DealCreateComponent = ({ user }) => {
     const onSubmit = async () => {
         let newDeal = {
             year: Number(year),
-            makeId: makeId.value,
-            model_name: model_name.value,
+            makeId: Number(makeId),
+            model_name: model_name.props.value,
             trim_name,
             months: Number(months),
             miles: Number(miles),
             msrp: Number(msrp),
             discount: Number(discount),
             residual: Number(residual),
-            money_factor: Number(money_factor),
+            money_factor: parseFloat(money_factor),
             payment: Number(payment),
             broker_fee: Number(broker_fee),
             listed_date,
@@ -135,11 +139,9 @@ const DealCreateComponent = ({ user }) => {
                                     <Select
                                         value={makeId}
                                         onChange={(e) => {
-                                            setMake(e.target.value)
-                                            setMakeName(e.target.value)
-                                            console.log(e.target.value)
+                                            setMakeId(e.target.value)
                                         }} >
-                                        {makes && makes.map((make, key) => <MenuItem value={make} key={key}>{make}</MenuItem>)}
+                                        {makes && makes.map((make, key) => <MenuItem value={make.id} id={make.name} key={key}>{make.name}</MenuItem>)}
                                     </Select>
                                 </div>
                             </div>
@@ -149,7 +151,7 @@ const DealCreateComponent = ({ user }) => {
                                     <Select
                                         value={model_name}
                                         onChange={(e) => setModel(e.target.value)} >
-                                        {modelOptions && modelOptions.map((model, idx) => model)}
+                                        {modelOptions && modelOptions.map((model, idx) => <MenuItem value={model} key={idx}>{model}</MenuItem>)}
                                     </Select>
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column" }}>

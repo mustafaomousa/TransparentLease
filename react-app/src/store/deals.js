@@ -18,8 +18,6 @@ export const createNewDeal = (body) => async (dispatch) => {
     const res = await response.json()
     console.log(res)
     return res
-    // const new_deal = await response.json();
-    // return dispatch(getDeals(new_deal));
 }
 
 export const getAllLatestDeals = () => async (dispatch) => {

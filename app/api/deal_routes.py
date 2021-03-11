@@ -37,7 +37,7 @@ def create_deal():
                                         form.data["model_name"], Model.make_id == form.data["makeId"])).first()
         trim = Trim.query.filter(
             and_(Trim.name.ilike(form.data["trim_name"]), Trim.make_id ==
-                 form.data["makeId"]), Trim.model_name == form.data["model_name"]).first()
+                 form.data["makeId"])).first()
         if (model and trim):
             new_lease_info = LeaseInfo(
                 broker_id=current_user.id,
@@ -56,7 +56,6 @@ def create_deal():
             )
             db.session.add(new_lease_info)
             db.session.commit()
-            print(form.data["listed_date"])
             new_broker_deal = BrokerDeal(
                 broker_id=current_user.id,
                 make_id=make.id,
@@ -110,7 +109,6 @@ def create_deal():
             db.session.add(new_lease_info)
             db.session.add(new_broker_deal)
             db.session.commit()
-
             return {"wops": "wops"}
         elif (trim and not model):
             new_model = Model(
