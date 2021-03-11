@@ -25,7 +25,7 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        if current_user.broker:
+        if current_user.broker == True:
             broker_deals = BrokerDeal.query.filter(
                 BrokerDeal.broker_id == current_user.id).all()
             user = current_user.to_dict()

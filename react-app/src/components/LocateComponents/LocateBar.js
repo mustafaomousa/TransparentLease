@@ -3,8 +3,8 @@ import { Select, MenuItem, InputLabel } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search"
 
 const LocateBar = () => {
-    const [selectedMiles, setSelectedMiles] = useState();
-    const [selectedMonths, setSelectedMonths] = useState();
+    const [selectedMiles, setSelectedMiles] = useState(10000);
+    const [selectedMonths, setSelectedMonths] = useState(36);
 
     const allMiles = [2500, 5000, 7500, 10000, 12000, 15000];
     const allMonths = [12, 24, 36, 48];
@@ -23,7 +23,7 @@ const LocateBar = () => {
                         {allMonths && allMonths.map((months, idx) => <MenuItem value={months} key={idx}>{months}</MenuItem>)}
                     </Select>
                 </div>
-                <SearchIcon id="locate-deal-search-button" color="white" size="medium" />
+                <SearchIcon id="locate-deal-search-button" size="medium" />
             </div>
         </div>
 

@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Pagination from "@material-ui/lab/Pagination";
 import { CardMedia, Card, CardActionArea } from "@material-ui/core";
-import CarImage from "./3d-car-01.svg"
+import { Avatar } from 'grommet';
+
+import CarImage from "./3d-car-01.svg";
 import { getAllLatestDeals } from '../../store/deals';
 import LocateBar from "../LocateComponents/LocateBar";
 import CalculatorBasicComponent from "../CalculatorComponents/CalculatorBasicComponent";
-import './homepage.css'
-import { Avatar } from 'grommet';
 
+
+import './homepage.css';
 
 const DealCard = ({ latestDeal }) => (
     <div style={{ height: "100%" }}>
@@ -17,8 +19,6 @@ const DealCard = ({ latestDeal }) => (
                 {latestDeal && (
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
                         <p>{latestDeal.lease_info.trim.make.name} {latestDeal.lease_info.trim.model.name} {latestDeal.lease_info.trim.name}</p>
-
-
                     </div>
                 )}<CardMedia component="img" alt="" image={CarImage} height="110" />
             </CardActionArea>
@@ -28,7 +28,7 @@ const DealCard = ({ latestDeal }) => (
                 <p>Broker: {<a href={`/${latestDeal.broker.username}`}>{latestDeal && latestDeal.broker.username}</a>} </p>
             </div>
         </Card>
-        {latestDeal && (latestDeal.lease_info.msrp * 0.01) <= latestDeal.lease_info.payment && <p class="speech-bubble">Great deal!</p>}
+        {latestDeal && (latestDeal.lease_info.msrp * 0.01) <= latestDeal.lease_info.payment && <p className="speech-bubble">Great deal!</p>}
     </div>
 
 )
@@ -56,13 +56,12 @@ const HomePageComponent = () => {
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                         <div className="advertised-deal-container">
-
                             <div className="advertised-h4">
                                 <p>Checkout these latest deals</p>
                             </div>
                             <div id="carousel-part">
                                 {latestDeals && Object.entries(latestDeals).reverse().map(([dealId, deal], idx) => (
-                                    <div style={{ height: "100%" }}>
+                                    <div style={{ height: "100%" }} key={idx}>
                                         {currDeal === 1 && idx <= 2 && (<DealCard latestDeal={deal} />)}
                                         {currDeal === 2 && idx > 2 && idx <= 5 && (<DealCard latestDeal={deal} />)}
                                         {currDeal === 3 && idx >= 6 && idx < 9 && (<DealCard latestDeal={deal} />)}

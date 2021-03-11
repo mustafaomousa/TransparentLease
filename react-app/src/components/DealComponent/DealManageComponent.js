@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DataTable, Form, Button, Layer, Image, Box, TextArea, CheckBox } from "grommet";
+import { Form, Button, Layer, Image, Box, TextArea, CheckBox } from "grommet";
 import ImageUploading from "react-images-uploading";
 import { useSelector } from "react-redux";
 import "./deal.css";
@@ -65,7 +65,7 @@ const DealManageComponent = () => {
     const [selectedDeal, setSelectedDeal] = useState(null)
     const [images, setImages] = useState([])
     const [pictureLayerOpen, setPictureLayerOpen] = useState(false);
-    const [select, setSelect] = useState([]);
+    const [select, /*setSelect*/] = useState([]);
 
     useEffect(() => console.log(select), [select])
 
@@ -75,7 +75,7 @@ const DealManageComponent = () => {
 
     const ManageDealTable = ({ columns, data }) => (
         <div>
-            <DataTable
+            {/* <DataTable
                 columns={columns}
                 data={data}
                 step={5}
@@ -89,7 +89,7 @@ const DealManageComponent = () => {
                 onClickRow={({ datum }) => {
                     setSelectedDeal(datum)
                 }}
-            />
+            /> */}
         </div>
     );
 

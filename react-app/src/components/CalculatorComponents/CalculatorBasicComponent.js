@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, Input, Table, TableBody, TableCell, TableContainer, TableRow, TableHead, InputAdornment } from "@material-ui/core";
+import { Input, Table, TableBody, TableCell, TableContainer, TableRow, TableHead, InputAdornment } from "@material-ui/core";
 
 const CalculatorBasicComponent = () => {
     const [msrp, setMsrp] = useState(0);
@@ -39,7 +39,7 @@ const CalculatorBasicComponent = () => {
 
 
     return (
-        <FormControl className="simple-calculator-form">
+        <form className="simple-calculator-form">
             <TableContainer>
                 <Table>
                     <TableHead className="simple-calculator-header">
@@ -151,7 +151,7 @@ const CalculatorBasicComponent = () => {
 
                 </div>
             </div>
-        </FormControl>
+        </form>
     )
 };
 

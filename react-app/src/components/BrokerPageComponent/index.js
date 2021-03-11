@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { animateScroll } from "react-scroll";
 import { Send } from "grommet-icons";
 import { Avatar, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Collapse } from "@material-ui/core";
-import { FormControl, Input, Button, withStyles, IconButton, Paper } from "@material-ui/core";
+import { Input, Button, withStyles, IconButton, Paper } from "@material-ui/core";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 
@@ -195,12 +195,12 @@ const BrokerPageComponent = () => {
                     </div>
                     <div className="broker-comments-bottom" >
                         {currentUser.broker === false && (
-                            <FormControl >
+                            <form >
                                 <div className="broker-comment-input-container">
                                     <Input id="comment-input" value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Ask a question or post a comment" />
                                     <Button type="submit" onClick={submitComment} ><Send color="white" /></Button>
                                 </div>
-                            </FormControl>)}
+                            </form>)}
                     </div>
                 </div>
             </div>
