@@ -12,6 +12,7 @@ import DealCreateComponent from "./components/DealComponent/DealCreateComponent"
 import { getCurrentUser } from "./store/user";
 import BrokerPageComponent from "./components/BrokerPageComponent";
 import DealManageComponent from "./components/DealComponent/DealManageComponent";
+import { getAllUtils } from "./store/utils";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
+      const utils = await dispatch(getAllUtils())
       const user = await dispatch(getCurrentUser())
       if (!user.errors) {
         setAuthenticated(true);

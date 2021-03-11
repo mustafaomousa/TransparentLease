@@ -1,5 +1,5 @@
 import { Form, Button, DateInput } from "grommet";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CircleQuestion } from "grommet-icons";
 import { Input, Checkbox, Select, MenuItem } from "@material-ui/core";
@@ -11,6 +11,9 @@ import { createNotification } from "../../store/notifications";
 const DealCreateComponent = ({ user }) => {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const makes = useSelector((state => state.utils.makes))
+
     const [year, setYear] = useState(null);
     const [makeId, setMake] = useState(0);
     const [makeName, setMakeName] = useState("")
@@ -136,7 +139,7 @@ const DealCreateComponent = ({ user }) => {
                                             setMakeName(e.target.value)
                                             console.log(e.target.value)
                                         }} >
-                                        <MenuItem value="BMW">BMW</MenuItem>
+                                        {makes && makes.map((make, key) => <MenuItem value={make} key={key}>{make}</MenuItem>)}
                                     </Select>
                                 </div>
                             </div>
