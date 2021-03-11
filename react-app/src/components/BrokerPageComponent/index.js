@@ -1,73 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { animateScroll } from "react-scroll";
 import { Send } from "grommet-icons";
 import { Avatar, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Collapse } from "@material-ui/core";
-import { DataTable } from "grommet";
 import { FormControl, Input, Button, withStyles, IconButton, Paper } from "@material-ui/core";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import "./brokerpage.css";
-import { getCurrentUser, getUserByUserName, getUserByUsername } from "../../store/user";
+
 import { createUserComment, getBrokerInformation } from "../../store/broker";
 import { createNotification } from "../../store/notifications";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
+import "./brokerpage.css";
 
-const columns = [
-    {
-        property: 'make',
-        header: <p>Make</p>,
-        primary: true
-    },
-    {
-        property: 'model',
-        header: <p>Model</p>,
-    },
-    {
-        property: 'trim',
-        header: <p>Trim</p>
-    },
-    {
-        property: 'msrp',
-        header: <p>MSRP</p>
-    },
-    {
-        property: 'discount',
-        header: <p>Discount</p>
-    },
-    {
-        property: 'months',
-        header: <p>Months</p>
-    },
-    {
-        property: 'miles',
-        header: <p>Miles</p>
-    },
-    {
-        property: 'residual',
-        header: <p>Residual</p>
-    },
-    {
-        property: 'moneyFactor',
-        header: <p>MF</p>
-    },
-    {
-        property: 'rebates',
-        header: <p>Rebates</p>
-    },
-    {
-        property: 'additionalFees',
-        header: <p>Fees</p>
-    },
-    {
-        property: 'payment',
-        header: <p>Payment</p>
-    },
-];
+const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
 
 const Row = ({ deal }) => {
     const [open, setOpen] = useState(false);
@@ -119,11 +67,9 @@ const Row = ({ deal }) => {
 
 
 const BrokerPageComponent = () => {
-    const history = useHistory();
     const dispatch = useDispatch();
     const { brokerUsername } = useParams();
     const [newComment, setNewComment] = useState("");
-    const [open, setOpen] = useState(false)
     const broker = useSelector(state => state.broker.broker_information);
     const brokerDeals = useSelector(state => state.broker.broker_deals);
     const comments = useSelector(state => state.broker.broker_comments)
@@ -192,7 +138,7 @@ const BrokerPageComponent = () => {
                 <div className="broker-table-container">
                     <TableContainer id="broker-page-deal-table" component={Paper}>
                         <Table aria-label="collapsible table">
-                            <TableHead>
+                            <TableHead className="table-header">
                                 <TableRow>
                                     <TableCell />
                                     <TableCell>Year</TableCell>
@@ -211,21 +157,15 @@ const BrokerPageComponent = () => {
                             </TableBody>
                         </Table>
                     </TableContainer>
-                    {/* <DataTable
-                        id="broker-table"
-                        columns={columns}
-                        data={data}
-                        step={10}
-                    /> */}
                 </div>
 
             </div>
             <div className="broker-left">
                 <div className="broker-page-interactions-container">
-                    <p>Pinned comments</p>
+                    <p style={{ fontSize: "25px", marginTop: "20px", marginBottom: "5px", color: "whitesmoke" }}>Pinned comments</p>
                     <div className="pinned-comments-container">
                     </div>
-                    <p>Comments</p>
+                    <p style={{ fontSize: "25px", marginTop: "20px", marginBottom: "5px", color: "whitesmoke" }}>Comments</p>
                     <div className="broker-comments-container" id="broker-comments-container">
                         {comments && Object.entries(comments).map(([comment_id, comment]) => (
                             <div className="comment-container">
@@ -240,14 +180,14 @@ const BrokerPageComponent = () => {
                                         <p>{comment.user.username}</p>
                                     </div>
                                 </div>
-                                {currentUser.id === comment.user_id && (<div style={{ textAlign: "end", width: "100%" }}>
-                                    <Button>Delete</Button>
-                                </div>)}
-                                {currentUser.broker === true && broker.id === currentUser.id && comment.user_id !== currentUser.id && (
-                                    <div style={{ textAlign: "end", width: "100%" }}>
+                                <div>
+                                    {currentUser.id === comment.user_id && (
+                                        <Button>Delete</Button>
+                                    )}
+                                    {currentUser.broker === true && broker.id === currentUser.id && comment.user_id !== currentUser.id && (
                                         <Button>Reply</Button>
-                                    </div>
-                                )}
+                                    )}
+                                </div>
                             </div>
 
                         ))}

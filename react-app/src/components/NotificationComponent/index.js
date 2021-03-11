@@ -1,14 +1,11 @@
 import React from "react";
-import { Checkmark, Close } from "grommet-icons"
+import { Checkmark } from "grommet-icons";
+import { useSelector } from "react-redux";
+
 import "../NavBarComponent/navbar.css"
-import { useDispatch, useSelector } from "react-redux";
-import { deleteNotifications } from "../../store/notifications";
 
 const NotificationComponent = () => {
-    const dispatch = useDispatch();
-
     const notifications = useSelector(state => state.notifications.sucessful)
-
 
     return (
         <div className="notification-component-container">

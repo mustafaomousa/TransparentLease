@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
 import { Button, CheckBox, Form, TextArea, TextInput } from "grommet";
 import { signUp } from '../../services/auth';
 
-const SignUpForm = ({ authenticated, setAuthenticated, setLoaded }) => {
+const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

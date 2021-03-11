@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { DataTable, Form, Button, RadioButton, TextInput, Layer, Image, Box, TextArea, CheckBox, Grommet } from "grommet";
+import { DataTable, Form, Button, Layer, Image, Box, TextArea, CheckBox } from "grommet";
 import ImageUploading from "react-images-uploading";
-import { grommet } from 'grommet/themes'
-import { CaretUp } from "grommet-icons"
-import { FileInput } from "grommet";
 import { useSelector } from "react-redux";
 import "./deal.css";
 

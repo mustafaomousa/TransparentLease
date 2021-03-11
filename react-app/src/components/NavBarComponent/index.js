@@ -6,17 +6,17 @@ import './navbar.css';
 import SideBarComponent from "./SideBarComponent";
 import NotificationComponent from "../NotificationComponent";
 
-const NavBarComponent = ({ user, setAuthenticated, }) => {
+const NavBarComponent = ({ user, setAuthenticated, setWelcomeOpen }) => {
     const [sideHidden, setSideHidden] = useState(false)
     return (
         <>
             <AppBar id="navbar">
-                <Button icon={<MenuIcon />} focusIndicator={false} id="sidebar-toggle" onMouseEnter={(e) => setSideHidden(true)} />
+                <Button id="sidebar-toggle" onMouseEnter={(e) => setSideHidden(true)} ><MenuIcon /></Button>
                 <h3>TransparentLease</h3>
-                <Button icon={<NotificationsActiveIcon fontSize="20px" />} />
+                <Button ><NotificationsActiveIcon fontSize="20px" /></Button>
             </AppBar>
             <NotificationComponent />
-            <SideBarComponent user={user} sideHidden={sideHidden} setSideHidden={setSideHidden} setAuthenticated={setAuthenticated} />
+            <SideBarComponent user={user} sideHidden={sideHidden} setSideHidden={setSideHidden} setAuthenticated={setAuthenticated} setWelcomeOpen={setWelcomeOpen} />
         </>
     )
 };

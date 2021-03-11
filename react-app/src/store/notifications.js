@@ -20,7 +20,7 @@ export const deleteNotifications = () => async dispatch => {
 
 export const createNotification = (notification) => async dispatch => {
     dispatch(addNotification(notification))
-    setTimeout(() => dispatch(deleteNotifications()), 2000)
+    setTimeout(() => dispatch(deleteNotifications()), 5000)
     return notification;
 }
 
@@ -35,8 +35,7 @@ const notificationsReducer = (state = initialState, action) => {
             return newState;
         case CLEAR:
             newState = Object.assign({}, state)
-            let newPiece = newState.sucessful.shift()
-            // newState.sucessful = []
+            newState.sucessful.shift()
             return newState;
         default:
             return state;

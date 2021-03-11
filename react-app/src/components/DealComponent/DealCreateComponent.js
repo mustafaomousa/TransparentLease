@@ -1,4 +1,4 @@
-import { Form, TextInput, Button, DateInput, RadioButton } from "grommet";
+import { Form, Button, DateInput } from "grommet";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CircleQuestion } from "grommet-icons";
@@ -28,13 +28,12 @@ const DealCreateComponent = ({ user }) => {
     const [payment, setMonthlyPayment] = useState(null);
     const [broker_fee, setBrokerFee] = useState(null);
     const [listed_date, setActiveMonth] = useState(new Date());
-    const [makeOptions, setMakeOptions] = useState([]);
+    const [/*makeOptions*/, setMakeOptions] = useState([]);
     const [modelOptions, setModelOptions] = useState([]);
-    const [additional_fees, setAdditionalFees] = useState(895)
+    const [additional_fees, /*setAdditionalFees*/] = useState(895)
     const [listed, setListed] = useState(false)
     const [advertise, setAdvertise] = useState(false)
     const [demo, setDemo] = useState(false)
-    let progressPercentage = 0
 
     useEffect(() => {
         (async () => {
@@ -47,7 +46,7 @@ const DealCreateComponent = ({ user }) => {
                 setModelOptions(currentMakeOptions)
             }
         })();
-    }, [makeId])
+    }, [makeId, makeName])
 
     useEffect(() => {
         (async () => {
@@ -60,6 +59,7 @@ const DealCreateComponent = ({ user }) => {
     }, [])
 
     useEffect(() => {
+        let progressPercentage = 0
         if (year) progressPercentage += 7.69231
         if (makeId) progressPercentage += 7.69231
         if (model_name) progressPercentage += 7.69231

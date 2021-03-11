@@ -8,7 +8,7 @@ const MakeDealsComponent = () => {
     const { makeName } = useParams();
     const makeDeals = useSelector(state => state.deals.make_deals)
 
-    useEffect(() => dispatch(getMakeDeals(makeName.toUpperCase())), [dispatch])
+    useEffect(() => dispatch(getMakeDeals(makeName.toUpperCase())), [dispatch, makeName])
 
     makeDeals && console.log(makeDeals)
 

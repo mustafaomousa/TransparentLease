@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../services/auth";
 import { createNotification } from "../../store/notifications";
-import { persistor, store } from "../../index";
 
 const LogoutButton = ({ setAuthenticated }) => {
   const history = useHistory();

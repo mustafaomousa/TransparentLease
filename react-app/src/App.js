@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Provider as ReduxProvider, useDispatch, useSelector } from "react-redux";
-import { Menu, Notification as AlertIcon } from "grommet-icons"
-import { Grommet, Button, Heading } from 'grommet';
-import { grommet } from "grommet/themes"
+import { useDispatch } from "react-redux";
+import { Modal } from "@material-ui/core";
 import './components/NavBarComponent/navbar.css'
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import HomePageComponent from "./components/HomePageComponent";
 import NavBarComponent from "./components/NavBarComponent";
-import User from "./components/User";
-import { authenticate } from "./services/auth";
 import MakeDealsComponent from "./components/MakeDealsComponent";
-import SideBarComponent from "./components/NavBarComponent/SideBarComponent";
 import DealCreateComponent from "./components/DealComponent/DealCreateComponent";
 import { getCurrentUser } from "./store/user";
 import BrokerPageComponent from "./components/BrokerPageComponent";
 import DealManageComponent from "./components/DealComponent/DealManageComponent";
-import { deleteNotifications } from "./store/notifications";
 
 function App() {
   const dispatch = useDispatch();
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [currentUser, setUser] = useState({});
+  const [welcomeOpen, setWelcomeOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -42,8 +37,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBarComponent user={currentUser} setAuthenticated={setAuthenticated}>
+      <NavBarComponent user={currentUser} setAuthenticated={setAuthenticated} authenticated={authenticated} setWelcomeOpen={setWelcomeOpen} >
       </NavBarComponent>
+      <Modal open={welcomeOpen} onClose={() => setWelcomeOpen(false)}>
+        <LoginForm authenticated={authenticated} setAuthenticated={setAuthenticated} setWelcomeOpen={setWelcomeOpen} />
+      </Modal>
       {/* <SideBarComponent sideVisible={sideVisible} setSideVisible={setSideVisible} user={currentUser} setAuthenticated={setAuthenticated} /> */}
       <Switch>
         <Route path="/make/:makeName" exact={true}>

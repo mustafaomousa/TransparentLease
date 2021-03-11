@@ -4,6 +4,43 @@
     justify-content: center;
 }
 
+@media (max-width: 1700px) {
+    .broker-page-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .broker-left {
+        min-width: 100%;
+        max-height: 730px;
+    }
+
+    .broker-page-interactions-container {
+        justify-content: center;
+        min-width: 1040px;
+    }
+
+    .broker-comments-container {
+        align-items: center;
+        min-width: 1040px;
+        background-color: white;
+        padding-top: 10px;
+    }
+
+    div.comment-container {
+        display: grid;
+        grid-template-columns: 10% 80% 10%;
+        width: 800px;
+        min-width: 500px;
+    }
+
+    .pinned-comments-container {
+        background-color: white;
+        min-width: 1040px;
+    }
+}
+
 .broker-left {
     display: flex;
     flex-direction: column;
@@ -49,17 +86,21 @@
 }
 
 #broker-page-deal-table {
-    width: 1000px;
+    width: 1050px;
     height: 400px;
 }
 
 .broker-page-interactions-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 500px;
+    height: 100%;
+    align-items: flex-start;
     justify-content: center;
     background-color: #293241;
-    padding: 30px 30px;
+    padding: 0px 30px;
+    margin-top: 80px;
+    padding-bottom: 30px;
 }
 
 .broker-comments-container {
@@ -67,8 +108,13 @@
     flex-direction: column;
     justify-content: center;
     height: 500px;
+    width: 500px;
     overflow: scroll;
-    background-color:0;
+    background-color:white;
+}
+
+.table-header {
+    background-color: white;
 }
 
 .selected-deal-container {
@@ -91,8 +137,10 @@
     background-color: #485771;
 }
 
-.pinned-comment-container {
-    height: 100px;
+.pinned-comments-container {
+    background-color: white;
+    width: 500px;
+    height: 200px;
 }
 
 .broker-comments {

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, Input, Table, TableBody, TableCell, TableContainer, TableRow, TableHead, InputAdornment } from "@material-ui/core"
-import AttachMoney from "@material-ui/icons/AttachMoney"
-import { Button } from "grommet";
+import { FormControl, Input, Table, TableBody, TableCell, TableContainer, TableRow, TableHead, InputAdornment } from "@material-ui/core";
 
 const CalculatorBasicComponent = () => {
     const [msrp, setMsrp] = useState(0);
@@ -31,7 +29,7 @@ const CalculatorBasicComponent = () => {
         const monthlyDepreciationAmount = (depreciationAmount / months);
         const monthlyRentCharge = ((salesPrice - downpayment) * moneyFactor);
 
-        if (residualValue, depreciationAmount, monthlyDepreciationAmount, monthlyRentCharge) {
+        if (residualValue && depreciationAmount && monthlyDepreciationAmount && monthlyRentCharge) {
             setPrincipal(monthlyDepreciationAmount);
             setInterest(monthlyRentCharge);
             setMonthlyPayment(monthlyRentCharge + monthlyDepreciationAmount);
