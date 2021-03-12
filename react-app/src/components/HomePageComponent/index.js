@@ -45,19 +45,10 @@ const HomePageComponent = () => {
             <LocateBar />
             <div className="home-1-container">
                 <div className="home-1">
-                    <div className="advertised-header">
-                        <div className="mini-calculator-container">
-                            <div className="basic-calculator-left">
-                                <div className="basic-calculator">
-                                    <CalculatorBasicComponent />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                         <div className="advertised-deal-container">
                             <div className="advertised-h4">
-                                <p>Checkout these latest deals</p>
+                                <p id="deal-header">Checkout these latest deals</p>
                             </div>
                             <div id="carousel-part">
                                 {latestDeals && Object.entries(latestDeals).reverse().map(([dealId, deal], idx) => (
@@ -76,11 +67,19 @@ const HomePageComponent = () => {
                             <p>Welcome {currentUser.name ? currentUser.name : "guest."}</p>
                         </div>)}
                     </div>
+                    <div className="advertised-header">
+                        <div className="mini-calculator-container">
+                            <div className="basic-calculator-left">
+                                <p id="deal-header">Basic lease calculator</p>
+                                <div className="basic-calculator">
+                                    <CalculatorBasicComponent />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
-
             </div>
-            {/* <Blah /> */}
         </div >
     )
 };

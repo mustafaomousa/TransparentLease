@@ -7,7 +7,6 @@
     background-color: #3D5A80;
     padding: 0px 20px;
     height: 65px;
-    /* z-index: 3; */
 }
 
 
@@ -15,9 +14,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #383331;
     color: whitesmoke;
+    width: 100%;
+    height: 50px;
+}
 
+#navlink:hover {
+    background-color: orange;
+    color: black;
+}
+
+.sidebar-container {
+    width: 300px;
 }
 
 .sidebar-body {
@@ -25,22 +33,42 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #383331;
-    height: 100%;
+    height: 300px;
 }
 
-#navlink:hover {
-    background-color: #EE6C4D;
+.sidebar-close-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 50px;
+    width: 100%;
 }
 
-.avatar-footer {
+.sidebar-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100px;
 }
 
 .avatar-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 100%;
+    width: 200px;
+    background-color: #423a37;
+}
+
+.avatar-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    background-color: #423a37;
 }
 
 
@@ -55,19 +83,33 @@
     width: 200px;
 }
 
+.sidebar-search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
 .sidebar-profile-container a,.sidebar-profile-container p {
     color: whitesmoke;
     font-size: 18px;
 }
 
-#logout-button {
-    font-family: 'Hind', sans-serif;
+.sidebar-controls-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
 }
 
-#logout-button:hover {
-    font-family: 'Hind', sans-serif;
-    border-bottom: 2px solid black;
+.sidebar-controls-container-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 30px;
+    margin-top: 30px;
 }
+
 
 .nav-footer {
     display: hidden;
@@ -81,9 +123,6 @@
 
 
 .menu-navbar {
-    /* display: flex;
-    align-items: center;
-    justify-content: space-evenly; */
     height: 60px;
 }
 
@@ -118,7 +157,6 @@
 
 .new-deal-notification-container:hover {
     transform: scale(1.02);
-    /* margin: 20px 35px; */
 }
 
 .new-deal-notification-icon-container {

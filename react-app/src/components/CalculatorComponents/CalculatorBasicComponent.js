@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, Table, TableBody, TableCell, TableContainer, TableRow, TableHead, InputAdornment } from "@material-ui/core";
+import { Input, Table, TableBody, TableCell, TableContainer, TableRow, TableHead, InputAdornment, Button } from "@material-ui/core";
 
 const CalculatorBasicComponent = () => {
     const [msrp, setMsrp] = useState(0);
@@ -23,7 +23,8 @@ const CalculatorBasicComponent = () => {
     const updateDownpayment = (e) => setDownpayment(e.target.value);
 
 
-    const calculateSmallLease = () => {
+    const calculateSmallLease = (e) => {
+        e.preventDefault();
         const residualValue = msrp * (0.01 * residual);
         const depreciationAmount = ((salesPrice - downpayment) - residualValue);
         const monthlyDepreciationAmount = (depreciationAmount / months);
@@ -146,7 +147,7 @@ const CalculatorBasicComponent = () => {
                         <p>${interest.toFixed(2)}</p>
                     </div>
                     <div style={{ textAlign: "end", marginRight: "20px", marginTop: "10px" }}>
-                        <button onClick={calculateSmallLease}>Calculate</button>
+                        <Button onClick={calculateSmallLease}>Calculate</Button>
                     </div>
 
                 </div>
