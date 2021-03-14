@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from app.models import User, db, BrokerDeal, Make, Trim, Model, LeaseInfo, UserInquiry
 from flask_login import current_user
 from datetime import *
-from app.forms import DealForm
+from app.forms import UserInquiryForm
 from sqlalchemy import and_
 
 inquiry_routes = Blueprint('inquiry', __name__)
@@ -18,13 +18,16 @@ def current_user_inquiries():
         return {"errors": ["Current user has not submitted any inquries"]}
 
 
-@inquiry_routes.route('/', methods=['POST'])
+@inquiry_routes.route('/create', methods=['POST'])
 def create_user_inquiry():
-    user_inquiry = UserInquiry(
-        user_id=current_user.id,
-        broker_deal_id=1,
-        created_at=datetime.now()
-    )
-    db.session.add(user_inquiry)
-    db.session.commit()
-    return {"new_inquiry": user_inquiry.to_dict()}
+    form = UserInquiryForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user_inquiry = UserInquiry(
+            user_id=current_user.id,
+            broker_deal_id=form.data["broker_deal_id"],
+            created_at=datetime.now()
+        )
+        db.session.add(user_inquiry)
+        db.session.commit()
+        return {"new_inquiry": user_inquiry.to_dict()}

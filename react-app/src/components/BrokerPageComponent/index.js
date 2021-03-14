@@ -17,8 +17,26 @@ import "./brokerpage.css";
 
 const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
 
+
 const Row = ({ deal }) => {
     const [open, setOpen] = useState(false);
+
+    const submitUserInquiry = async (e, broker_deal_id) => {
+        e.preventDefault();
+
+        const response = await fetch('/api/inquiry/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                broker_deal_id,
+            })
+        });
+
+        const newInquiry = await response.json();
+        console.log(newInquiry);
+    }
 
     return (
         <React.Fragment>
@@ -52,7 +70,10 @@ const Row = ({ deal }) => {
                     <p>{deal.lease_info.payment}</p>
                 </TableCell>
                 <TableCell>
-                    <Button><p>Inquire</p></Button>
+                    <form onSubmit={(e) => submitUserInquiry(e, deal.id)} action="POST">
+                        <Button type="submit"><p>Inquire</p></Button>
+                    </form>
+
                 </TableCell>
             </TableRow>
             <TableRow>
