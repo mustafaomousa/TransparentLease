@@ -51,11 +51,14 @@ const Row = ({ deal }) => {
                 <TableCell >
                     <p>{deal.lease_info.payment}</p>
                 </TableCell>
+                <TableCell>
+                    <Button><p>Inquire</p></Button>
+                </TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={9}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
-                        <div>
+                        <div className="specific-deal-container">
                             <h5>{deal.make.name}</h5>
                         </div>
                     </Collapse>
@@ -75,26 +78,6 @@ const BrokerPageComponent = () => {
     const comments = useSelector(state => state.broker.broker_comments)
     const currentUser = useSelector(state => state.user)
 
-
-    let data = []
-    if (brokerDeals) {
-        brokerDeals.map(brokerDeal => data.push({
-            make: brokerDeal.make.name,
-            model: brokerDeal.lease_info.trim.model.name,
-            trim: brokerDeal.lease_info.trim.name,
-            msrp: brokerDeal.lease_info.msrp,
-            discount: brokerDeal.lease_info.discount,
-            months: brokerDeal.lease_info.months,
-            miles: brokerDeal.lease_info.miles_yearly,
-            residual: brokerDeal.lease_info.residual,
-            moneyFactor: brokerDeal.lease_info.money_factor,
-            rebates: brokerDeal.lease_info.lease_cash + brokerDeal.lease_info.loyalty + brokerDeal.lease_info.conquest,
-            additionalFees: brokerDeal.fee + brokerDeal.lease_info.additional_fees,
-            payment: brokerDeal.lease_info.payment
-
-        }))
-    }
-
     const submitComment = async (e) => {
         e.preventDefault();
         await dispatch(createUserComment(broker.id, newComment, currentUser.id));
@@ -109,8 +92,6 @@ const BrokerPageComponent = () => {
             height: "60px",
         },
     })(Avatar);
-
-    animateScroll.scrollToBottom({ containerId: "broker-comments-container" })
 
     useEffect(() => {
         dispatch(getBrokerInformation(brokerUsername))
@@ -138,7 +119,7 @@ const BrokerPageComponent = () => {
                 </div>
                 <div className="broker-table-container">
                     <TableContainer id="broker-page-deal-table" component={Paper}>
-                        <Table aria-label="collapsible table">
+                        <Table aria-label="collapsible table" stickyHeader={true}>
                             <TableHead className="table-header">
                                 <TableRow>
                                     <TableCell />
@@ -149,6 +130,7 @@ const BrokerPageComponent = () => {
                                     <TableCell>Discount</TableCell>
                                     <TableCell>Term</TableCell>
                                     <TableCell>Payment</TableCell>
+                                    <TableCell />
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -163,12 +145,17 @@ const BrokerPageComponent = () => {
             </div>
             <div className="broker-left">
                 <div className="broker-page-interactions-container">
-                    <p style={{ fontSize: "25px", marginTop: "20px", marginBottom: "5px", color: "whitesmoke" }}>Pinned comments</p>
-                    <div className="pinned-comments-container">
+                    <div className="broker-comments-bottom" >
+                        {currentUser.broker === false && (
+                            <form >
+                                <div className="broker-comment-input-container">
+                                    <Input id="comment-input" value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Ask a question or post a comment" />
+                                    <Button type="submit" onClick={submitComment} ><Send color="white" /></Button>
+                                </div>
+                            </form>)}
                     </div>
-                    <p style={{ fontSize: "25px", marginTop: "20px", marginBottom: "5px", color: "whitesmoke" }}>Comments</p>
-                    <div className="broker-comments-container" id="broker-comments-container">
-                        {comments && Object.entries(comments).map(([comment_id, comment]) => (
+                    <div className="broker-comments-container" >
+                        {comments && Object.entries(comments).reverse().map(([comment_id, comment]) => (
                             <div className="comment-container">
                                 <div className="comment-avatar-container">
                                     <Avatar src="https://www.angkorsingles.com/wp-content/uploads/2019/06/fake_profile.jpg" alt="" />
@@ -194,15 +181,7 @@ const BrokerPageComponent = () => {
                         ))}
 
                     </div>
-                    <div className="broker-comments-bottom" >
-                        {currentUser.broker === false && (
-                            <form >
-                                <div className="broker-comment-input-container">
-                                    <Input id="comment-input" value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Ask a question or post a comment" />
-                                    <Button type="submit" onClick={submitComment} ><Send color="white" /></Button>
-                                </div>
-                            </form>)}
-                    </div>
+
                 </div>
             </div>
         </div >
