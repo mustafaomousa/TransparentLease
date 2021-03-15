@@ -8,9 +8,9 @@ const getUtils = (utils) => {
 };
 
 export const getAllUtils = () => async (dispatch) => {
-    const response = await fetch("/api/utils");
+    const response = await fetch('https://transparentlease.herokuapp.com/api/utils');
     const result = await response.json()
-    console.log(result)
+
     if (result.errors) {
 
     } else {

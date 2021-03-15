@@ -12,7 +12,3 @@ utils_routes = Blueprint('utils', __name__)
 def get_guest_utils():
     makes = Make.query.all()
     return {"utils": {"makes": [make.to_dict() for make in makes]}}
-
-
-# @utils_routes.route('/user/<int:user_id>', methods=["POST"])
-# def get_user_utils(user_id):
