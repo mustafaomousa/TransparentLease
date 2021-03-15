@@ -5,7 +5,8 @@ from datetime import datetime
 
 def seed_broker_deals():
 
-    bmw740ixleaseinfo = LeaseInfo(broker_id=1,
+    bmw740ixleaseinfo = LeaseInfo(id=1,
+                                  broker_id=1,
                                   trim_id=8,
                                   months=36,
                                   miles_yearly=7500,

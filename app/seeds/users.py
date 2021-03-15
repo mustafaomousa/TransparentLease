@@ -6,7 +6,8 @@ from datetime import *
 
 def seed_users():
 
-    demo = User(name='Demo User',
+    demo = User(id=1,
+                name='Demo Broker',
                 username='Demo',
                 email='demo@aa.io',
                 password='password',
@@ -20,6 +21,21 @@ def seed_users():
                 dealer=False,
                 created_at=datetime.now()
                 )
+
+    demoUser = User(id=2,
+                    name='Demo User',
+                    username='DemoUser',
+                    email="demouser@aa.io",
+                    password='password',
+                    address='123 Sesame Street',
+                    city='Fort Worth',
+                    state='Texas',
+                    zip_code=76107,
+                    header='I am a demo user!',
+                    bio='I sure love nice deals',
+                    broker=False,
+                    dealer=False,
+                    created_at=datetime.now())
 
     db.session.add(demo)
 

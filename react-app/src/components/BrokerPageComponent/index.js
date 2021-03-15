@@ -148,7 +148,7 @@ const BrokerPageComponent = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {brokerDeals && brokerDeals.map((deal, idx) => {
+                                {brokerDeals && userInquiries && brokerDeals.map((deal, idx) => {
                                     if (deal.id in userInquiries) {
                                         return <Row key={idx} deal={deal} userInquiries={userInquiries} currentUser={currentUser} submitUserInquiry={submitUserInquiry} />
                                     }
