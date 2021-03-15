@@ -38,7 +38,7 @@ def seed_users():
                     created_at=datetime.now())
 
     db.session.add(demo)
-
+    db.session.add(demoUser)
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
