@@ -18,5 +18,5 @@ def seed_inquiries():
 
 
 def undo_inquiries():
-    db.session.execute('TRUNCATE inquiries RESTART IDENTITY CASCADE')
+    db.session.execute('TRUNCATE user_inquiries RESTART IDENTITY CASCADE')
     db.session.commit()
