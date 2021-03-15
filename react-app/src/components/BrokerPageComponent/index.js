@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { animateScroll } from "react-scroll";
 import { Send } from "grommet-icons";
 import { Avatar, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Collapse } from "@material-ui/core";
@@ -14,22 +14,16 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import "./brokerpage.css";
-import { createNewInquiry } from "../../store/inquiries";
+import { createNewInquiry, loadUserInquiries } from "../../store/inquiries";
 
 const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
 
 
-const Row = ({ deal }) => {
-    const dispatch = useDispatch();
+const Row = ({ deal, userInquiries, submitUserInquiry }) => {
     const [open, setOpen] = useState(false);
 
-    const submitUserInquiry = async (e, broker_deal_id) => {
-        e.preventDefault();
-        dispatch(createNewInquiry(broker_deal_id));
-    }
-
     return (
-        <React.Fragment>
+        <React.Fragment >
             <TableRow>
                 <TableCell>
                     <IconButton size="small" onClick={() => setOpen(!open)}>
@@ -59,9 +53,9 @@ const Row = ({ deal }) => {
                 </TableCell>
                 <TableCell>
                     <form onSubmit={(e) => submitUserInquiry(e, deal.id)} action="POST">
-                        <Button type="submit"><p>Inquire</p></Button>
+                        {!userInquiries && <Button type="submit">Inquire</Button>}
+                        {userInquiries && <Button type="submit">Cancel</Button>}
                     </form>
-
                 </TableCell>
             </TableRow>
             <TableRow>
@@ -80,12 +74,14 @@ const Row = ({ deal }) => {
 
 const BrokerPageComponent = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { brokerUsername } = useParams();
     const [newComment, setNewComment] = useState("");
     const broker = useSelector(state => state.broker.broker_information);
     const brokerDeals = useSelector(state => state.broker.broker_deals);
     const comments = useSelector(state => state.broker.broker_comments)
     const currentUser = useSelector(state => state.user)
+    const userInquiries = useSelector(state => state.inquiry.userInquiries);
 
     const submitComment = async (e) => {
         e.preventDefault();
@@ -95,12 +91,21 @@ const BrokerPageComponent = () => {
         return animateScroll.scrollToBottom({ containerId: "broker-comments-container" })
     };
 
+    const submitUserInquiry = async (e, broker_deal_id) => {
+        e.preventDefault()
+        await dispatch(createNewInquiry(broker_deal_id));
+        await dispatch(createNotification("Inquiry submitted!"))
+        return history.push('/')
+    };
+
     const StyledAvatar = withStyles({
         root: {
             width: "60px",
             height: "60px",
         },
     })(Avatar);
+
+    useEffect(() => dispatch(loadUserInquiries(currentUser.id)), [])
 
     useEffect(() => {
         dispatch(getBrokerInformation(brokerUsername))
@@ -143,9 +148,12 @@ const BrokerPageComponent = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {brokerDeals && brokerDeals.map((deal, idx) => (
-                                    <Row deal={deal} />
-                                ))}
+                                {brokerDeals && brokerDeals.map((deal, idx) => {
+                                    if (deal.id in userInquiries) {
+                                        return <Row key={idx} deal={deal} userInquiries={userInquiries} currentUser={currentUser} submitUserInquiry={submitUserInquiry} />
+                                    }
+                                    return <Row key={idx} deal={deal} currentUser={currentUser} submitUserInquiry={submitUserInquiry} />
+                                })}
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -186,14 +194,11 @@ const BrokerPageComponent = () => {
                                     )}
                                 </div>
                             </div>
-
                         ))}
-
                     </div>
-
                 </div>
             </div>
-        </div >
+        </div>
     )
 
     return (

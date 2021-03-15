@@ -7,6 +7,7 @@ import { getUser } from "../../store/user";
 import { createNotification } from "../../store/notifications";
 
 import "./login.css";
+import { loadUserInquiries } from "../../store/inquiries";
 
 const LoginForm = ({ authenticated, setAuthenticated, setWelcomeOpen }) => {
   const dispatch = useDispatch();
