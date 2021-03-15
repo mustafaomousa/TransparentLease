@@ -6,6 +6,7 @@ import notificationsReducer from "./notifications";
 import userReducer from "./user";
 import brokerReducer from "./broker";
 import utilsReducer from "./utils";
+import inquiryReducer from "./inquiries";
 
 export const appReducer = combineReducers({
     deals: dealReducer,
@@ -13,6 +14,7 @@ export const appReducer = combineReducers({
     notifications: notificationsReducer,
     broker: brokerReducer,
     utils: utilsReducer,
+    inquiry: inquiryReducer
 });
 
 export let enhancer;

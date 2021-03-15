@@ -14,34 +14,22 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import "./brokerpage.css";
+import { createNewInquiry } from "../../store/inquiries";
 
 const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
 
 
 const Row = ({ deal }) => {
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
 
     const submitUserInquiry = async (e, broker_deal_id) => {
         e.preventDefault();
-
-        const response = await fetch('/api/inquiry/create', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                broker_deal_id,
-            })
-        });
-
-        const newInquiry = await response.json();
-        console.log(newInquiry);
+        dispatch(createNewInquiry(broker_deal_id));
     }
 
     return (
         <React.Fragment>
-
-
             <TableRow>
                 <TableCell>
                     <IconButton size="small" onClick={() => setOpen(!open)}>
