@@ -8,7 +8,7 @@ from sqlalchemy import and_
 utils_routes = Blueprint('utils', __name__)
 
 
-@utils_routes.route('/')
+@utils_routes.route('')
 def get_guest_utils():
     makes = Make.query.all()
     return {"utils": {"makes": [make.to_dict() for make in makes]}}
