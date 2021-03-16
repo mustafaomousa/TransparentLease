@@ -12,6 +12,7 @@ import DealCreateComponent from "./components/DealComponent/DealCreateComponent"
 import { getCurrentUser } from "./store/user";
 import BrokerPageComponent from "./components/BrokerPageComponent";
 import DealManageComponent from "./components/DealComponent/DealManageComponent";
+import DealInquiriesComponent from "./components/DealComponent/DealInquiriesComponent";
 import { getAllUtils } from "./store/utils";
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
       <Switch>
         <Route path="/make/:makeName" exact={true}>
           <MakeDealsComponent />
+        </Route>
+        <Route exact path="/deal/inquiries">
+          <DealInquiriesComponent />
         </Route>
         <Route exact path="/deal/manage">
           <DealManageComponent />
