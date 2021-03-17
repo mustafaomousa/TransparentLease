@@ -14,13 +14,25 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import "./brokerpage.css";
-import { createNewInquiry, loadUserInquiries } from "../../store/inquiries";
+import { createNewInquiry, loadUserInquiries, deleteInquiry } from "../../store/inquiries";
 
 const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
 
 
-const Row = ({ deal, userInquiries, submitUserInquiry }) => {
+const Row = ({ deal, userInquiries, currentUser }) => {
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
+
+    const submitUserInquiry = (e, broker_deal_id) => {
+        e.preventDefault()
+        dispatch(createNewInquiry(broker_deal_id));
+        dispatch(createNotification("Inquiry submitted!"))
+    };
+
+    const removeUserInquiry = (e) => {
+        e.preventDefault()
+        dispatch(deleteInquiry(userInquiries[deal.id].id))
+    }
 
     return (
         <React.Fragment >
@@ -52,9 +64,9 @@ const Row = ({ deal, userInquiries, submitUserInquiry }) => {
                     <p>{deal.lease_info.payment}</p>
                 </TableCell>
                 <TableCell>
-                    <form onSubmit={(e) => submitUserInquiry(e, deal.id)} action="POST">
-                        {!userInquiries && <Button type="submit">Inquire</Button>}
-                        {userInquiries && <Button type="submit">Cancel</Button>}
+                    <form >
+                        {!(deal.id in userInquiries) && <Button onClick={(e) => submitUserInquiry(e, deal.id)} type="submit">Inquire</Button>}
+                        {deal.id in userInquiries && <Button onClick={(e) => removeUserInquiry(e)} type="submit">Cancel</Button>}
                     </form>
                 </TableCell>
             </TableRow>
@@ -74,7 +86,6 @@ const Row = ({ deal, userInquiries, submitUserInquiry }) => {
 
 const BrokerPageComponent = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const { brokerUsername } = useParams();
     const [newComment, setNewComment] = useState("");
     const broker = useSelector(state => state.broker.broker_information);
@@ -91,12 +102,6 @@ const BrokerPageComponent = () => {
         return animateScroll.scrollToBottom({ containerId: "broker-comments-container" })
     };
 
-    const submitUserInquiry = async (e, broker_deal_id) => {
-        e.preventDefault()
-        await dispatch(createNewInquiry(broker_deal_id));
-        await dispatch(createNotification("Inquiry submitted!"))
-        return history.push('/')
-    };
 
     const StyledAvatar = withStyles({
         root: {
@@ -148,11 +153,8 @@ const BrokerPageComponent = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {brokerDeals && userInquiries && brokerDeals.map((deal, idx) => {
-                                    if (deal.id in userInquiries) {
-                                        return <Row key={idx} deal={deal} userInquiries={userInquiries} currentUser={currentUser} submitUserInquiry={submitUserInquiry} />
-                                    }
-                                    return <Row key={idx} deal={deal} currentUser={currentUser} submitUserInquiry={submitUserInquiry} />
+                                {brokerDeals && brokerDeals.map((deal, idx) => {
+                                    return <Row key={idx} deal={deal} userInquiries={userInquiries ? userInquiries : {}} currentUser={currentUser} />
                                 })}
                             </TableBody>
                         </Table>
@@ -164,7 +166,7 @@ const BrokerPageComponent = () => {
                 <div className="broker-page-interactions-container">
                     <div className="broker-comments-bottom" >
                         {currentUser.broker === false && (
-                            <form >
+                            <form>
                                 <div className="broker-comment-input-container">
                                     <Input id="comment-input" value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Ask a question or post a comment" />
                                     <Button type="submit" onClick={submitComment} ><Send color="white" /></Button>

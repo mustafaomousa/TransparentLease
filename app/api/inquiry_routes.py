@@ -31,12 +31,15 @@ def create_user_inquiry():
         )
         db.session.add(user_inquiry)
         db.session.commit()
-        return {"new_inquiry": user_inquiry.to_dict()}
+        user_inquiry_dict = user_inquiry.to_dict()
+        return {user_inquiry_dict["broker_deal_id"]: user_inquiry.to_dict()}
 
 
 @inquiry_routes.route('/delete/<int:inquiry_id>', methods=['DELETE'])
 def delete_user_inquiry(inquiry_id):
     inquiry = UserInquiry.query.filter(UserInquiry.id == inquiry_id).first()
+    deal_id = inquiry.to_dict()["broker_deal_id"]
     db.session.delete(inquiry)
     db.session.commit()
-    return {"deleted_inquiry": inquiry_id}
+    print(deal_id)
+    return {"deleted_inquiry": deal_id}
