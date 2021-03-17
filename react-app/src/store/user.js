@@ -1,6 +1,8 @@
+import { omit } from "lodash";
 import { authenticate } from "../services/auth";
 
 const LOAD = "spot/getUser";
+const BROKER_DELETE = 'broker/brokerRemoveInquiry'
 
 export const getUser = (user) => {
     return {
@@ -15,6 +17,13 @@ export const getUserByUserName = (user) => {
         payload: user
     }
 }
+
+export const brokerRemoveInquiry = (inquiryId) => {
+    return {
+        type: BROKER_DELETE,
+        payload: inquiryId
+    }
+};
 
 
 export const getCurrentUser = () => async dispatch => {
@@ -38,6 +47,8 @@ const userReducer = (state = initialState, action) => {
         case LOAD:
             newState = Object.assign({}, state, action.payload);
             return newState;
+        case BROKER_DELETE:
+            return { ...state, active_inquiries: omit(state.active_inquiries, action.payload) }
         default:
             return state;
     }

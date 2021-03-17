@@ -38,6 +38,13 @@ def authenticate():
             user["active_inquiries"] = {broker_inquiry.id: broker_inquiry.to_dict(
             ) for broker_inquiry in broker_inquiries}
             return user
+        if current_user.broker == False:
+            user_inquiries = UserInquiry.query.filter(
+                UserInquiry.user_id == current_user.id).all()
+            user = current_user.to_dict()
+            user["user_inquiries"] = {
+                user_inquiry.id: user_inquiry.to_dict() for user_inquiry in user_inquiries}
+            return user
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}, 401
 

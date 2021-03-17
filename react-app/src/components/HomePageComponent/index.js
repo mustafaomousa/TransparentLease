@@ -77,7 +77,6 @@ const HomePageComponent = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div >

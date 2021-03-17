@@ -25,6 +25,7 @@ const removeInquiry = (inquiryId) => {
     };
 };
 
+
 export const loadUserInquiries = (user_id) => async dispatch => {
     const response = await fetch(`/api/inquiry/${user_id}`);
     const result = await response.json();

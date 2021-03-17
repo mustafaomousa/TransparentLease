@@ -10,8 +10,6 @@ const MakeDealsComponent = () => {
 
     useEffect(() => dispatch(getMakeDeals(makeName.toUpperCase())), [dispatch, makeName])
 
-    makeDeals && console.log(makeDeals)
-
     if (!makeDeals) return (<h1>Uh oh!</h1>)
 
     return (

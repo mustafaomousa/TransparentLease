@@ -32,6 +32,7 @@ const Row = ({ deal, userInquiries, currentUser }) => {
     const removeUserInquiry = (e) => {
         e.preventDefault()
         dispatch(deleteInquiry(userInquiries[deal.id].id))
+        dispatch(createNotification("Inquiry canceled!"))
     }
 
     return (

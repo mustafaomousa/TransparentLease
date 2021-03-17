@@ -1,5 +1,6 @@
 import { omit } from "lodash";
 import { createNotification } from "./notifications";
+import { brokerRemoveInquiry } from "./user";
 
 const LOAD = "broker/getBroker";
 const ADD_COMMENT = "broker/addComment"
@@ -26,6 +27,16 @@ const removeComment = (comment) => {
     };
 }
 
+export const brokerDeleteInquiry = (inquiry_id) => async dispatch => {
+    const response = await fetch(`/api/inquiry/delete/${inquiry_id}`, {
+        method: 'DELETE',
+        header: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const result = await response.json();
+    return dispatch(brokerRemoveInquiry(inquiry_id))
+};
 
 export const getBrokerInformation = (brokerUsername) => async (dispatch) => {
     const response = await fetch(`/api/users/broker/${brokerUsername}`);

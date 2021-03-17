@@ -16,7 +16,6 @@ export const createNewDeal = (body) => async (dispatch) => {
         body: JSON.stringify(body)
     });
     const res = await response.json()
-    console.log(res)
     return res
 }
 

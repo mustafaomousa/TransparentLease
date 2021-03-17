@@ -1,0 +1,76 @@
+.portfolio-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.portfolio-container {
+    width: 1000px;
+    height: auto;
+    background-color: #293241;
+}
+
+.portfolio-header {
+    height: 100px;
+    width: 100%;
+    background-color: white;
+}
+
+.portfolio-avatar-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;    
+    bottom: 75px;
+    left: -250px;
+}
+
+.portfolio-avatar-header-container {
+    display: grid;
+    grid-row: 50% 50%;
+}
+
+.portfolio-avatar-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-left: 15px;
+}
+
+.portfolio-avatar-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.portfolio-avatar-footer p {
+    color: white;
+}
+
+.portfolio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.purchases-container {
+    width: 800px;
+    height: auto;
+    background-color: whitesmoke;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+#pending {
+    position: relative;
+    top: -30px;
+    color: white;
+}
+
+#portfolio-avatar {
+    width: 150px;
+    height: 150px;
+    box-shadow: 0px 4px 8px rgb(0 0 0 / 20%);
+}

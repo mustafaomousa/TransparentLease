@@ -14,6 +14,7 @@ import BrokerPageComponent from "./components/BrokerPageComponent";
 import DealManageComponent from "./components/DealComponent/DealManageComponent";
 import DealInquiriesComponent from "./components/DealComponent/DealInquiriesComponent";
 import { getAllUtils } from "./store/utils";
+import PortfiolioComponent from "./components/PortfolioComponent";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,10 +63,15 @@ function App() {
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
             setUser={setUser}
+            setWelcomeOpen={setWelcomeOpen}
           />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} setLoaded={setLoaded} />
+        </Route>
+
+        <Route path="/portfolio" exact={true}>
+          <PortfiolioComponent />
         </Route>
         <Route path="/:brokerUsername" exact={true}>
           <BrokerPageComponent />

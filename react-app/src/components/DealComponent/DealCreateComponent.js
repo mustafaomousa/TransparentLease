@@ -48,7 +48,6 @@ const DealCreateComponent = ({ user }) => {
             const { Results } = await response.json()
             let currentMakeOptions = []
             if (Results) {
-                console.log(Results)
                 Results.forEach(make => currentMakeOptions.push(<MenuItem value={`${make.Model_Name}`}>{make.Model_Name}</MenuItem>))
                 setModelOptions(currentMakeOptions)
             }

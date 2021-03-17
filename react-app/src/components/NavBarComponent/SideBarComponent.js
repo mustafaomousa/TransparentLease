@@ -116,6 +116,11 @@ const SideBarComponent = ({ setAuthenticated, sideHidden, setSideHidden, setWelc
                             <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/deal/inquiries">Inquiries</NavLink>
                         </>
                     )}
+                    {user.broker === false && (
+                        <>
+                            <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/portfolio">Portfolio</NavLink>
+                        </>
+                    )}
                     <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/about">About us</NavLink>
                     <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/contact">Contact us</NavLink>
 

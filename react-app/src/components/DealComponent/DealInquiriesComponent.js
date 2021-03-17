@@ -1,11 +1,21 @@
 import { Button, Checkbox, Select } from "@material-ui/core";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { brokerDeleteInquiry } from "../../store/broker";
+import { getCurrentUser } from "../../store/user";
 
 import "./deal.css"
 
 const DealInquiriesComponent = () => {
+    const dispatch = useDispatch();
     const inquiries = useSelector(state => state.user.active_inquiries)
+
+    useEffect(() => dispatch(getCurrentUser()), [dispatch])
+
+    const declineUserInquiry = (e, inquiryId) => {
+        e.preventDefault()
+        dispatch(brokerDeleteInquiry(inquiryId));
+    };
 
     return (
         <div className="broker-inquiries-body">
@@ -28,7 +38,7 @@ const DealInquiriesComponent = () => {
                             <div className="inquiry-buttons">
                                 <Button>Message</Button>
                                 <Button>Approve</Button>
-                                <Button>Decline</Button>
+                                <Button onClick={e => declineUserInquiry(e, inquiry.id)}>Decline</Button>
                             </div>
                         </div>
 
