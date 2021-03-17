@@ -1,17 +1,21 @@
-import { Avatar, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
-import React, { useEffect } from "react";
+import { Avatar, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Select, MenuItem } from "@material-ui/core";
+import { TextInput } from "grommet";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "react-scroll";
-import { getCurrentUser } from "../../store/user";
+import { loadUserInquiries, deleteInquiry } from "../../store/inquiries";
 
 import "./portfolio.css"
 
 const PortfiolioComponent = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
-    const inquiries = user.user_inquiries;
+    const inquiries = useSelector(state => state.inquiry.userInquiries);
+    const makes = useSelector(state => state.utils.makes);
 
-    useEffect(() => dispatch(getCurrentUser()), [dispatch])
+    const [alertYear, setAlertYear] = useState(2019);
+    const [alertMake, setAlertMake] = useState(1);
+
+    useEffect(() => dispatch(loadUserInquiries(user.id)), [dispatch])
 
     return (
         <div className="portfolio-body">
@@ -30,8 +34,52 @@ const PortfiolioComponent = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="deal-alerts-container">
+                        <p id="pending">Deal alerts ⚠️</p>
+                        <form>
+                            <TableContainer>
+                                <Table>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Year</TableCell>
+                                            <TableCell>Make</TableCell>
+                                            <TableCell>Model</TableCell>
+                                            <TableCell>Payment (max)</TableCell>
+                                            <TableCell />
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Select onChange={(e) => setAlertYear(e.target.value)} value={alertYear}>
+                                                    <MenuItem value={2019}>2019</MenuItem>
+                                                    <MenuItem value={2020}>2020</MenuItem>
+                                                    <MenuItem value={2021}>2021</MenuItem>
+                                                    <MenuItem value={2022}>2022</MenuItem>
+                                                </Select>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Select onChange={(e) => setAlertMake(e.target.value)} value={alertMake}>
+                                                    {makes && makes.map((make, key) => <MenuItem value={make.id} id={make.name} key={key}>{make.name}</MenuItem>)}
+                                                </Select>
+                                            </TableCell>
+                                            <TableCell>
+                                                <TextInput placeholder="Desired model name" />
+                                            </TableCell>
+                                            <TableCell>
+                                                <TextInput type="number" placeholder="Desired payment" />
+                                            </TableCell>
+                                            <TableCell>
+                                                <Button>+</Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </form>
+                    </div>
                     <div className="purchases-container">
-                        <p id="pending">Purchase history</p>
+                        <p id="pending">Purchase history 🚗</p>
                         <TableContainer>
                             <Table>
                                 <TableHead>
@@ -48,7 +96,7 @@ const PortfiolioComponent = () => {
                                     {inquiries && Object.entries(inquiries).map(([inquiry_id, inquiry]) => (
                                         <TableRow>
                                             <TableCell>
-                                                <p>Cancel</p>
+                                                <Button onClick={() => dispatch(deleteInquiry(inquiry_id))}>Cancel</Button>
                                             </TableCell>
                                             <TableCell>
                                                 <p>{inquiry.id}</p>

@@ -2,7 +2,8 @@ import { omit } from "lodash";
 import { authenticate } from "../services/auth";
 
 const LOAD = "spot/getUser";
-const BROKER_DELETE = 'broker/brokerRemoveInquiry'
+const BROKER_DELETE = 'broker/brokerRemoveInquiry';
+const USER_DELETE = 'user/userRemoveInquiry';
 
 export const getUser = (user) => {
     return {

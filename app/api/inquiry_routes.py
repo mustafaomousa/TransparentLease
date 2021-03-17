@@ -14,7 +14,7 @@ def current_user_inquiries(user_id):
         UserInquiry.user_id == user_id).all()
     if users_inquiries:
         print(users_inquiries)
-        return {"user_inquiries": {user_inquiry.broker_deal_id: user_inquiry.to_dict() for user_inquiry in users_inquiries}}
+        return {"user_inquiries": {user_inquiry.id: user_inquiry.to_dict() for user_inquiry in users_inquiries}}
     else:
         return {"errors": ["Current user has not submitted any inquries"]}
 
@@ -32,7 +32,7 @@ def create_user_inquiry():
         db.session.add(user_inquiry)
         db.session.commit()
         user_inquiry_dict = user_inquiry.to_dict()
-        return {user_inquiry_dict["broker_deal_id"]: user_inquiry.to_dict()}
+        return {user_inquiry.id: user_inquiry.to_dict()}
 
 
 @inquiry_routes.route('/delete/<int:inquiry_id>', methods=['DELETE'])
@@ -41,4 +41,4 @@ def delete_user_inquiry(inquiry_id):
     inq = inquiry.to_dict()
     db.session.delete(inquiry)
     db.session.commit()
-    return {"deleted_inquiry": inq["broker_deal_id"], "inquiry": inq}
+    return {"deleted_inquiry": inq}

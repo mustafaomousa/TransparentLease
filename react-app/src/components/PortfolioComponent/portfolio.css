@@ -63,6 +63,14 @@
     padding-bottom: 20px;
 }
 
+.deal-alerts-container {
+    width: 800px;
+    height: auto;
+    background-color: whitesmoke;
+    margin-bottom: 60px;
+    padding-bottom:20px;
+}
+
 #pending {
     position: relative;
     top: -30px;

@@ -69,7 +69,8 @@ const inquiryReducer = (state = initialState, action) => {
             newState = Object.assign({}, state, { userInquiries: { ...action.payload, ...state.userInquiries } });
             return newState;
         case DELETE:
-            return { ...state, userInquiries: omit(state.userInquiries, action.payload) }
+            console.log(action.payload)
+            return { ...state, userInquiries: omit(state.userInquiries, action.payload.id) }
         default:
             return state;
     }
