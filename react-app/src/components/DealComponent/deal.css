@@ -340,3 +340,58 @@
     margin-top: 10px;
     background-color: whitesmoke;
 }
+
+.broker-inquiries-body {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.broker-inquiries-header {
+
+}
+
+.inquiry-header {
+    padding-left: 20px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.inquiry-header p {
+    color: white;
+}
+
+.broker-inquiries-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #293241;
+    width: 1000px;
+    height: auto;
+    padding-top: 10px;
+}
+
+.inquiry-container {
+    display: flex;
+    background-color: white;
+    width: 980px;
+    margin-bottom: 10px;
+}
+
+.inquiry {
+    display: flex;
+}
+
+.inquiry-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+}
+
+.inquiry-information {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 630px;
+}

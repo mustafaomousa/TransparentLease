@@ -89,34 +89,35 @@ const SideBarComponent = ({ setAuthenticated, sideHidden, setSideHidden, setWelc
                     <div className="avatar-footer">
                         {user.id &&
                             <div style={{ display: "flex", flexDirection: "column" }}>
-                                <Link style={{ color: "whitesmoke" }} to={`/${user.username}`}>{user.username}</Link>
+                                <Link style={{ color: "whitesmoke" }} onClick={() => setSideHidden(false)} to={`/${user.username}`}>{user.username}</Link>
                                 <p>{user.broker === true && "Broker"}</p>
                                 <p style={{ color: "whitesmoke", fontSize: "14px", fontStyle: "italic" }}>{user.broker !== true && "Smart shopper"}</p>
                             </div>
                         }
                         {!user.id &&
                             <div style={{ display: "flex", flexDirection: "column" }}>
-                                <Link style={{ color: "whitesmoke" }} to={`/sign-up`}>Welcome guest</Link>
+                                <Link style={{ color: "whitesmoke" }} onClick={() => setSideHidden(false)} to={`/sign-up`}>Welcome guest</Link>
                             </div>}
                     </div>
                 </div>
                 <Divider />
                 <div className="sidebar-search-container">
                     <Input placeholder="Search"></Input>
-                    <StyledSearchRounded />
+                    <StyledSearchRounded onClick={() => setSideHidden(false)} />
                 </div>
                 <Divider />
                 <div className="sidebar-body">
-                    <NavLink id="navlink" to="/">Home</NavLink>
-                    <NavLink id="navlink" to="/make/BMW">Deals</NavLink>
+                    <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/">Home</NavLink>
+                    <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/make/BMW">Deals</NavLink>
                     {user.broker === true && (
                         <>
-                            <NavLink id="navlink" to="/deal/create">New deal</NavLink>
-                            <NavLink id="navlink" to="/deal/manage">Manage deals</NavLink>
+                            <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/deal/create">New deal</NavLink>
+                            <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/deal/manage">Manage deals</NavLink>
+                            <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/deal/inquiries">Inquiries</NavLink>
                         </>
                     )}
-                    <NavLink id="navlink" to="/about">About us</NavLink>
-                    <NavLink id="navlink" to="/contact">Contact us</NavLink>
+                    <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/about">About us</NavLink>
+                    <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/contact">Contact us</NavLink>
 
                 </div>
                 <div className="sidebar-controls-container">

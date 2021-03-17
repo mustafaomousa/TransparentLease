@@ -14,10 +14,15 @@ class UserInquiry(db.Model):
         "BrokerDeal", foreign_keys=[broker_deal_id])
     user = db.relationship('User', foreign_keys=[user_id])
 
+    @property
+    def broker_id(self):
+        return self.broker_deal.owning_broker["id"]
+
     def to_dict(self):
         return {
             "id": self.id,
             "broker_deal_id": self.broker_deal_id,
+            "broker_id": self.broker_id,
             "user_id": self.user_id,
             "broker_deal": self.broker_deal.to_dict(),
             "user": self.user.to_dict(),

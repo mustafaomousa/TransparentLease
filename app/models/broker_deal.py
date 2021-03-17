@@ -29,6 +29,10 @@ class BrokerDeal(db.Model):
     def deal_make(self):
         return self.make.make_name
 
+    @property
+    def owning_broker(self):
+        return self.broker.to_dict()
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -40,5 +44,5 @@ class BrokerDeal(db.Model):
             "updated_at": self.updated_at,
             "lease_info": self.lease_info.to_dict(),
             "make": self.make.to_dict(),
-            "broker": self.broker.to_dict()
+            "broker": self.owning_broker["id"]
         }

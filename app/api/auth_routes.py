@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db, BrokerDeal
+from app.models import User, db, BrokerDeal, UserInquiry
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -28,9 +28,15 @@ def authenticate():
         if current_user.broker == True:
             broker_deals = BrokerDeal.query.filter(
                 BrokerDeal.broker_id == current_user.id).all()
+
+            broker_inquiries = db.session.query(
+                UserInquiry).join(BrokerDeal).join(User).filter(User.id == current_user.id).all()
+
             user = current_user.to_dict()
             user["user_deals"] = [broker_deal.to_dict()
                                   for broker_deal in broker_deals]
+            user["active_inquiries"] = {broker_inquiry.id: broker_inquiry.to_dict(
+            ) for broker_inquiry in broker_inquiries}
             return user
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}, 401
