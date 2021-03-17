@@ -21,17 +21,19 @@ const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-com
 
 const Row = ({ deal, userInquiries, currentUser }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [open, setOpen] = useState(false);
 
     const submitUserInquiry = (e, broker_deal_id) => {
         e.preventDefault()
         dispatch(createNewInquiry(broker_deal_id));
+        history.push('/portfolio')
         dispatch(createNotification("Inquiry submitted!"))
     };
 
     const removeUserInquiry = (e) => {
         e.preventDefault()
-        dispatch(deleteInquiry(userInquiries[deal.id].id))
+        dispatch(deleteInquiry(userInquiries[deal.id].id, deal.id))
         dispatch(createNotification("Inquiry canceled!"))
     }
 
@@ -93,7 +95,7 @@ const BrokerPageComponent = () => {
     const brokerDeals = useSelector(state => state.broker.broker_deals);
     const comments = useSelector(state => state.broker.broker_comments)
     const currentUser = useSelector(state => state.user)
-    const userInquiries = useSelector(state => state.inquiry.userInquiries);
+    const userInquiries = useSelector(state => state.broker.inquiries);
 
     const submitComment = async (e) => {
         e.preventDefault();
@@ -111,7 +113,7 @@ const BrokerPageComponent = () => {
         },
     })(Avatar);
 
-    useEffect(() => dispatch(loadUserInquiries(currentUser.id)), [])
+    useEffect(() => dispatch(loadUserInquiries(currentUser.id)), [currentUser.id, dispatch])
 
     useEffect(() => {
         dispatch(getBrokerInformation(brokerUsername))

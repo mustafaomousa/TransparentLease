@@ -3,8 +3,9 @@ import { createNotification } from "./notifications";
 import { brokerRemoveInquiry } from "./user";
 
 const LOAD = "broker/getBroker";
-const ADD_COMMENT = "broker/addComment"
-const REMOVE_COMMENT = "broker/removeComment"
+const ADD_COMMENT = "broker/addComment";
+const REMOVE_COMMENT = "broker/removeComment";
+const REMOVE_INQUIRY = "broker/removeInquiryFromBrokerPage";
 
 const getBroker = (broker) => {
     return {
@@ -27,6 +28,13 @@ const removeComment = (comment) => {
     };
 }
 
+export const removeInquiryFromBrokerPage = (inquiry_id) => {
+    return {
+        type: REMOVE_INQUIRY,
+        payload: inquiry_id
+    };
+};
+
 export const brokerDeleteInquiry = (inquiry_id) => async dispatch => {
     const response = await fetch(`/api/inquiry/delete/${inquiry_id}`, {
         method: 'DELETE',
@@ -35,7 +43,8 @@ export const brokerDeleteInquiry = (inquiry_id) => async dispatch => {
         }
     });
     const result = await response.json();
-    return dispatch(brokerRemoveInquiry(inquiry_id))
+    dispatch(brokerRemoveInquiry(inquiry_id));
+    return result;
 };
 
 export const getBrokerInformation = (brokerUsername) => async (dispatch) => {
@@ -82,6 +91,8 @@ const brokerReducer = (state = initialState, action) => {
             newState = Object.assign({}, state);
             newState.broker_comments[action.payload.id] = action.payload
             return newState;
+        case REMOVE_INQUIRY:
+            return { ...state, inquiries: omit(state.inquiries, action.payload) }
         case REMOVE_COMMENT:
             return { ...state, broker_comments: omit(state.broker_comments, action.payload.id) };
         default:

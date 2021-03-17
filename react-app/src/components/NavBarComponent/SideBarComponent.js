@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
-import { Avatar, Button, Divider, Drawer, Input, makeStyles, withStyles } from "@material-ui/core";
+import { Avatar, Button, Divider, Drawer, Input, withStyles } from "@material-ui/core";
 import CloseOutlined from "@material-ui/icons/CloseOutlined";
 import SearchRounded from "@material-ui/icons/SearchRounded";
 import MailOutlineOutlined from "@material-ui/icons/MailOutlineOutlined"
@@ -89,7 +89,7 @@ const SideBarComponent = ({ setAuthenticated, sideHidden, setSideHidden, setWelc
                     <div className="avatar-footer">
                         {user.id &&
                             <div style={{ display: "flex", flexDirection: "column" }}>
-                                <Link style={{ color: "whitesmoke" }} onClick={() => setSideHidden(false)} to={`/${user.username}`}>{user.username}</Link>
+                                <Link style={{ color: "whitesmoke" }} onClick={() => setSideHidden(false)} to={user.broker ? `/${user.username}` : '/portfolio'}>{user.username}</Link>
                                 <p>{user.broker === true && "Broker"}</p>
                                 <p style={{ color: "whitesmoke", fontSize: "14px", fontStyle: "italic" }}>{user.broker !== true && "Smart shopper"}</p>
                             </div>

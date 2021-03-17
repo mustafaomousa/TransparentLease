@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
 import { Button, Form, TextInput } from "grommet"
 import { useDispatch } from "react-redux";
@@ -7,7 +7,6 @@ import { getCurrentUser, getUser } from "../../store/user";
 import { createNotification } from "../../store/notifications";
 
 import "./login.css";
-import { loadUserInquiries } from "../../store/inquiries";
 
 const LoginForm = ({ authenticated, setAuthenticated, setWelcomeOpen }) => {
   const dispatch = useDispatch();

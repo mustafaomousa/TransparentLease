@@ -11,6 +11,19 @@
     background-color: #293241;
 }
 
+.account-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    padding-top: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    width: 1000px;
+    height: auto;
+    background-color: #293241;
+}
+
 .portfolio-header {
     height: 100px;
     width: 100%;
@@ -56,20 +69,63 @@
 }
 
 .purchases-container {
-    width: 800px;
+    width: 960px;
     height: auto;
     background-color: whitesmoke;
     margin-bottom: 20px;
     padding-bottom: 20px;
 }
 
+
 .deal-alerts-container {
-    width: 800px;
+    width: 960px;
     height: auto;
     background-color: whitesmoke;
     margin-bottom: 60px;
     padding-bottom:20px;
 }
+
+.account-information-container {
+    display: flex;
+    flex-direction: column;
+    width: 960px;
+    background-color: whitesmoke;
+}
+
+.account-info-av {
+    width: 100px;
+}
+
+#av {
+    width: 130px;
+    height: 130px;
+}
+
+.account-information-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    padding: 0px 50px;
+    padding-bottom: 25px;
+}
+
+.account-info {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding-left: 80px;
+    height: 100%;
+}
+
+.account-info-header {
+    display: flex;
+    align-items: center;
+}
+
+.account-info-bio {
+    display: flex;
+    align-items: center;
+}   
 
 #pending {
     position: relative;
@@ -81,4 +137,38 @@
     width: 150px;
     height: 150px;
     box-shadow: 0px 4px 8px rgb(0 0 0 / 20%);
+}
+
+.user-account-grid {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.edit-account-info {
+    height: 300px;
+}
+
+.user-account-grid-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.user-account-grid-area input {
+    text-align: center;
+    width: 13em;
+}
+
+.user-account-grid-area button {
+    height: 80%;
+    width: 80%;
+}
+
+.user-account-grid-area button:hover {
+    background-color: rgba(255, 0, 0, 0.267);
 }

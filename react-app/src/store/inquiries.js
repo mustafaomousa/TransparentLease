@@ -1,4 +1,5 @@
 import { omit } from "lodash";
+import { removeInquiryFromBrokerPage } from "./broker";
 
 const LOAD = 'inquiry/loadInquiries';
 const CREATE = 'inquiry/createInquiry';
@@ -46,7 +47,7 @@ export const createNewInquiry = (broker_deal_id) => async dispatch => {
     return dispatch(createInquiry(result));
 };
 
-export const deleteInquiry = (inquiry_id) => async dispatch => {
+export const deleteInquiry = (inquiry_id, deal_id) => async dispatch => {
     const response = await fetch(`/api/inquiry/delete/${inquiry_id}`, {
         method: 'DELETE',
         header: {
@@ -54,6 +55,7 @@ export const deleteInquiry = (inquiry_id) => async dispatch => {
         }
     });
     const result = await response.json();
+    dispatch(removeInquiryFromBrokerPage(deal_id))
     return dispatch(removeInquiry(result.deleted_inquiry))
 };
 
@@ -69,7 +71,6 @@ const inquiryReducer = (state = initialState, action) => {
             newState = Object.assign({}, state, { userInquiries: { ...action.payload, ...state.userInquiries } });
             return newState;
         case DELETE:
-            console.log(action.payload)
             return { ...state, userInquiries: omit(state.userInquiries, action.payload.id) }
         default:
             return state;

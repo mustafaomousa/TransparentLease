@@ -25,7 +25,7 @@ const DealCard = ({ latestDeal }) => (
             <div background="light-5" id="card-footer">
                 <p>${latestDeal.lease_info.payment} per month</p>
                 <p>{latestDeal.lease_info.months}/{latestDeal.lease_info.miles_yearly}</p>
-                <p>Broker: {<a href={`/${latestDeal.broker.username}`}>{latestDeal && latestDeal.broker.username}</a>} </p>
+                <p>Broker: {<a href={`/${latestDeal.lease_info.broker.username}`}>{latestDeal.lease_info.broker.username}</a>} </p>
             </div>
         </Card>
         {latestDeal && (latestDeal.lease_info.msrp * 0.01) <= latestDeal.lease_info.payment && <p className="speech-bubble">Great deal!</p>}

@@ -12,7 +12,7 @@ const NotificationComponent = () => {
     useEffect(() => {
         const notificationTimer = setTimeout(() => dispatch(deleteNotifications()), 2000);
         return () => clearTimeout(notificationTimer)
-    }, [notifications.length])
+    }, [notifications.length, dispatch])
 
     return (
         <div className="notification-component-container">

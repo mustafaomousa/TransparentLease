@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const utils = await dispatch(getAllUtils())
+      await dispatch(getAllUtils())
       const user = await dispatch(getCurrentUser())
       if (!user.errors) {
         setAuthenticated(true);

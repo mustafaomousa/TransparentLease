@@ -1,4 +1,4 @@
-import { Avatar, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Select, MenuItem } from "@material-ui/core";
+import { Avatar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Select, MenuItem, Divider, InputLabel, Input } from "@material-ui/core";
 import { TextInput } from "grommet";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,7 @@ const PortfiolioComponent = () => {
     const [alertYear, setAlertYear] = useState(2019);
     const [alertMake, setAlertMake] = useState(1);
 
-    useEffect(() => dispatch(loadUserInquiries(user.id)), [dispatch])
+    useEffect(() => dispatch(loadUserInquiries(user.id)), [dispatch, user.id])
 
     return (
         <div className="portfolio-body">
@@ -30,12 +30,12 @@ const PortfiolioComponent = () => {
                                 <p>{user.name}</p>
                             </div>
                             <div className="portfolio-avatar-footer">
-                                <p>Edit portfolio</p>
+                                <p>joined {user.created_at}</p>
                             </div>
                         </div>
                     </div>
                     <div className="deal-alerts-container">
-                        <p id="pending">Deal alerts ⚠️</p>
+                        <p id="pending">Deal alerts <span role="img" aria-labelledby="jsx-a11y/accessible-emoji">⚠️</span></p>
                         <form>
                             <TableContainer>
                                 <Table>
@@ -79,7 +79,7 @@ const PortfiolioComponent = () => {
                         </form>
                     </div>
                     <div className="purchases-container">
-                        <p id="pending">Purchase history 🚗</p>
+                        <p id="pending">Purchase history <span role="img" aria-labelledby="jsx-a11y/accessible-emoji">🚗</span></p>
                         <TableContainer>
                             <Table>
                                 <TableHead>
@@ -120,6 +120,61 @@ const PortfiolioComponent = () => {
                         </TableContainer>
                     </div>
                 </div>
+            </div>
+            <div className="account-container">
+                <div className="account-information-container">
+                    <p id="pending">Account information <span role="img" aria-labelledby="jsx-a11y/accessible-emoji">🧍</span></p>
+                    <div className="account-information-top">
+                        <div className="account-info-av">
+                            <Avatar id="av" src="" alt="" />
+                        </div>
+                        <div className="account-info">
+                            <div className="account-info-header">
+                                <p>{user.header}</p>
+                            </div>
+                            <div className="account-info-bio">
+                                <p>{user.bio}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <Divider />
+                    <div className="edit-account-info">
+                        <form className="user-account-grid">
+                            <div className="user-account-grid-area">
+                                <InputLabel>Name:</InputLabel>
+                                <Input value={user.name}></Input>
+                            </div>
+                            <div className="user-account-grid-area">
+                                <InputLabel>Username:</InputLabel>
+                                <Input value={user.username}></Input>
+                            </div>
+                            <div className="user-account-grid-area">
+                                <InputLabel>E-mail:</InputLabel>
+                                <Input value={user.email}></Input>
+                            </div>
+                            <div className="user-account-grid-area">
+                                <InputLabel>Address:</InputLabel>
+                                <Input value={user.address}></Input>
+                            </div>
+                            <div className="user-account-grid-area">
+                                <InputLabel>City:</InputLabel>
+                                <Input value={user.city}></Input>
+                            </div>
+                            <div className="user-account-grid-area">
+                                <InputLabel>State:</InputLabel>
+                                <Input value={user.state}></Input>
+                            </div>
+                            <div className="user-account-grid-area">
+                                <InputLabel>Zip:</InputLabel>
+                                <Input value={user.zip}></Input>
+                            </div>
+                            <div className="user-account-grid-area">
+                                <Button>Delete Account</Button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
     )

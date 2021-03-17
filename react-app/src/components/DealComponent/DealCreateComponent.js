@@ -42,7 +42,10 @@ const DealCreateComponent = ({ user }) => {
     useEffect(() => {
         (async () => {
             makes.map(make => {
-                if (make.id === makeId) return setMakeName(make.name)
+                if (make.id === makeId) {
+                    return setMakeName(make.name)
+                }
+                return false;
             })
             const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/${makeName}?format=json`);
             const { Results } = await response.json()
@@ -52,7 +55,7 @@ const DealCreateComponent = ({ user }) => {
                 setModelOptions(currentMakeOptions)
             }
         })();
-    }, [makeId, makeName])
+    }, [makeId, makeName, makes])
 
     useEffect(() => {
         (async () => {

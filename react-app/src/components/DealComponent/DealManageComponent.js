@@ -136,7 +136,6 @@ const ManageDeal = ({ selectedDeal }) => {
 
 const DealManageComponent = () => {
     const brokerDeals = useSelector(state => state.user.user_deals);
-    const [selectedDeal, setSelectedDeal] = useState(null)
 
     return (
         <div className="deal-manage-body">
