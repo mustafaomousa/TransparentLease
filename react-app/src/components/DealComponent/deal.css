@@ -342,9 +342,10 @@
 }
 
 .broker-inquiries-body {
-    padding-top: 20px;
+    padding-top: 60px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .broker-inquiries-header {
@@ -352,9 +353,8 @@
 }
 
 .inquiry-header {
-    padding-left: 20px;
     padding-bottom: 10px;
-    width: 100%;
+    width: 1000px;
 }
 
 .inquiry-header p {
@@ -367,7 +367,7 @@
     align-items: center;
     background-color: #293241;
     width: 1000px;
-    height: auto;
+    min-height: 600px;
     padding-top: 10px;
 }
 

@@ -15,6 +15,7 @@ import DealManageComponent from "./components/DealComponent/DealManageComponent"
 import DealInquiriesComponent from "./components/DealComponent/DealInquiriesComponent";
 import { getAllUtils } from "./store/utils";
 import PortfiolioComponent from "./components/PortfolioComponent";
+import DealManagerComponent from "./components/DealComponent";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +58,9 @@ function App() {
         </Route>
         <Route exact path="/deal/create">
           <DealCreateComponent />
+        </Route>
+        <Route exact path="/deal">
+          <DealManagerComponent />
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm

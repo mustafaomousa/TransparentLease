@@ -1,13 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
-import { Avatar, Button, Divider, Drawer, Input, withStyles } from "@material-ui/core";
-import CloseOutlined from "@material-ui/icons/CloseOutlined";
-import SearchRounded from "@material-ui/icons/SearchRounded";
-import MailOutlineOutlined from "@material-ui/icons/MailOutlineOutlined"
-import NotificationImportantOutlined from "@material-ui/icons/NotificationImportantOutlined";
-import Settings from "@material-ui/icons/Settings";
+import { Button, Divider, Input } from "@material-ui/core";
 
+import { StyledDrawer, StyledAvatar, StyledSearchRounded, StyledMailOutlineOutlined, StyledNotificationImportantOutlined, StyledSettings, StyledCloseOutlined } from "../../component_utils/styledElements";
 import LogoutButton from '../auth/LogoutButton';
 
 import './navbar.css'
@@ -18,62 +14,6 @@ const SideBarComponent = ({ setAuthenticated, sideHidden, setSideHidden, setWelc
     const history = useHistory();
 
     const user = useSelector(state => state.user);
-
-    const StyledDrawer = withStyles({
-        paperAnchorLeft: {
-            backgroundColor: "#383331"
-        }
-    })(Drawer)
-
-    const StyledSettings = withStyles({
-        root: {
-            color: "whitesmoke", "&:hover": {
-                color: "lightgray"
-            }
-        }
-    })(Settings);
-
-    const StyledNotificationImportantOutlined = withStyles({
-        root: {
-            color: "#f6b800",
-            "&:hover": {
-                color: "#c3950c"
-            }
-        }
-    })(NotificationImportantOutlined);
-
-    const StyledCloseOutlined = withStyles({
-        root: {
-            color: "whitesmoke",
-            "&:hover": {
-                color: "red"
-            }
-        }
-    })(CloseOutlined);
-
-    const StyledMailOutlineOutlined = withStyles({
-        root: {
-            color: "lightgray",
-            "&:hover": {
-                color: "gray"
-            }
-        }
-    })(MailOutlineOutlined)
-
-    const StyledSearchRounded = withStyles({
-        root: {
-            color: "whitesmoke",
-            marginLeft: "25px"
-        }
-    })(SearchRounded)
-
-    const StyledAvatar = withStyles({
-        root: {
-            width: "65px",
-            height: "65px"
-        }
-    })(Avatar)
-
 
     if (user) return (
         <StyledDrawer id="sidebar" anchor="left" open={sideHidden} >
@@ -111,26 +51,14 @@ const SideBarComponent = ({ setAuthenticated, sideHidden, setSideHidden, setWelc
                 <div className="sidebar-body">
                     <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/">Home</NavLink>
                     <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/make/BMW">Deals</NavLink>
-                    {user.broker === true && (
-                        <>
-                            <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/deal/create">New deal</NavLink>
-                            <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/deal/manage">Manage deals</NavLink>
-                            <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/deal/inquiries">Inquiries</NavLink>
-                        </>
-                    )}
-                    {user.broker === false && (
-                        <>
-                            <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/portfolio">Portfolio</NavLink>
-                        </>
-                    )}
-                    <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/about">About us</NavLink>
-                    <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/contact">Contact us</NavLink>
+                    {user.broker === true && <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/deal">Deal Manager</NavLink>}
+                    {user.broker === false && <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/portfolio">Portfolio</NavLink>}
                 </div>
                 <div className="sidebar-controls-container">
                     {user.id && <LogoutButton setAuthenticated={setAuthenticated} />}
                     {!user.id && <>
                         <Button onClick={() => setWelcomeOpen(true)} id="navlink" >Login</Button>
-                        <Button id="navlink" onClick={() => history.push('/sign-up')}>Sign up</Button>
+                        <Button onClick={() => history.push('/sign-up')} id="navlink" >Sign up</Button>
                     </>}
                     <div className="sidebar-controls-container-buttons">
                         <StyledMailOutlineOutlined />

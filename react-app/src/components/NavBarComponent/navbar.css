@@ -24,6 +24,18 @@
     color: black;
 }
 
+#sidebar-toggle {
+    color: whitesmoke;
+}
+
+#notifications-toggle {
+    color: #f6b800;
+}
+
+#sidebar-toggle:hover {
+    color: #EE6C4D;
+}
+
 .sidebar-container {
     width: 300px;
 }

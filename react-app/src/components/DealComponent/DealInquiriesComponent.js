@@ -1,4 +1,4 @@
-import { Button, Checkbox } from "@material-ui/core";
+import { Button, Checkbox, Divider } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -24,12 +24,13 @@ const DealInquiriesComponent = () => {
             <div className="broker-inquiries-header">
 
             </div>
+            <div className="inquiry-header">
+                <p>Inquiry Dashboard</p>
+            </div>
             <div className="broker-inquiries-container">
-                <div className="inquiry-header">
-                    <p>Inquiry Dashboard</p>
-                </div>
                 {inquiries && Object.entries(inquiries).map(([inquiry_id, inquiry]) => (
                     <div className="inquiry-container">
+                        <Divider />
                         <div className="inquiry">
                             <div className="inquiry-checkbox">
                                 <Checkbox />

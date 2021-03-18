@@ -1,0 +1,23 @@
+.deal-manager-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 60px;
+}
+
+.deal-manager-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    background-color: #293241;
+    width: 800px;
+    width: 1000px;
+    height: 600px;
+}
+
+.deal-manager-container button {
+    color: whitesmoke;
+    width: 100%;
+    height: 100%;
+}
