@@ -2,12 +2,14 @@ import { Avatar, Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 import { TextInput } from "grommet";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { loadUserInquiries, deleteInquiry } from "../../store/inquiries";
 
 import "./portfolio.css"
 
 const PortfiolioComponent = () => {
     const dispatch = useDispatch();
+
     const user = useSelector(state => state.user);
     const inquiries = useSelector(state => state.inquiry.userInquiries);
     const makes = useSelector(state => state.utils.makes);

@@ -16,15 +16,14 @@ const CalculatorBasicComponent = () => {
     const updateMsrp = (e) => setMsrp(e.target.value);
     const updateSalesPrice = (e) => setSalesPrice(e.target.value);
     const updateResidual = (e) => setResidual(e.target.value);
-    const updateMoneyFactor = (e) => {
-        setMoneyFactor(e.target.value);
-    };
+    const updateMoneyFactor = (e) => setMoneyFactor(e.target.value);
     const updateMonths = (e) => setMonths(e.target.value);
     const updateDownpayment = (e) => setDownpayment(e.target.value);
 
 
     const calculateSmallLease = (e) => {
         e.preventDefault();
+
         const residualValue = msrp * (0.01 * residual);
         const depreciationAmount = ((salesPrice - downpayment) - residualValue);
         const monthlyDepreciationAmount = (depreciationAmount / months);

@@ -1,6 +1,7 @@
 import { Button, Checkbox } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { brokerDeleteInquiry } from "../../store/broker";
 import { getCurrentUser } from "../../store/user";
 
@@ -8,6 +9,7 @@ import "./deal.css"
 
 const DealInquiriesComponent = () => {
     const dispatch = useDispatch();
+
     const inquiries = useSelector(state => state.user.active_inquiries)
 
     useEffect(() => dispatch(getCurrentUser()), [dispatch])

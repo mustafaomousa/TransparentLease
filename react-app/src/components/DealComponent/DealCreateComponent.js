@@ -4,9 +4,10 @@ import { useHistory } from "react-router-dom";
 import { CircleQuestion } from "grommet-icons";
 import { Input, Checkbox, Select, MenuItem } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import "./deal.css";
 import { createNewDeal } from "../../store/deals";
 import { createNotification } from "../../store/notifications";
+
+import "./deal.css";
 
 const DealCreateComponent = ({ user }) => {
     const dispatch = useDispatch();
@@ -36,7 +37,6 @@ const DealCreateComponent = ({ user }) => {
     const [listed, setListed] = useState(false)
     const [advertise, setAdvertise] = useState(false)
     const [demo, setDemo] = useState(false)
-
     const [makeName, setMakeName] = useState("")
 
     useEffect(() => {

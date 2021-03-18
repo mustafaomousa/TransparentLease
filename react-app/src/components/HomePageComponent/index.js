@@ -35,9 +35,12 @@ const DealCard = ({ latestDeal }) => (
 
 const HomePageComponent = () => {
     const dispatch = useDispatch();
+
     const [currDeal, setCurrDeal] = useState(1);
+
     const latestDeals = useSelector(state => state.deals.latest_deals);
     const currentUser = useSelector(state => state.user);
+
     useEffect(() => dispatch(getAllLatestDeals()), [dispatch])
 
     return (

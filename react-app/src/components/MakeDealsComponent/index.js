@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
 import { getMakeDeals } from "../../store/deals";
 
 const MakeDealsComponent = () => {
     const dispatch = useDispatch();
+
     const { makeName } = useParams();
+
     const makeDeals = useSelector(state => state.deals.make_deals)
 
     useEffect(() => dispatch(getMakeDeals(makeName.toUpperCase())), [dispatch, makeName])

@@ -7,13 +7,16 @@ import SearchRounded from "@material-ui/icons/SearchRounded";
 import MailOutlineOutlined from "@material-ui/icons/MailOutlineOutlined"
 import NotificationImportantOutlined from "@material-ui/icons/NotificationImportantOutlined";
 import Settings from "@material-ui/icons/Settings";
+
 import LogoutButton from '../auth/LogoutButton';
+
 import './navbar.css'
 
 const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
 
 const SideBarComponent = ({ setAuthenticated, sideHidden, setSideHidden, setWelcomeOpen }) => {
     const history = useHistory();
+
     const user = useSelector(state => state.user);
 
     const StyledDrawer = withStyles({
@@ -81,7 +84,6 @@ const SideBarComponent = ({ setAuthenticated, sideHidden, setSideHidden, setWelc
                     </Button>
                 </div>
                 <Divider />
-
                 <div className="sidebar-header">
                     <div className="avatar-header">
                         <StyledAvatar src={user.profile_image ? user.profile_image : src} />
@@ -123,7 +125,6 @@ const SideBarComponent = ({ setAuthenticated, sideHidden, setSideHidden, setWelc
                     )}
                     <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/about">About us</NavLink>
                     <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/contact">Contact us</NavLink>
-
                 </div>
                 <div className="sidebar-controls-container">
                     {user.id && <LogoutButton setAuthenticated={setAuthenticated} />}

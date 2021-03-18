@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { Checkmark } from "grommet-icons";
 import { useDispatch, useSelector } from "react-redux";
 
-import "../NavBarComponent/navbar.css"
 import { deleteNotifications } from "../../store/notifications";
+
+import "../NavBarComponent/navbar.css";
 
 const NotificationComponent = () => {
     const dispatch = useDispatch();
+
     const notifications = useSelector(state => state.notifications.sucessful)
 
     useEffect(() => {
@@ -16,7 +18,6 @@ const NotificationComponent = () => {
 
     return (
         <div className="notification-component-container">
-
             {notifications && notifications.map((notification, idx) => {
                 return (
                     <div className="new-deal-notification-container">
@@ -29,11 +30,8 @@ const NotificationComponent = () => {
                     </div>
                 )
             })}
-
         </div>
     )
-
-
 };
 
 export default NotificationComponent;

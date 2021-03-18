@@ -7,14 +7,15 @@ import { Avatar, TableContainer, Table, TableHead, TableRow, TableCell, TableBod
 import { Input, Button, withStyles, IconButton, Paper } from "@material-ui/core";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-
-import { createUserComment, deleteUserComment, getBrokerInformation } from "../../store/broker";
-import { createNotification } from "../../store/notifications";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-import "./brokerpage.css";
+import { createUserComment, deleteUserComment, getBrokerInformation } from "../../store/broker";
+import { createNotification } from "../../store/notifications";
 import { createNewInquiry, loadUserInquiries, deleteInquiry } from "../../store/inquiries";
+
+import "./brokerpage.css";
+
 
 const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-computadora-persona-avatar.png';
 
@@ -22,6 +23,7 @@ const src = 'https://c0.klipartz.com/pngpicture/124/934/gratis-png-iconos-de-com
 const Row = ({ deal, userInquiries, currentUser }) => {
     const dispatch = useDispatch();
     const history = useHistory();
+
     const [open, setOpen] = useState(false);
 
     const submitUserInquiry = (e, broker_deal_id) => {

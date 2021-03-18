@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Form, Button, Layer, Image, Box, TextArea, CheckBox } from "grommet";
 import ImageUploading from "react-images-uploading";
 import { useSelector } from "react-redux";
-import "./deal.css";
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Collapse, IconButton } from "@material-ui/core";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
+import "./deal.css";
 
 const Row = ({ deal }) => {
     const [open, setOpen] = useState(false);
