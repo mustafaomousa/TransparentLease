@@ -2,19 +2,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1400px;
+    justify-content: center;
     height: 100%;
     background-color: #333e51;
+    padding-top: 60px;
 }
 
 .locate-body-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #293241;
-    height: 150px;
-    width: 1460px;
-    margin-top: 20px;
+    height: 70px;
 }
 
 .locate-body-container p {
@@ -47,14 +45,6 @@
     border-radius: 0.5em;
 }
 
-.home-1-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-}
 
 .home-1 {
     display: flex;

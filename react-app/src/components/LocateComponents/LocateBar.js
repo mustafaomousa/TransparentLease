@@ -12,7 +12,6 @@ const LocateBar = () => {
     return (
         <div>
             <div className="locate-body-container">
-                <p>Find your next car</p>
                 <div className="locate-deal-search-container">
                     <InputLabel>Miles per year</InputLabel>
                     <Select id="locate-deal-select" options={allMiles} value={selectedMiles} placeholder="Miles per year" onChange={({ option }) => setSelectedMiles(option)} >
