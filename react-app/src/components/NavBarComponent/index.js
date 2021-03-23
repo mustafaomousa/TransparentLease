@@ -16,7 +16,7 @@ const NavBarComponent = ({ user, setAuthenticated, setWelcomeOpen }) => {
             <AppBar id="navbar">
                 <Button onClick={(e) => setSideHidden(true)} ><MenuIcon id="sidebar-toggle" /></Button>
                 <h3>TransparentLease</h3>
-                <Button ><NotificationsActiveIcon id="notifications-toggle" /></Button>
+                <Button><NotificationsActiveIcon id="notifications-toggle" /></Button>
             </AppBar>
             <NotificationComponent />
             <SideBarComponent user={user} sideHidden={sideHidden} setSideHidden={setSideHidden} setAuthenticated={setAuthenticated} setWelcomeOpen={setWelcomeOpen} />

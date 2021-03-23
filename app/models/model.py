@@ -10,7 +10,7 @@ class Model(db.Model):
     year = db.Column(db.Integer, nullable=False)
 
     make = db.relationship("Make")
-    trims = db.relationship("Trim")
+    trims = db.relationship("Trim", backref="models")
     alerts = db.relationship("DealAlert")
 
     def to_dict(self):

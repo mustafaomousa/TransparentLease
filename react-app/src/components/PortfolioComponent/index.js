@@ -62,7 +62,7 @@ const PortfiolioComponent = () => {
                                             </TableCell>
                                             <TableCell>
                                                 <Select onChange={(e) => setAlertMake(e.target.value)} value={alertMake}>
-                                                    {makes && makes.map((make, key) => <MenuItem value={make.id} id={make.name} key={key}>{make.name}</MenuItem>)}
+                                                    {makes && Object.entries(makes).map(([makeId, makeObj], key) => <MenuItem value={makeObj.make.id} id={makeObj.make.name} key={key}>{makeObj.make.name}</MenuItem>)}
                                                 </Select>
                                             </TableCell>
                                             <TableCell>

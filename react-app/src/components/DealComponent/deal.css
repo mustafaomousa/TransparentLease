@@ -12,22 +12,6 @@
     align-items: center;
 }
 
-.deal-manage-body {
-    padding-top: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.single-deal-manage-container {
-    display: flex;
-    flex-direction: column;
-    background-color: #293241;
-    margin-left: 10px;
-    width: 550px;
-    height: 650px;
-    padding: 10px;
-}
 
 .deal-chart-container {
     display: flex;
@@ -47,18 +31,6 @@
     overflow: scroll;
 }
 
-.deal-manage-upload {
-    color: black;
-    background-color: #dce0e7;
-}
-
-.deal-manage-notes {
-    background-color: #dce0e7;
-}
-
-.deal-manage-radio {
-    background-color: #dce0e7;
-}
 
 .deal-create-container {
     width: 1040px;   
@@ -70,7 +42,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    width: 1220px;   
     height: 620px;
 }
 
@@ -163,31 +134,11 @@
     color: black;
 }
 
-#open-field {
-    margin-top: 15px;
-    text-align: center;
-    background-color: whitesmoke;
-    border: 2px solid rgba(128, 128, 128, 0.438);
-    font-weight: bolder;
-    width: 80%;
-    height: 50px;
-    border-radius: 0.25em;
-    color: black;
-}
 
 #upload-field:hover {
     border-color: rgba(0, 128, 0, 0.363);
 }
 
-.picture-manage-container {
-    background-color: #293241;
-    padding: 30px 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-    min-width: 500px;
-}
 
 .checkbox-container {
     height: 80%;
@@ -216,11 +167,6 @@
     color: whitesmoke;
 }
 
-.images-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr ;
-}
 
 
 #caret {

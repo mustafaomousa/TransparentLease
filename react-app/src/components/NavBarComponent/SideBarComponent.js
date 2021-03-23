@@ -50,7 +50,7 @@ const SideBarComponent = ({ setAuthenticated, sideHidden, setSideHidden, setWelc
                 <Divider />
                 <div className="sidebar-body">
                     <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/">Home</NavLink>
-                    <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/make/BMW">Deals</NavLink>
+                    <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/locate">Locate a deal</NavLink>
                     {user.broker === true && <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/deal">Deal Manager</NavLink>}
                     {user.broker === false && <NavLink id="navlink" onClick={() => setSideHidden(false)} to="/portfolio">Portfolio</NavLink>}
                 </div>

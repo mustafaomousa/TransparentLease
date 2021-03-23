@@ -21,7 +21,7 @@ export const deleteNotifications = () => async dispatch => {
 export const createNotification = (notification) => async dispatch => {
     dispatch(addNotification(notification))
     return notification;
-}
+};
 
 const initialState = { sucessful: [] };
 

@@ -16,6 +16,7 @@ import DealInquiriesComponent from "./components/DealComponent/DealInquiriesComp
 import { getAllUtils } from "./store/utils";
 import PortfiolioComponent from "./components/PortfolioComponent";
 import DealManagerComponent from "./components/DealComponent";
+import LocateComponent from "./components/LocateComponents";
 
 function App() {
   const dispatch = useDispatch();
@@ -73,7 +74,9 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} setLoaded={setLoaded} />
         </Route>
-
+        <Route path="/locate" exact={true}>
+          <LocateComponent />
+        </Route>
         <Route path="/portfolio" exact={true}>
           <PortfiolioComponent />
         </Route>
