@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { InputLabel, Select, MenuItem, Accordion, Typography, AccordionDetails, AccordionSummary, Checkbox, FormGroup, FormControlLabel, FormControl, Collapse, Slider } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import queryString from "query-string";
+import { Accordion, Typography, AccordionSummary, Checkbox, FormGroup, FormControlLabel, FormControl, Collapse } from "@material-ui/core";
 import ExpandMoreOutlined from "@material-ui/icons/ExpandMoreOutlined"
 import { useSelector } from "react-redux";
 
@@ -7,6 +9,8 @@ import "./locate.css";
 import { StyledAccordionDetails, StyledLocateSlider } from "../../component_utils/styledElements";
 
 const LocateComponent = () => {
+    const history = useHistory();
+
     const makes = useSelector(state => state.utils.makes);
 
     const [selectedMakes, setSelectedMakes] = useState({});
@@ -17,9 +21,22 @@ const LocateComponent = () => {
 
     const updateSelectedMakes = (e) => {
         setSelectedMakes({ ...selectedMakes, [e.target.value]: selectedMakes[e.target.value] ? false : true });
+        history.push(`/locate/make=${makes[e.target.value].make.name}`)
     };
 
-    useEffect(() => console.log(selectedMakes), [selectedMakes])
+    useEffect(() => {
+        let searchObj = { makes: [], models: [] }
+        Object.entries(selectedMakes).map(([make_id, truthy]) => {
+            if (truthy) {
+                searchObj.makes.push(makes[make_id].make.name)
+                for (let key in selectedModels) {
+                    if (selectedModels[key] && key in makes[make_id].models) searchObj.models.push(makes[make_id].models[key].model.name)
+                }
+            }
+        })
+        let querySearch = queryString.stringify(searchObj, { arrayFormat: "bracket-separator", arrayFormatSeparator: "|" })
+        history.push(`/locate/${querySearch}`)
+    }, [selectedMakes, selectedModels])
 
     const updateSelectedModels = (e) => {
         setSelectedModels({ ...selectedModels, [e.target.value]: selectedModels[e.target.value] ? false : true });

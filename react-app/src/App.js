@@ -74,7 +74,7 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} setLoaded={setLoaded} />
         </Route>
-        <Route path="/locate" exact={true}>
+        <Route path="/locate">
           <LocateComponent />
         </Route>
         <Route path="/portfolio" exact={true}>
