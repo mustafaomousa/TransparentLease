@@ -1,9 +1,22 @@
-import { Avatar, Drawer, withStyles } from "@material-ui/core";
+import { AccordionDetails, Avatar, Drawer, withStyles } from "@material-ui/core";
 import CloseOutlined from "@material-ui/icons/CloseOutlined";
 import SearchRounded from "@material-ui/icons/SearchRounded";
 import MailOutlineOutlined from "@material-ui/icons/MailOutlineOutlined"
 import NotificationImportantOutlined from "@material-ui/icons/NotificationImportantOutlined";
 import Settings from "@material-ui/icons/Settings";
+
+
+
+
+export const StyledAccordionDetails = withStyles({
+    root: {
+        display: "flex",
+        flexDirection: "column",
+        height: "150px",
+        overflow: "scroll"
+    }
+})(AccordionDetails)
+
 
 
 
