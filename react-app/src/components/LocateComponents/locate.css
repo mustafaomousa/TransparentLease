@@ -5,6 +5,14 @@
     padding-top: 60px;
 }
 
+.body-header {
+    color: white;
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px;
+}
+
 .locate-container {
     display: flex;
     flex-direction: row;
@@ -22,11 +30,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-evenly; */
-    position: sticky;
-    position: -webkit-sticky;
+    /* position: sticky;
+    position: -webkit-sticky; */
     top: 100px;
     height: 300px;
+}
+
+.locate-accordion-details {
+    background-color: #3D5A80;
 }
 
 .locate-results-container {
@@ -34,6 +45,7 @@
     width: 100%;
     background-color: blueviolet;
     margin-left: 20px;
+    margin-top: 40px;
 }
 
 .locate-accordion {

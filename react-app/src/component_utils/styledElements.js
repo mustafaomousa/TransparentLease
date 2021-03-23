@@ -1,4 +1,4 @@
-import { AccordionDetails, Avatar, Drawer, withStyles } from "@material-ui/core";
+import { AccordionDetails, Avatar, Drawer, Slider, withStyles } from "@material-ui/core";
 import CloseOutlined from "@material-ui/icons/CloseOutlined";
 import SearchRounded from "@material-ui/icons/SearchRounded";
 import MailOutlineOutlined from "@material-ui/icons/MailOutlineOutlined"
@@ -8,12 +8,32 @@ import Settings from "@material-ui/icons/Settings";
 
 
 
+export const StyledLocateSlider = withStyles({
+    root: {
+        width: "100%",
+        marginTop: "20px",
+        marginBottom: "20px"
+    },
+    colorPrimary: {
+        color: "white"
+    },
+    thumb: {
+        color: "orange"
+    }
+})(Slider)
+
+
+
+
+
 export const StyledAccordionDetails = withStyles({
     root: {
         display: "flex",
         flexDirection: "column",
-        height: "150px",
-        overflow: "scroll"
+        justifyContent: "center",
+        minHeight: "100px",
+        overflow: "auto",
+        color: "white"
     }
 })(AccordionDetails)
 
