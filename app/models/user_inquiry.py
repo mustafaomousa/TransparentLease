@@ -8,6 +8,7 @@ class UserInquiry(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     broker_deal_id = db.Column(db.Integer, db.ForeignKey(
         "broker_deals.id"), nullable=False)
+    accepted = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, nullable=False)
 
     broker_deal = db.relationship(
