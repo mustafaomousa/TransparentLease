@@ -4,9 +4,12 @@ import queryString from "query-string";
 import { Accordion, Typography, AccordionSummary, Checkbox, FormGroup, FormControlLabel, FormControl, Collapse } from "@material-ui/core";
 import ExpandMoreOutlined from "@material-ui/icons/ExpandMoreOutlined"
 import { useSelector } from "react-redux";
+import { isEmpty, omit } from "lodash";
+
+import { StyledAccordionDetails, StyledLocateSlider } from "../../component_utils/styledElements";
+import DealCard from "../DealComponent/DealCard";
 
 import "./locate.css";
-import { StyledAccordionDetails, StyledLocateSlider } from "../../component_utils/styledElements";
 
 const LocateComponent = () => {
     const history = useHistory();
@@ -18,29 +21,43 @@ const LocateComponent = () => {
     const [milesRange, setMilesRange] = useState([7500, 1200]);
     const [monthsRange, setMonthsRange] = useState([24, 36]);
     const [paymentRange, setPaymentRange] = useState([300, 600]);
+    const [locatedDeals, setLocatedDeals] = useState({})
+    const [rerender, setRerender] = useState(false)
 
     const updateSelectedMakes = (e) => {
         setSelectedMakes({ ...selectedMakes, [e.target.value]: selectedMakes[e.target.value] ? false : true });
         history.push(`/locate/make=${makes[e.target.value].make.name}`)
     };
 
+    const locateDeals = async (querySearch) => {
+        const response = await fetch(`/api/deals/locate?${querySearch}`);
+        const result = await response.json()
+        setLocatedDeals(result.locate_results)
+    }
+
     useEffect(() => {
-        let searchObj = { makes: [], models: [] }
+        let searchObj = { makes: [] }
         Object.entries(selectedMakes).map(([make_id, truthy]) => {
             if (truthy) {
                 searchObj.makes.push(makes[make_id].make.name)
-                for (let key in selectedModels) {
-                    if (selectedModels[key] && key in makes[make_id].models) searchObj.models.push(makes[make_id].models[key].model.name)
-                }
             }
         })
-        let querySearch = queryString.stringify(searchObj, { arrayFormat: "bracket-separator", arrayFormatSeparator: "|" })
-        history.push(`/locate/${querySearch}`)
+        let querySearch = queryString.stringify(searchObj)
+        history.push(`/locate/${querySearch}`);
+        locateDeals(querySearch)
     }, [selectedMakes, selectedModels])
 
+
+
     const updateSelectedModels = (e) => {
-        setSelectedModels({ ...selectedModels, [e.target.value]: selectedModels[e.target.value] ? false : true });
+        if (e.target.value in selectedModels) {
+            setSelectedModels(omit(selectedModels, e.target.value))
+        } else {
+            setSelectedModels({ ...selectedModels, [e.target.value]: selectedModels[e.target.value] ? false : true });
+        }
     };
+
+    useEffect(() => console.log(selectedModels), [selectedModels])
 
     const updateMilesRange = (e, newMilesRange) => {
         setMilesRange(newMilesRange);
@@ -55,7 +72,6 @@ const LocateComponent = () => {
     };
 
     const milesMarks = [
-
         {
             value: 5000,
             label: "5,000"
@@ -182,10 +198,21 @@ const LocateComponent = () => {
 
                 </div>
                 <div className="locate-results-container">
-
+                    {locatedDeals && isEmpty(selectedModels) && Object.entries(locatedDeals).map(([dealId, deal]) => (
+                        <div>
+                            <DealCard latestDeal={deal} />
+                        </div>
+                    ))}
+                    {locatedDeals && !isEmpty(selectedModels) && Object.entries(locatedDeals).map(([dealId, deal]) => {
+                        if (deal.lease_info.trim.model.id in selectedModels) return (
+                            <div>
+                                <DealCard latestDeal={deal} />
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
-        </div >
+        </div>
     )
 };
 

@@ -3,7 +3,7 @@ from app.models import User, db, BrokerDeal, Make, Trim, Model, LeaseInfo
 from flask_login import current_user, login_user, logout_user, login_required
 from datetime import *
 from app.forms import DealForm
-from sqlalchemy import and_
+from sqlalchemy import and_, or_
 
 deal_routes = Blueprint('broker', __name__)
 
@@ -27,7 +27,18 @@ def latest_deals():
     return {"latest_deals": {broker_deal.id: broker_deal.to_dict() for broker_deal in broker_deals}}
 
 
-@deal_routes.route('/create', methods=['POST'])
+@deal_routes.route('/locate')
+def locate_deals():
+    query_makes = request.args.getlist('makes')
+    makes = Make.query.filter(Make.name.in_(query_makes)).all()
+    deals = BrokerDeal.query.filter(
+        BrokerDeal.make_id.in_(make.id for make in makes)).all()
+    deals = {"locate_results": {deal.id: deal.to_dict()
+                                for deal in deals}}
+    return deals
+
+
+@ deal_routes.route('/create', methods=['POST'])
 def create_deal():
     form = DealForm()
     form['csrf_token'].data = request.cookies['csrf_token']

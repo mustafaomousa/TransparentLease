@@ -33,6 +33,12 @@ class BrokerDeal(db.Model):
     def owning_broker(self):
         return self.broker.to_dict()
 
+    @property
+    def model_id(self):
+        trim = self.lease_info.to_dict()["trim"]
+        model = trim["model"]
+        return model.id
+
     def to_dict(self):
         return {
             "id": self.id,
