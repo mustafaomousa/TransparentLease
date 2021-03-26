@@ -41,9 +41,9 @@ const DealCreateComponent = ({ user }) => {
 
     useEffect(() => {
         (async () => {
-            makes.map(make => {
-                if (make.id === makeId) {
-                    return setMakeName(make.name)
+            Object.entries(makes).map(([make_Id, makeObj]) => {
+                if (make_Id === makeId) {
+                    return setMakeName(makeObj.make.name)
                 }
                 return false;
             })
@@ -119,12 +119,7 @@ const DealCreateComponent = ({ user }) => {
         <div className="deal-create-body">
             <Form onSubmit={onSubmit}>
                 <div className="deal-create-container">
-                    <div className="deal-create-header">
-                        <div className="h4">
-                            <h4>Create a deal</h4>
-                        </div>
-                        <div className="h4-underline" />
-                    </div>
+                    <p style={{ color: "white", marginBottom: "5px" }}>Create a deal</p>
                     <div className="deal-create">
                         <div className="deal-create-1">
                             <div style={{ display: "flex", flexDirection: "row" }}>
@@ -143,7 +138,7 @@ const DealCreateComponent = ({ user }) => {
                                         onChange={(e) => {
                                             setMakeId(e.target.value)
                                         }} >
-                                        {makes && makes.map((make, key) => <MenuItem value={make.id} id={make.name} key={key}>{make.name}</MenuItem>)}
+                                        {makes && Object.entries(makes).map(([make_Id, makeObj]) => <MenuItem value={make_Id} id={makeObj.make.name} key={makeId}>{makeObj.make.name}</MenuItem>)}
                                     </Select>
                                 </div>
                             </div>

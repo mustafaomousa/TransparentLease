@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../services/auth";
 import { Button, Form, TextInput } from "grommet"
 import { useDispatch } from "react-redux";
@@ -7,12 +7,16 @@ import { getCurrentUser, getUser } from "../../store/user";
 import { createNotification } from "../../store/notifications";
 
 import "./login.css";
+import { Checkbox, Input, Step, StepLabel, Stepper, TextField } from "@material-ui/core";
 
 const LoginForm = ({ authenticated, setAuthenticated, setWelcomeOpen }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showSignup, setShowSignup] = useState(false);
+  const [activeStep, setActiveStep] = useState(0);
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -26,6 +30,12 @@ const LoginForm = ({ authenticated, setAuthenticated, setWelcomeOpen }) => {
     } else {
       setErrors(user.errors);
     }
+  };
+
+  const redirectToSignup = (e) => {
+    e.preventDefault();
+    setWelcomeOpen(false);
+    history.push('/sign-up')
   };
 
   document.addEventListener('keydown', (e) => {
@@ -49,9 +59,10 @@ const LoginForm = ({ authenticated, setAuthenticated, setWelcomeOpen }) => {
       <div className="login-page-card">
         <div className="login-card-left">
           <p>Welcome back.</p>
+          <p id="sign-up-today">Need an account? <Button onClick={() => setShowSignup(true)}>Sign up</Button> today!</p>
         </div>
-        <div className="login-card-right">
-          <Form onSubmit={onLogin}>
+        <div className={showSignup ? "hidden" : "login-card-right"}>
+          <form className="login-form" onSubmit={onLogin}>
             <div>
               {errors.map((error) => (
                 <div>{error}</div>
@@ -76,10 +87,12 @@ const LoginForm = ({ authenticated, setAuthenticated, setWelcomeOpen }) => {
                 value={password}
                 onChange={updatePassword}
               />
-              <Button type="submit">Login</Button>
             </div>
+          </form>
+          <div className="login-buttons-container">
+            <Button onClick={onLogin} type="submit">Login</Button>
             <Button onClick={() => setWelcomeOpen(false)}>Close</Button>
-          </Form>
+          </div>
         </div>
       </div>
     </div>

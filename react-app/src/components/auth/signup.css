@@ -1,0 +1,42 @@
+.signup-page-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 650px;
+    width: 100%;
+}
+
+.signup-module {
+    display: grid;
+    grid-template-rows: 90% 10%;
+    width: 800px;
+    height: 550px;
+    background-color: #fff;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-button-container {
+    text-align: end;
+}
+
+.signup-button-container button {
+    color: white;
+}
+
+.signup-grid-left {
+    display: flex;
+    /* align-items: center; */
+    justify-content: flex-end;
+}
+
+.signup-grid-right {
+    display: flex;
+    /* align-items: center; */
+    justify-content: flex-start;
+}

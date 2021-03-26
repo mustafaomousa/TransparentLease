@@ -45,7 +45,7 @@ function App() {
     <BrowserRouter>
       <NavBarComponent user={currentUser} setAuthenticated={setAuthenticated} authenticated={authenticated} setWelcomeOpen={setWelcomeOpen} >
       </NavBarComponent>
-      <Modal open={welcomeOpen} onClose={() => setWelcomeOpen(false)} children={<span><LoginForm authenticated={authenticated} setAuthenticated={setAuthenticated} setWelcomeOpen={setWelcomeOpen} /></span>} />
+      <Modal open={welcomeOpen} onEscapeKeyDown={() => setWelcomeOpen(false)} onBackdropClick={() => setWelcomeOpen(false)} children={<span><LoginForm authenticated={authenticated} setAuthenticated={setAuthenticated} setWelcomeOpen={setWelcomeOpen} /></span>} />
       {/* <SideBarComponent sideVisible={sideVisible} setSideVisible={setSideVisible} user={currentUser} setAuthenticated={setAuthenticated} /> */}
       <Switch>
         <Route path="/make/:makeName" exact={true}>

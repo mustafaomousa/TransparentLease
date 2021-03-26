@@ -79,7 +79,15 @@ const Row = ({ deal, userInquiries, currentUser }) => {
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={9}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <div className="specific-deal-container">
-                            <h5>{deal.make.name}</h5>
+                            <h5>Make: {deal.make.name}</h5>
+                            <h5>Model: {deal.lease_info.trim.model.name}</h5>
+                            <h5>Trim: {deal.lease_info.trim.name}</h5>
+                            <h5>MSRP: ${deal.lease_info.msrp}</h5>
+                            <h5>Discount: ${deal.lease_info.discount}</h5>
+                            <h5>Payment: ${deal.lease_info.payment} per month</h5>
+                            <h5>Term: {deal.lease_info.months}mo/{deal.lease_info.miles_yearly}mi</h5>
+                            <h5>Residual percentage: {deal.lease_info.residual}%</h5>
+                            <h5>Money factor: {deal.lease_info.money_factor}</h5>
                         </div>
                     </Collapse>
                 </TableCell>

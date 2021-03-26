@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
-import { Button, CheckBox, Form, TextArea, TextInput } from "grommet";
+import { Form, TextInput } from "grommet";
 import { signUp } from '../../services/auth';
+
+import "./signup.css";
+import { Stepper, Step, StepLabel, Input, Button, Grid, Checkbox, TextField } from "@material-ui/core";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [username, setUsername] = useState("");
@@ -18,6 +21,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [header, setHeader] = useState("");
   const [bio, setBio] = useState("");
   const [profileImage, setProfileImage] = useState("");
+  const [activeStep, setActiveStep] = useState(0);
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -104,146 +108,117 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     return <Redirect to="/" />;
   };
 
-
   return (
-    <Form onSubmit={onSignUp} style={{ backgroundColor: "whitesmoke" }}>
-      <div>
-        <label>User Name</label>
-        <TextInput
-          type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
-        ></TextInput>
-      </div>
-      <div>
-        <label>Name</label>
-        <TextInput
-          type="text"
-          name="name"
-          onChange={updateName}
-          value={name}
-        ></TextInput>
-      </div>
-      <div>
-        <label>Email</label>
-        <TextInput
-          type="text"
-          name="email"
-          onChange={updateEmail}
-          value={email}
-        ></TextInput>
-      </div>
-      <div>
-        <label>Password</label>
-        <TextInput
-          type="password"
-          name="password"
-          onChange={updatePassword}
-          value={password}
-        ></TextInput>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <TextInput
-          type="password"
-          name="repeat_password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></TextInput>
-      </div>
-      <div>
-        <label>Address</label>
-        <TextInput
-          type="text"
-          name="address"
-          onChange={updateAddress}
-          value={address}
-          required={false}
-        ></TextInput>
-      </div>
-      <div>
-        <label>City</label>
-        <TextInput
-          type="text"
-          name="city"
-          onChange={updateCity}
-          value={city}
-          required={false}
-        ></TextInput>
-      </div>
-      <div>
-        <label>State</label>
-        <TextInput
-          type="text"
-          name="state"
-          onChange={updateState}
-          value={state}
-          required={false}
-        ></TextInput>
-      </div>
-      <div>
-        <label>Zip Code</label>
-        <TextInput
-          type="number"
-          name="zipcode"
-          onChange={updateZipcode}
-          value={zipcode}
-          required={false}
-        ></TextInput>
-      </div>
-      <div>
-        <label>Are you a broker?</label>
-        <CheckBox
-          name="broker"
-          onChange={updateBroker}
-          defaultChecked={broker}
-        ></CheckBox>
-      </div>
-      {broker && (
-        <div>
-          <label>Are you a dealer?</label>
-          <CheckBox
-            name="dealer"
-            onChange={updateDealer}
-            defaultChecked={dealer}
-          ></CheckBox>
+    <div className="signup-page-body">
+      <div className="signup-module">
+        <form className="signup-form">
+          {activeStep === 0 && (
+            <Grid container spacing={4} >
+              <Grid item xs={6} className="signup-grid-left">
+                <label>Create a username</label>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-right">
+                <Input value={username} onChange={updateUsername}></Input>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-left">
+                <label>Enter your email</label>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-right">
+                <Input value={email} onChange={updateEmail}></Input>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-left">
+                <label>Create a password</label>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-right">
+                <Input value={password} onChange={updatePassword} type="password"></Input>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-left">
+                <label>Confirm password</label>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-right">
+                <Input value={repeatPassword} onChange={updateRepeatPassword} type="password"></Input>
+              </Grid>
+            </Grid>
+          )}
+          {activeStep === 1 && (
+            <Grid container spacing={4}>
+              <Grid item xs={6} className="signup-grid-left">
+                <label>What's your name?</label>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-right">
+                <Input></Input>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-left">
+                <label>Where are you located?</label>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-right">
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <Input placeholder="address"></Input>
+                  <Input placeholder="city"></Input>
+                  <Input placeholder="state"></Input>
+                  <Input placeholder="zip"></Input>
+                </div>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-left">
+                <label>Are you a broker?</label>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-right">
+                <Checkbox />
+              </Grid>
+              <Grid item xs={6} className="signup-grid-left">
+                <label>Are you a dealer?</label>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-right">
+                <Checkbox />
+              </Grid>
+            </Grid>
+          )}
+          {activeStep === 2 && (
+            <Grid container spacing={4}>
+              <Grid item xs={6} className="signup-grid-left">
+                <label>Create a header for your portfolio</label>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-right">
+                <TextField />
+              </Grid>
+              <Grid item xs={6} className="signup-grid-left">
+                <label>Create a bio for your portfolio</label>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-right">
+                <TextField />
+              </Grid>
+              <Grid item xs={6} className="signup-grid-left">
+                <label>Upload a profile picture</label>
+              </Grid>
+              <Grid item xs={6} className="signup-grid-right">
+                <Input type="file" />
+              </Grid>
+              <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
+                <Button>Sign up</Button>
+              </Grid>
+            </Grid>
+          )}
+        </form>
+        <div className="stepper-container">
+          <Stepper activeStep={activeStep}>
+            <Step>
+              <StepLabel>Account info</StepLabel>
+            </Step>
+            <Step>
+              <StepLabel>Personal info</StepLabel>
+            </Step>
+            <Step>
+              <StepLabel>Profile info</StepLabel>
+            </Step>
+          </Stepper>
+          <div className="signup-button-container">
+            <Button onClick={() => setActiveStep(activeStep - 1)} disabled={activeStep === 0}>Back</Button>
+            <Button onClick={() => setActiveStep(activeStep + 1)}>Next</Button>
+          </div>
         </div>
-      )}
-      <div>
-        <label>Header</label>
-        <TextInput
-          type="text"
-          name="header"
-          onChange={updateHeader}
-          value={header}
-          required={false}
-        ></TextInput>
       </div>
-      <div>
-        <label>Bio</label>
-        <TextArea
-          type="text"
-          name="bio"
-          onChange={updateBio}
-          value={bio}
-          required={false}
-        ></TextArea>
-      </div>
-      <div>
-        <label>Profile Picture</label>
-        <TextInput
-          type="file"
-          name="profileImage"
-          onChange={updateProfileImage}
-          value={profileImage}
-          required={false}
-        ></TextInput>
-      </div>
-      <Button type="submit">Sign Up</Button>
-    </Form>
-  );
+    </div>
+  )
 };
 
 export default SignUpForm;
