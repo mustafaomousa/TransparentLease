@@ -1,7 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, Redirect, useHistory } from 'react-router-dom';
 import { Button, Divider, Input } from "@material-ui/core";
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import EmailIcon from '@material-ui/icons/Email';
 
 import { StyledDrawer, StyledAvatar, StyledSearchRounded, StyledMailOutlineOutlined, StyledNotificationImportantOutlined, StyledSettings, StyledCloseOutlined } from "../../component_utils/styledElements";
 import LogoutButton from '../auth/LogoutButton';
@@ -58,12 +61,15 @@ const SideBarComponent = ({ setAuthenticated, sideHidden, setSideHidden, setWelc
                     {user.id && <LogoutButton setAuthenticated={setAuthenticated} />}
                     {!user.id && <>
                         <Button onClick={() => setWelcomeOpen(true)} id="navlink" >Login</Button>
-                        <Button onClick={() => history.push('/sign-up')} id="navlink" >Sign up</Button>
+                        <Button onClick={() => {
+                            setSideHidden(false)
+                            history.push('/sign-up')
+                        }} id="navlink" >Sign up</Button>
                     </>}
                     <div className="sidebar-controls-container-buttons">
-                        <StyledMailOutlineOutlined />
-                        <StyledNotificationImportantOutlined />
-                        <StyledSettings />
+                        <LinkedInIcon style={{ color: "white" }} onClick={() => <Redirect to="https://www.linkedin.com/in/mustafa-mousa-8b8053157/" />} />
+                        <GitHubIcon style={{ color: "white" }} />
+                        <EmailIcon style={{ color: "white" }} />
                     </div>
                 </div>
             </div>
