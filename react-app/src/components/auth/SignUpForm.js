@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
-import { Form, TextInput } from "grommet";
+import { Stepper, Step, StepLabel, Input, Button, Grid, Checkbox, TextField } from "@material-ui/core";
+
 import { signUp } from '../../services/auth';
 
 import "./signup.css";
-import { Stepper, Step, StepLabel, Input, Button, Grid, Checkbox, TextField } from "@material-ui/core";
+
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [username, setUsername] = useState("");
@@ -146,30 +147,30 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
                 <label>What's your name?</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <Input></Input>
+                <Input placeholder="name" value={name} onChange={updateName}></Input>
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
                 <label>Where are you located?</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <Input placeholder="address"></Input>
-                  <Input placeholder="city"></Input>
-                  <Input placeholder="state"></Input>
-                  <Input placeholder="zip"></Input>
+                  <Input placeholder="address" value={address} onChange={updateAddress}></Input>
+                  <Input placeholder="city" value={city} onChange={updateCity}></Input>
+                  <Input placeholder="state" value={state} onChange={updateState}></Input>
+                  <Input placeholder="zip" value={zipcode} onChange={updateZipcode}></Input>
                 </div>
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
                 <label>Are you a broker?</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <Checkbox />
+                <Checkbox checked={broker} onChange={updateBroker} />
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
                 <label>Are you a dealer?</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <Checkbox />
+                <Checkbox checked={dealer} onChange={updateDealer} />
               </Grid>
             </Grid>
           )}
@@ -179,13 +180,13 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
                 <label>Create a header for your portfolio</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <TextField />
+                <TextField placeholder="Header" value={header} onChange={updateHeader} />
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
                 <label>Create a bio for your portfolio</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <TextField />
+                <TextField placeholder="Bio" value={bio} onChange={updateBio} />
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
                 <label>Upload a profile picture</label>
@@ -194,7 +195,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
                 <Input type="file" />
               </Grid>
               <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
-                <Button>Sign up</Button>
+                <Button onClick={onSignUp}>Sign up</Button>
               </Grid>
             </Grid>
           )}

@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
-import { Button, Form, TextInput } from "grommet"
+import { Button, TextInput } from "grommet"
 import { useDispatch } from "react-redux";
 import { getCurrentUser, getUser } from "../../store/user";
 import { createNotification } from "../../store/notifications";
 
 import "./login.css";
-import { Checkbox, Input, Step, StepLabel, Stepper, TextField } from "@material-ui/core";
 
 const LoginForm = ({ authenticated, setAuthenticated, setWelcomeOpen }) => {
-  const history = useHistory();
+
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showSignup, setShowSignup] = useState(false);
-  const [activeStep, setActiveStep] = useState(0);
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -30,12 +28,6 @@ const LoginForm = ({ authenticated, setAuthenticated, setWelcomeOpen }) => {
     } else {
       setErrors(user.errors);
     }
-  };
-
-  const redirectToSignup = (e) => {
-    e.preventDefault();
-    setWelcomeOpen(false);
-    history.push('/sign-up')
   };
 
   document.addEventListener('keydown', (e) => {

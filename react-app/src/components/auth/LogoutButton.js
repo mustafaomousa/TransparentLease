@@ -1,7 +1,8 @@
 import React from "react";
-import { Button } from "grommet";
+import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
 import { logout } from "../../services/auth";
 import { createNotification } from "../../store/notifications";
 
@@ -10,6 +11,8 @@ const LogoutButton = ({ setAuthenticated }) => {
   const dispatch = useDispatch();
 
   const onLogout = async (e) => {
+    e.preventDefault();
+
     await logout();
     setAuthenticated(false);
     dispatch(createNotification("Successfully logged out"))
