@@ -62,4 +62,4 @@ t
 
 
 [home-page-screenshot]: images/home-page-screenshot.png
-[locate-screenshot]: images/locate-screenshot.png
+[locate-screenshot]: images/locate-deal-screenshot.png
