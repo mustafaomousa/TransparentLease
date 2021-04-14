@@ -24,9 +24,9 @@
 
 ## Visuals
 
-[![Product Name Screen Shot][login-screenshot]](https://transparentlease.herokuapp.com/)
-
 [![Product Name Screen Shot][home-page-screenshot]](https://transparentlease.herokuapp.com/)
+
+[![Product Name Screen Shot][locate-screenshot]](https://transparentlease.herokuapp.com/)
 
 ## Technologies Used
 
