@@ -61,5 +61,5 @@ t
 
 
 
-[login-screenshot]: images/login-screenshot.png
 [home-page-screenshot]: images/home-page-screenshot.png
+[locate-screenshot]: images/locate-screenshot.png
