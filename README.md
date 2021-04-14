@@ -61,5 +61,5 @@ t
 
 
 
-[home-page-screenshot]: images/home-page-screenshot.png
+[home-page-screenshot]: images/home-page-screensho.png
 [locate-screenshot]: images/locate-deal-screenshot.png
