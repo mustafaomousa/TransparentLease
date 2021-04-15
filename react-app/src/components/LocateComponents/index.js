@@ -111,7 +111,6 @@ const LocateComponent = () => {
 
     return (
         <div className="locate-body">
-
             <Collapse component="div" children={<p>Hi</p>} />
             <div className="locate-container">
                 <div className="locate-controls-container">

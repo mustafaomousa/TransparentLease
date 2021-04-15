@@ -1,8 +1,9 @@
 .locate-body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    padding-top: 60px;
+    justify-content: center;
+    padding-top: 15px;
 }
 
 .body-header {
