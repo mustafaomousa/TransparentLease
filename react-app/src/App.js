@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Modal } from "@material-ui/core";
-import './components/NavBarComponent/navbar.css'
+import "./components/NavBarComponent/navbar.css";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import HomePageComponent from "./components/HomePageComponent";
@@ -27,8 +27,8 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      await dispatch(getAllUtils())
-      const user = await dispatch(getCurrentUser())
+      await dispatch(getAllUtils());
+      const user = await dispatch(getCurrentUser());
       if (!user.errors) {
         setAuthenticated(true);
       }
@@ -36,18 +36,46 @@ function App() {
     })();
   }, [dispatch]);
 
-
   if (!loaded) {
     return null;
   }
 
   return (
     <BrowserRouter>
-      <NavBarComponent user={currentUser} setAuthenticated={setAuthenticated} authenticated={authenticated} setWelcomeOpen={setWelcomeOpen} >
-      </NavBarComponent>
-      <Modal open={welcomeOpen} onEscapeKeyDown={() => setWelcomeOpen(false)} onBackdropClick={() => setWelcomeOpen(false)} children={<span><LoginForm authenticated={authenticated} setAuthenticated={setAuthenticated} setWelcomeOpen={setWelcomeOpen} /></span>} />
+      <NavBarComponent
+        user={currentUser}
+        setAuthenticated={setAuthenticated}
+        authenticated={authenticated}
+        setWelcomeOpen={setWelcomeOpen}
+      ></NavBarComponent>
+      <Modal
+        open={welcomeOpen}
+        onEscapeKeyDown={() => setWelcomeOpen(false)}
+        onBackdropClick={() => setWelcomeOpen(false)}
+        children={
+          <span>
+            <LoginForm
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+              setWelcomeOpen={setWelcomeOpen}
+            />
+          </span>
+        }
+      />
       {/* <SideBarComponent sideVisible={sideVisible} setSideVisible={setSideVisible} user={currentUser} setAuthenticated={setAuthenticated} /> */}
       <Switch>
+        <Route path="/" exact={true}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <HomePageComponent />
+          </div>
+        </Route>
         <Route path="/make/:makeName" exact={true}>
           <MakeDealsComponent />
         </Route>
@@ -72,7 +100,11 @@ function App() {
           />
         </Route>
         <Route path="/sign-up" exact={true}>
-          <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} setLoaded={setLoaded} />
+          <SignUpForm
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+            setLoaded={setLoaded}
+          />
         </Route>
         <Route path="/locate">
           <LocateComponent />
@@ -83,16 +115,7 @@ function App() {
         <Route path="/:brokerUsername" exact={true}>
           <BrokerPageComponent />
         </Route>
-        <Route path="/" exact={true} >
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-            <HomePageComponent />
-          </div>
-
-        </Route>
       </Switch>
-      {/* <Footer className="nav-footer" pad="small">
-            test
-          </Footer> */}
     </BrowserRouter>
   );
 }

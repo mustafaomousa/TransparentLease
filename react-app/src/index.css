@@ -1,24 +1,37 @@
 /* TODO Add site wide styles */
-h1, h2 {
-    font-family: 'Neuton', serif;
+h1,
+h2 {
+  font-family: "Neuton", serif;
 }
 
-h3, h4, h5, label, input, select {
-    font-family: 'Hind', sans-serif;
+h3,
+h4,
+h5,
+label,
+input,
+select {
+  font-family: "Hind", sans-serif;
 }
 
-p, a, button, span {
-    font-family: 'Metrophobic', sans-serif;
-    font-size: 17px;
+p,
+a,
+button,
+span {
+  font-family: "Metrophobic", sans-serif;
+  font-size: 17px;
 }
-
 
 body {
-    /* background-color: #293241; */
-    background-color: #333e51;
-    margin-top: 65px;
+  /* background-color: #293241; */
+  background-color: #333e51;
+  /* margin-top: 65px; */
 }
 
-p, h1, h3, h2, h4, h5 {
-    margin: 0;
+p,
+h1,
+h3,
+h2,
+h4,
+h5 {
+  margin: 0;
 }

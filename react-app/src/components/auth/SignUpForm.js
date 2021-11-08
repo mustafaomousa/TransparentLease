@@ -1,11 +1,25 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
-import { Stepper, Step, StepLabel, Input, Button, Grid, Checkbox, TextField } from "@material-ui/core";
+import { Redirect } from "react-router-dom";
+import {
+  Stepper,
+  Step,
+  StepLabel,
+  Input,
+  Button,
+  Grid,
+  Checkbox,
+  TextField,
+  StepContent,
+  Typography,
+} from "@material-ui/core";
 
-import { signUp } from '../../services/auth';
+import { signUp } from "../../services/auth";
 
 import "./signup.css";
 
+const inputStyle = {
+  backgroundColor: "white",
+};
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [username, setUsername] = useState("");
@@ -53,7 +67,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   };
 
   const updateName = (e) => {
-    setName(e.target.value)
+    setName(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -101,101 +115,167 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   };
 
   const updateProfileImage = (e) => {
-    setProfileImage("testimagepath")
+    setProfileImage("testimagepath");
   };
-
 
   if (authenticated) {
     return <Redirect to="/" />;
-  };
+  }
 
   return (
     <div className="signup-page-body">
       <div className="signup-module">
         <form className="signup-form">
           {activeStep === 0 && (
-            <Grid container spacing={4} >
+            <Grid container spacing={4}>
               <Grid item xs={6} className="signup-grid-left">
-                <label>Create a username</label>
+                <Typography variant="p" style={{ color: "white" }}>
+                  Username
+                </Typography>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <Input value={username} onChange={updateUsername}></Input>
+                <Input
+                  style={inputStyle}
+                  value={username}
+                  onChange={updateUsername}
+                ></Input>
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
-                <label>Enter your email</label>
+                <label style={{ color: "white" }}>Email</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <Input value={email} onChange={updateEmail}></Input>
+                <Input
+                  style={inputStyle}
+                  value={email}
+                  onChange={updateEmail}
+                ></Input>
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
-                <label>Create a password</label>
+                <label style={{ color: "white" }}>Password</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <Input value={password} onChange={updatePassword} type="password"></Input>
+                <Input
+                  style={inputStyle}
+                  value={password}
+                  onChange={updatePassword}
+                  type="password"
+                ></Input>
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
-                <label>Confirm password</label>
+                <label style={{ color: "white" }}>Confirm password</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <Input value={repeatPassword} onChange={updateRepeatPassword} type="password"></Input>
+                <Input
+                  style={inputStyle}
+                  value={repeatPassword}
+                  onChange={updateRepeatPassword}
+                  type="password"
+                ></Input>
               </Grid>
             </Grid>
           )}
           {activeStep === 1 && (
             <Grid container spacing={4}>
               <Grid item xs={6} className="signup-grid-left">
-                <label>What's your name?</label>
+                <label style={{ color: "white" }}>What's your name?</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <Input placeholder="name" value={name} onChange={updateName}></Input>
+                <Input
+                  style={inputStyle}
+                  placeholder="name"
+                  value={name}
+                  onChange={updateName}
+                ></Input>
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
-                <label>Where are you located?</label>
+                <label style={{ color: "white" }}>Where are you located?</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <Input placeholder="address" value={address} onChange={updateAddress}></Input>
-                  <Input placeholder="city" value={city} onChange={updateCity}></Input>
-                  <Input placeholder="state" value={state} onChange={updateState}></Input>
-                  <Input placeholder="zip" value={zipcode} onChange={updateZipcode}></Input>
+                  <Input
+                    style={inputStyle}
+                    placeholder="address"
+                    value={address}
+                    onChange={updateAddress}
+                  ></Input>
+                  <Input
+                    style={inputStyle}
+                    placeholder="city"
+                    value={city}
+                    onChange={updateCity}
+                  ></Input>
+                  <Input
+                    style={inputStyle}
+                    placeholder="state"
+                    value={state}
+                    onChange={updateState}
+                  ></Input>
+                  <Input
+                    style={inputStyle}
+                    placeholder="zip"
+                    value={zipcode}
+                    onChange={updateZipcode}
+                  ></Input>
                 </div>
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
-                <label>Are you a broker?</label>
+                <label style={{ color: "white" }}>Are you a broker?</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <Checkbox checked={broker} onChange={updateBroker} />
+                <Checkbox
+                  style={{ color: "white" }}
+                  checked={broker}
+                  onChange={updateBroker}
+                />
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
-                <label>Are you a dealer?</label>
+                <label style={{ color: "white" }}>Are you a dealer?</label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <Checkbox checked={dealer} onChange={updateDealer} />
+                <Checkbox
+                  style={{ color: "white" }}
+                  checked={dealer}
+                  onChange={updateDealer}
+                />
               </Grid>
             </Grid>
           )}
           {activeStep === 2 && (
             <Grid container spacing={4}>
               <Grid item xs={6} className="signup-grid-left">
-                <label>Create a header for your portfolio</label>
+                <label style={{ color: "white" }}>
+                  Create a header for your portfolio
+                </label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <TextField placeholder="Header" value={header} onChange={updateHeader} />
+                <TextField
+                  style={inputStyle}
+                  placeholder="Header"
+                  value={header}
+                  onChange={updateHeader}
+                />
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
-                <label>Create a bio for your portfolio</label>
+                <label style={{ color: "white" }}>
+                  Create a bio for your portfolio
+                </label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <TextField placeholder="Bio" value={bio} onChange={updateBio} />
+                <TextField
+                  style={inputStyle}
+                  placeholder="Bio"
+                  multiline={true}
+                  value={bio}
+                  onChange={updateBio}
+                />
               </Grid>
               <Grid item xs={6} className="signup-grid-left">
-                <label>Upload a profile picture</label>
+                <label style={{ color: "white" }}>
+                  Upload a profile picture
+                </label>
               </Grid>
               <Grid item xs={6} className="signup-grid-right">
-                <Input type="file" />
-              </Grid>
-              <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
-                <Button onClick={onSignUp}>Sign up</Button>
+                <Input style={inputStyle} type="file" />
               </Grid>
             </Grid>
           )}
@@ -213,13 +293,24 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
             </Step>
           </Stepper>
           <div className="signup-button-container">
-            <Button onClick={() => setActiveStep(activeStep - 1)} disabled={activeStep === 0}>Back</Button>
-            <Button onClick={() => setActiveStep(activeStep + 1)}>Next</Button>
+            <Button
+              onClick={() => setActiveStep(activeStep - 1)}
+              disabled={activeStep === 0}
+            >
+              Back
+            </Button>
+            {activeStep < 2 ? (
+              <Button onClick={() => setActiveStep(activeStep + 1)}>
+                Next
+              </Button>
+            ) : (
+              <Button onClick={onSignUp}>Sign up</Button>
+            )}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default SignUpForm;
