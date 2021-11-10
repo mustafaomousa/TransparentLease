@@ -1,5 +1,5 @@
 <p align="center">
-<h3 align="center"><a href="https://transparentlease.herokuapp.com/">TransparentLease »</a></h3>
+<h3 align="center"><a href="https://transparentlease-app.herokuapp.com/">TransparentLease »</a></h3>
 </p>
 
 <details open="open">
