@@ -12,14 +12,12 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import SideBarComponent from "./SideBarComponent";
-import NotificationComponent from "../NotificationComponent";
-
-import "./navbar.css";
 import { useSelector } from "react-redux";
+import JoinModal from "../JoinModal";
+import LoginModal from "../LoginModal";
 
 const Nav = () => {
-  const sessionUser = useSelector((state) => state.user);
+  const sessionUser = useSelector((state) => state.session.user);
 
   return (
     <AppBar>
@@ -38,14 +36,6 @@ const Nav = () => {
               <MenuIcon />
             </IconButton>
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            TransparentLease
-          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
           {sessionUser ? (
             <Box sx={{ flexGrow: 0 }}>
@@ -57,8 +47,8 @@ const Nav = () => {
             </Box>
           ) : (
             <Box sx={{ flexGrow: 0 }}>
-              <Button>Log in</Button>
-              <Button>Join</Button>
+              <LoginModal />
+              <JoinModal />
             </Box>
           )}
         </Toolbar>

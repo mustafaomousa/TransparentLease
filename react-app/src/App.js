@@ -1,37 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Modal } from "@material-ui/core";
-import "./components/NavBarComponent/navbar.css";
-import LoginForm from "./components/auth/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm";
+
 import HomePageComponent from "./components/HomePageComponent";
-import NavBarComponent from "./components/NavBarComponent";
-import MakeDealsComponent from "./components/MakeDealsComponent";
-import DealCreateComponent from "./components/DealComponent/DealCreateComponent";
-import { getCurrentUser } from "./store/user";
-import BrokerPageComponent from "./components/BrokerPageComponent";
-import DealManageComponent from "./components/DealComponent/DealManageComponent";
-import DealInquiriesComponent from "./components/DealComponent/DealInquiriesComponent";
-import { getAllUtils } from "./store/utils";
-import PortfiolioComponent from "./components/PortfolioComponent";
-import DealManagerComponent from "./components/DealComponent";
-import LocateComponent from "./components/LocateComponents";
+import Nav from "./components/Nav";
+import { authenticate } from "./store/session";
 
 function App() {
   const dispatch = useDispatch();
-  const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [currentUser, setUser] = useState({});
-  const [welcomeOpen, setWelcomeOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
-      await dispatch(getAllUtils());
-      const user = await dispatch(getCurrentUser());
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
+      await dispatch(authenticate());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -42,47 +23,18 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBarComponent
-        user={currentUser}
-        setAuthenticated={setAuthenticated}
-        authenticated={authenticated}
-        setWelcomeOpen={setWelcomeOpen}
-      ></NavBarComponent>
-      <Modal
-        open={welcomeOpen}
-        onEscapeKeyDown={() => setWelcomeOpen(false)}
-        onBackdropClick={() => setWelcomeOpen(false)}
-        children={
-          <span>
-            <LoginForm
-              authenticated={authenticated}
-              setAuthenticated={setAuthenticated}
-              setWelcomeOpen={setWelcomeOpen}
-            />
-          </span>
-        }
-      />
-      {/* <SideBarComponent sideVisible={sideVisible} setSideVisible={setSideVisible} user={currentUser} setAuthenticated={setAuthenticated} /> */}
+      <Nav />
       <Switch>
         <Route path="/" exact={true}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <HomePageComponent />
-          </div>
+          <HomePageComponent />
         </Route>
-        <Route path="/make/:makeName" exact={true}>
+        {/* <Route path="/make/:makeName" exact={true}>
           <MakeDealsComponent />
         </Route>
         <Route exact path="/deal/inquiries">
           <DealInquiriesComponent />
-        </Route>
-        <Route exact path="/deal/manage">
+        </Route> */}
+        {/* <Route exact path="/deal/manage">
           <DealManageComponent />
         </Route>
         <Route exact path="/deal/create">
@@ -98,8 +50,8 @@ function App() {
             setUser={setUser}
             setWelcomeOpen={setWelcomeOpen}
           />
-        </Route>
-        <Route path="/sign-up" exact={true}>
+        </Route> */}
+        {/* <Route path="/sign-up" exact={true}>
           <SignUpForm
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
@@ -114,7 +66,7 @@ function App() {
         </Route>
         <Route path="/:brokerUsername" exact={true}>
           <BrokerPageComponent />
-        </Route>
+        </Route> */}
       </Switch>
     </BrowserRouter>
   );
