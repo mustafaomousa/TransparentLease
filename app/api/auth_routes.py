@@ -9,9 +9,6 @@ auth_routes = Blueprint('auth', __name__)
 
 
 def validation_errors_to_error_messages(validation_errors):
-    """
-    Simple function that turns the WTForms validation errors into a simple list
-    """
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
@@ -21,47 +18,17 @@ def validation_errors_to_error_messages(validation_errors):
 
 @auth_routes.route('/')
 def authenticate():
-    """
-    Authenticates a user.
-    """
     if current_user.is_authenticated:
-        if current_user.broker == True:
-            broker_deals = BrokerDeal.query.filter(
-                BrokerDeal.broker_id == current_user.id).all()
-
-            broker_inquiries = db.session.query(
-                UserInquiry).join(BrokerDeal).join(User).filter(User.id == current_user.id).all()
-
-            user = current_user.to_dict()
-            user["user_deals"] = [broker_deal.to_dict()
-                                  for broker_deal in broker_deals]
-            user["active_inquiries"] = {broker_inquiry.id: broker_inquiry.to_dict(
-            ) for broker_inquiry in broker_inquiries}
-            return user
-        if current_user.broker == False:
-            user_inquiries = UserInquiry.query.filter(
-                UserInquiry.user_id == current_user.id).all()
-            user = current_user.to_dict()
-            user["user_inquiries"] = {
-                user_inquiry.id: user_inquiry.to_dict() for user_inquiry in user_inquiries}
-            return user
         return current_user.to_dict()
-    return {'errors': ['Unauthorized']}, 401
+    return {'errors': ['Unauthorized']}
 
 
 @auth_routes.route('/login', methods=['POST'])
 def login():
-    """
-    Logs a user in
-    """
     form = LoginForm()
-    print(request.get_json())
-    # Get the csrf_token from the request cookie and put it into the
-    # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data['email']).first()
+        user = User.query.filter(User.username == form.data['username']).first()
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -69,18 +36,12 @@ def login():
 
 @auth_routes.route('/logout')
 def logout():
-    """
-    Logs a user out
-    """
     logout_user()
     return {'message': 'User logged out'}
 
 
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
-    """
-    Creates a new user and logs them in
-    """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -109,7 +70,4 @@ def sign_up():
 
 @auth_routes.route('/unauthorized')
 def unauthorized():
-    """
-    Returns unauthorized JSON when flask-login authentication fails
-    """
     return {'errors': ['Unauthorized']}, 401

@@ -6,6 +6,7 @@ import {
   Button,
   Container,
   IconButton,
+  Stack,
   Toolbar,
   Tooltip,
   Typography,
@@ -32,7 +33,7 @@ const Nav = () => {
             TransparentLease
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton>
+            <IconButton color="inherit">
               <MenuIcon />
             </IconButton>
           </Box>
@@ -46,10 +47,10 @@ const Nav = () => {
               </Tooltip>
             </Box>
           ) : (
-            <Box sx={{ flexGrow: 0 }}>
+            <Stack direction="row" spacing={2} sx={{ flexGrow: 0 }}>
               <LoginModal />
               <JoinModal />
-            </Box>
+            </Stack>
           )}
         </Toolbar>
       </Container>

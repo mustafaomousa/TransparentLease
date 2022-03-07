@@ -9,7 +9,14 @@ const JoinModal = () => {
 
   return (
     <>
-      <Button onClick={handleOpen}>Join</Button>
+      <Button
+        color="inherit"
+        variant="outlined"
+        size="small"
+        onClick={handleOpen}
+      >
+        Join
+      </Button>
       <Modal open={open} onClose={handleClose}>
         <Box>
           <Typography>Join</Typography>

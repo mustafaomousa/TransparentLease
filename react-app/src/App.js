@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import HomePageComponent from "./components/HomePageComponent";
+import Home from "./components/Home";
 import Nav from "./components/Nav";
 import { authenticate } from "./store/session";
 
@@ -26,7 +26,7 @@ function App() {
       <Nav />
       <Switch>
         <Route path="/" exact={true}>
-          <HomePageComponent />
+          <Home />
         </Route>
         {/* <Route path="/make/:makeName" exact={true}>
           <MakeDealsComponent />
