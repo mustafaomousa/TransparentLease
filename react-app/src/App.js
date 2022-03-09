@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import Home from "./components/Home";
@@ -24,50 +24,9 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <Switch>
-        <Route path="/" exact={true}>
-          <Home />
-        </Route>
-        {/* <Route path="/make/:makeName" exact={true}>
-          <MakeDealsComponent />
-        </Route>
-        <Route exact path="/deal/inquiries">
-          <DealInquiriesComponent />
-        </Route> */}
-        {/* <Route exact path="/deal/manage">
-          <DealManageComponent />
-        </Route>
-        <Route exact path="/deal/create">
-          <DealCreateComponent />
-        </Route>
-        <Route exact path="/deal">
-          <DealManagerComponent />
-        </Route>
-        <Route path="/login" exact={true}>
-          <LoginForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-            setUser={setUser}
-            setWelcomeOpen={setWelcomeOpen}
-          />
-        </Route> */}
-        {/* <Route path="/sign-up" exact={true}>
-          <SignUpForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-            setLoaded={setLoaded}
-          />
-        </Route>
-        <Route path="/locate">
-          <LocateComponent />
-        </Route>
-        <Route path="/portfolio" exact={true}>
-          <PortfiolioComponent />
-        </Route>
-        <Route path="/:brokerUsername" exact={true}>
-          <BrokerPageComponent />
-        </Route> */}
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} exact={true} />
+      </Routes>
     </BrowserRouter>
   );
 }

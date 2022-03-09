@@ -3,7 +3,6 @@ import {
   AppBar,
   Avatar,
   Box,
-  Button,
   Container,
   IconButton,
   Menu,
@@ -12,7 +11,9 @@ import {
   Toolbar,
   Tooltip,
   Typography,
+  Link,
 } from "@mui/material";
+// import { Link as RouterLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -39,27 +40,17 @@ const Nav = () => {
   };
 
   return (
-    <AppBar>
+    <AppBar elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-          >
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             TransparentLease
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton color="inherit">
-              <MenuIcon />
-            </IconButton>
-          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
           {sessionUser ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title={sessionUser.username}>
-                <IconButton onClick={handleOpenUserMenu}>
+                <IconButton onClick={handleOpenUserMenu} size="small">
                   <Avatar
                     src={sessionUser.profile_image}
                     sx={{ width: 35, height: 35 }}
@@ -86,11 +77,23 @@ const Nav = () => {
               </Menu>
             </Box>
           ) : (
-            <Stack direction="row" spacing={2} sx={{ flexGrow: 0 }}>
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{ display: { xs: "none", md: "flex" } }}
+            >
               <LoginModal />
               <JoinModal />
             </Stack>
           )}
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton color="inherit">
+              <MenuIcon />
+            </IconButton>
+            <Menu>
+              <MenuItem></MenuItem>
+            </Menu>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
