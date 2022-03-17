@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +22,7 @@ const Home = () => {
         }}
       >
         <Container maxWidth="xl">
-          <Typography variant="h5" color="white">
+          <Typography variant="h2" color="white">
             Discover the best auto lease deals from trusted brokers nationwide.
           </Typography>
           <Stack direction="row" spacing={2} justifyContent="start" pt={2}>
@@ -74,10 +66,10 @@ const Home = () => {
           <Grid item xs={6}>
             <Container>
               <Stack spacing={0.5}>
-                <Typography color="secondary" variant="body1">
+                <Typography color="secondary" variant="h5">
                   Transparency from the start.
                 </Typography>
-                <Typography variant="body2" color="GrayText">
+                <Typography variant="body1" color="GrayText">
                   Many don't know that auto leases have varying interest rates.
                   Brokers make these rates transparent to you as well as any
                   additional fees.
@@ -122,10 +114,10 @@ const Home = () => {
           <Grid item xs={6}>
             <Container>
               <Stack spacing={0.5}>
-                <Typography color="secondary" variant="body1">
+                <Typography color="secondary" variant="h5">
                   Save time.
                 </Typography>
-                <Typography variant="body2" color="GrayText">
+                <Typography variant="body1" color="GrayText">
                   Experienced brokers help you save time at the dealer by
                   providing bottom line numbers and facilitating the sale.
                 </Typography>
@@ -137,10 +129,10 @@ const Home = () => {
           <Grid item xs={6}>
             <Container>
               <Stack spacing={0.5}>
-                <Typography color="secondary" variant="body1">
+                <Typography color="secondary" variant="h5">
                   Save money.
                 </Typography>
-                <Typography variant="body2" color="GrayText">
+                <Typography variant="body1" color="GrayText">
                   Brokers often have access to inventory that dealers either
                   need to sell to meet a certain goal or vehicles that are new
                   but have a couple extra miles.
