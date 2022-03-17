@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Modal,
+  Paper,
   Stack,
   TextField,
   Typography,
@@ -39,19 +40,29 @@ const LoginModal = () => {
     },
   });
 
+  const onDemoLogin = async () => {
+    await dispatch(login("Demo", "password"));
+  };
+
   return (
     <>
-      <Button color="inherit" variant="text" size="small" onClick={handleOpen}>
+      <Button
+        color="secondary"
+        variant="text"
+        size="small"
+        onClick={handleOpen}
+      >
         Log in
       </Button>
       <Modal open={open} onClose={handleClose}>
-        <Box sx={style}>
+        <Paper elevation={5} sx={style}>
           <Box sx={{ pb: 3 }}>
-            <Typography variant="h6">Log in</Typography>
+            <Typography variant="h5">Welcome back</Typography>
           </Box>
           <form onSubmit={formik.handleSubmit}>
             <Stack spacing={2}>
               <TextField
+                color="secondary"
                 id="username"
                 name="username"
                 label="Username"
@@ -65,6 +76,7 @@ const LoginModal = () => {
                 required
               />
               <TextField
+                color="secondary"
                 type="password"
                 id="password"
                 name="password"
@@ -78,15 +90,21 @@ const LoginModal = () => {
                 size="small"
                 required
               />
-              <Button color="primary" variant="contained" type="submit">
-                Log in
-              </Button>
-              <Button color="primary" variant="outlined">
-                Demo
-              </Button>
+              <Stack spacing={1}>
+                <Button color="primary" variant="contained" type="submit">
+                  Log in
+                </Button>
+                <Button
+                  onClick={onDemoLogin}
+                  color="primary"
+                  variant="outlined"
+                >
+                  Demo
+                </Button>
+              </Stack>
             </Stack>
           </form>
-        </Box>
+        </Paper>
       </Modal>
     </>
   );

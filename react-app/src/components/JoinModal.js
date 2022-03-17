@@ -10,7 +10,7 @@ const JoinModal = () => {
   return (
     <>
       <Button
-        color="inherit"
+        color="secondary"
         variant="outlined"
         size="small"
         onClick={handleOpen}

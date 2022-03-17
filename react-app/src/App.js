@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
 import { authenticate } from "./store/session";
+import Footer from "./components/Footer";
+import Discover from "./components/Discover";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +28,9 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} exact={true} />
+        <Route path="/discover" element={<Discover />} exact={true} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

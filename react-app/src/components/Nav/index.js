@@ -43,12 +43,12 @@ const Nav = () => {
     <AppBar elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+          <Link href="/" underline="none" color="inherit" sx={{ flexGrow: 1 }}>
             TransparentLease
-          </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
           {sessionUser ? (
-            <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ flexGrow: 0, display: { xs: "none", sm: "flex" } }}>
               <Tooltip title={sessionUser.username}>
                 <IconButton onClick={handleOpenUserMenu} size="small">
                   <Avatar
@@ -80,14 +80,14 @@ const Nav = () => {
             <Stack
               direction="row"
               spacing={2}
-              sx={{ display: { xs: "none", md: "flex" } }}
+              sx={{ display: { xs: "none", sm: "flex" } }}
             >
               <LoginModal />
               <JoinModal />
             </Stack>
           )}
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton color="inherit">
+          <Box sx={{ display: { xs: "flex", sm: "none" } }}>
+            <IconButton color="secondary">
               <MenuIcon />
             </IconButton>
             <Menu>
