@@ -11,7 +11,7 @@ const JoinModal = () => {
     <>
       <Button
         color="secondary"
-        variant="outlined"
+        variant="contained"
         size="small"
         onClick={handleOpen}
       >

@@ -43,10 +43,34 @@ const Nav = () => {
     <AppBar elevation={0}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link href="/" underline="none" color="inherit" sx={{ flexGrow: 1 }}>
-            TransparentLease
+          <Link
+            href="/"
+            underline="none"
+            sx={{ flexGrow: { xs: 1, sm: 0 }, mr: 4 }}
+          >
+            <Typography color="secondary" fontWeight="bold" variant="h6">
+              TransparentLease
+            </Typography>
           </Link>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              alignItems: "center",
+              flexGrow: 1,
+            }}
+          >
+            <Link underline="none" href="/discover" color="inherit">
+              <Typography variant="overline">Discover</Typography>
+            </Link>
+            <Link underline="none" href="/broker" color="inherit">
+              <Typography variant="overline">Broker</Typography>
+            </Link>
+            <Link underline="none" href="/about" color="inherit">
+              <Typography variant="overline">About</Typography>
+            </Link>
+          </Stack>
           {sessionUser ? (
             <Box sx={{ flexGrow: 0, display: { xs: "none", sm: "flex" } }}>
               <Tooltip title={sessionUser.username}>

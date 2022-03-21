@@ -1,5 +1,8 @@
 import {
+  AccordionActions,
+  Badge,
   Checkbox,
+  Chip,
   FormControlLabel,
   FormGroup,
   Typography,
@@ -8,16 +11,31 @@ import {
 import Accordion from "../../../styledComponents/Accordion";
 import AccordionSummary from "../../../styledComponents/AccordionSummary";
 import AccordionDetails from "../../../styledComponents/AccordionDetails";
+import { Box } from "@mui/system";
 
 const Make = ({ makes, handleSelectMake, filter }) => {
   return (
     <Accordion
       disableGutters
-      expanded={filter.get("year") && !filter.get("make")}
+      // expanded={filter.get("year") && !filter.get("make")}
     >
       <AccordionSummary>
-        <Typography variant="body2">Make</Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Typography sx={{ flexGrow: 1 }} variant="body2">
+            Make
+          </Typography>
+          {filter.get("make") && (
+            <Chip size="small" label={filter.get("make")} color="primary" />
+          )}
+        </Box>
       </AccordionSummary>
+
       <AccordionDetails>
         <FormGroup>
           {makes &&

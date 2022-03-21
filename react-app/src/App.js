@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import { authenticate } from "./store/session";
 import Footer from "./components/Footer";
 import Discover from "./components/Discover";
+import { Box, Container } from "@mui/material";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,10 +27,18 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} exact={true} />
-        <Route path="/discover" element={<Discover />} exact={true} />
-      </Routes>
+      <Box
+        sx={{
+          paddingY: { xs: 9, sm: 10 },
+          backgroundColor: "white",
+          minHeight: "100vh",
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<Home />} exact={true} />
+          <Route path="/discover" element={<Discover />} exact={true} />
+        </Routes>
+      </Box>
       <Footer />
     </BrowserRouter>
   );

@@ -11,6 +11,7 @@ const Accordion = styled((props) => (
   "&:before": {
     display: "none",
   },
+  width: "200px",
 }));
 
 export default Accordion;

@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 
 import { getMakesByYear, getModelsByMake } from "../carmakemodelapi";
 import Make from "./Make";
-import MilesPerYear from "./MilesPerYear";
 import Model from "./Model";
-import Term from "./Term";
 import Year from "./Year";
+import { Box } from "@mui/material";
 
 const Filter = () => {
   const [filter, setFilter] = useSearchParams();
@@ -59,7 +58,7 @@ const Filter = () => {
   }, [filter.get("make")]);
 
   return (
-    <>
+    <Box>
       <Year filter={filter} years={years} handleSelectYear={handleSelectYear} />
       <Make filter={filter} makes={makes} handleSelectMake={handleSelectMake} />
       <Model
@@ -69,7 +68,7 @@ const Filter = () => {
       />
       {/* <MilesPerYear />
       <Term /> */}
-    </>
+    </Box>
   );
 };
 

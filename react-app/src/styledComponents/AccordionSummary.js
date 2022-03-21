@@ -1,7 +1,10 @@
 import { styled, AccordionSummary as MuiAccordionSummary } from "@mui/material";
 
 const AccordionSummary = styled((props) => (
-  <MuiAccordionSummary expandIcon={"+"} {...props} />
+  <MuiAccordionSummary
+    // expandIcon={"+"}
+    {...props}
+  />
 ))(({ theme }) => ({
   color: theme.palette.primary.main,
   flexDirection: "row-reverse",
@@ -9,7 +12,7 @@ const AccordionSummary = styled((props) => (
     transform: "rotate(90deg)",
   },
   "& .MuiAccordionSummary-content": {
-    marginLeft: theme.spacing(1),
+    // marginLeft: theme.spacing(1),
   },
 }));
 

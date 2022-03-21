@@ -1,5 +1,7 @@
 import {
+  Box,
   Checkbox,
+  Chip,
   FormControlLabel,
   FormGroup,
   Typography,
@@ -18,9 +20,22 @@ const Year = ({ years, handleSelectYear, filter }) => {
   }, [filter]);
 
   return (
-    <Accordion disableGutters expanded={!filter.get("year")}>
+    <Accordion disableGutters>
       <AccordionSummary>
-        <Typography variant="body2">Year</Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Typography sx={{ flexGrow: 1 }} variant="body2">
+            Year
+          </Typography>
+          {filter.get("year") && (
+            <Chip size="small" label={filter.get("year")} color="primary" />
+          )}
+        </Box>
       </AccordionSummary>
       <AccordionDetails>
         <FormGroup>

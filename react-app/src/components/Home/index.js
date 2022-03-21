@@ -13,36 +13,28 @@ const Home = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
-    <Box sx={{ paddingTop: { xs: 7, sm: 8 }, backgroundColor: "white" }}>
-      <Box
-        sx={{
-          width: "100%",
-          backgroundColor: "#242582",
-          py: 10,
-        }}
-      >
-        <Container maxWidth="xl">
-          <Typography variant="h2" color="white">
-            Discover the best auto lease deals from trusted brokers nationwide.
-          </Typography>
-          <Stack direction="row" spacing={2} justifyContent="start" pt={2}>
-            {!sessionUser && (
-              <Button color="secondary" variant="contained" size="small">
-                Join for free
-              </Button>
-            )}
-            <Button
-              color="secondary"
-              variant="outlined"
-              size="small"
-              onClick={() => navigate("/discover")}
-            >
-              Discover deals
+    <Container>
+      <Box sx={{ py: 2 }}>
+        <Typography variant="h3" color="primary">
+          Discover the best auto lease deals from trusted brokers nationwide.
+        </Typography>
+        <Stack direction="row" spacing={2} justifyContent="start" pt={2}>
+          {!sessionUser && (
+            <Button color="primary" variant="contained" size="small">
+              Join for free
             </Button>
-          </Stack>
-        </Container>
+          )}
+          <Button
+            color="primary"
+            variant="outlined"
+            size="small"
+            onClick={() => navigate("/discover")}
+          >
+            Discover deals
+          </Button>
+        </Stack>
       </Box>
-      <Container maxWidth="lg">
+      <Box>
         <Grid container mt={5} height={200}>
           <Grid item xs={6}>
             <Container
@@ -142,8 +134,8 @@ const Home = () => {
           </Grid>
           <Grid item xs={6}></Grid>
         </Grid>
-      </Container>
-    </Box>
+      </Box>
+    </Container>
   );
 };
 
