@@ -22,13 +22,7 @@ class User(db.Model, UserMixin):
     zip_code = db.Column(db.Integer, nullable=True)
     created_at = db.Column(db.Date, nullable=True)
 
-    broker_lease_infos = db.relationship("LeaseInfo")
-    broker_deals = db.relationship("BrokerDeal", backref="users")
-    broker_notes = db.relationship(
-        "BrokerDealNote")
-    broker_pictures = db.relationship(
-        "BrokerDealPicture")
-    user_alerts = db.relationship("DealAlert")
+    broker_deals = db.relationship("Deal", backref="users")
 
     @property
     def password(self):
