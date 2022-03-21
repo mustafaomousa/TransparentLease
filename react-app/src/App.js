@@ -8,6 +8,7 @@ import { authenticate } from "./store/session";
 import Footer from "./components/Footer";
 import Discover from "./components/Discover";
 import { Box, Container } from "@mui/material";
+import Account from "./components/Account";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} exact={true} />
           <Route path="/discover" element={<Discover />} exact={true} />
+          <Route path="/account" element={<Account />} exact={true} />
         </Routes>
       </Box>
       <Footer />

@@ -4,6 +4,9 @@ import Filter from "./Filter";
 const Discover = () => {
   return (
     <Container>
+      <Typography variant="h6" color="primary" sx={{ mb: 2 }}>
+        Discover deals
+      </Typography>
       <Stack direction="row" spacing={2}>
         <Filter />
         <Box

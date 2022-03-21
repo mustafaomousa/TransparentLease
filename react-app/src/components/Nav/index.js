@@ -13,7 +13,7 @@ import {
   Typography,
   Link,
 } from "@mui/material";
-// import { Link as RouterLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +23,7 @@ import { logout } from "../../store/session";
 
 const Nav = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -48,7 +48,7 @@ const Nav = () => {
             underline="none"
             sx={{ flexGrow: { xs: 1, sm: 0 }, mr: 4 }}
           >
-            <Typography color="secondary" fontWeight="bold" variant="h6">
+            <Typography color="white" fontWeight="bold" variant="h6">
               TransparentLease
             </Typography>
           </Link>
@@ -95,6 +95,9 @@ const Nav = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
+                <MenuItem onClick={() => navigate("/account")}>
+                  <Typography>Account</Typography>
+                </MenuItem>
                 <MenuItem onClick={handleLogout}>
                   <Typography>Log out</Typography>
                 </MenuItem>
