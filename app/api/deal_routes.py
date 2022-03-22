@@ -34,15 +34,21 @@ def create_deal():
     if form.validate_on_submit():
 
         deal = Deal(
-            broker_id=current_user.id,
-            make_id=make.id,
-            fee=int(form.data["broker_fee"]),
-            active_month_year=form.data["listed_date"],
-            listed=form.data["listed"],
-            advertise=form.data["advertise"],
-            created_at=datetime.now(),
-            updated_at=datetime.now(),
-            demo=form.data["demo"]
+            broker_id = form.data['broker_id'],
+            year = form.data['year'],
+            make = form.data['make'],
+            model = form.data['model'],
+            months = form.data['months'],
+            miles = form.data['miles'],
+            money_factor = form.data['money_factor'],
+            residual = form.data['residual'],
+            msrp = form.data['msrp'],
+            discount = form.data['discount'],
+            additional_fees = form.data['additional_fees'],
+            payment = form.data['payment'],
+            active_month_year = form.data['active_month_year'],
+            listed = form.data['listed'],
+            demo = form.data['demo'],
         )
 
         db.session.add(deal)

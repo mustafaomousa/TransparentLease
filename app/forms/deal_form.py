@@ -5,23 +5,19 @@ from app.models import Deal
 
 
 class DealForm(FlaskForm):
+    broker_id = IntegerField('broker_id', validators=[DataRequired()])
     year = IntegerField('year', validators=[DataRequired()])
-    make_name = StringField('make_name', validators=[DataRequired()])
-    model_name = StringField('model', validators=[DataRequired()])
+    make = StringField('make', validators=[DataRequired()])
+    model = StringField('model', validators=[DataRequired()])
     months = IntegerField('months', validators=[DataRequired()])
     miles = IntegerField('miles', validators=[DataRequired()])
+    money_factor = FloatField('money_factor', validators=[DataRequired()])
+    residual = FloatField('residual', validators=[DataRequired()])
     msrp = IntegerField('msrp', validators=[DataRequired()])
     discount = IntegerField('discount', validators=[DataRequired()])
-    residual = IntegerField('residual', validators=[DataRequired()])
-    money_factor = FloatField('money factor', validators=[DataRequired()])
-    loyalty = FloatField('loyalty')
-    lease_cash = FloatField('lease cash')
-    conquest = FloatField('conquest')
+    additional_fees = FloatField('additional_fees', validators=[DataRequired()])
     payment = FloatField('payment', validators=[DataRequired()])
-    broker_fee = FloatField('broker fee', validators=[DataRequired()])
-    listed_date = StringField('listed date')
-    additional_fees = FloatField(
-        'additional fees', validators=[DataRequired()])
-    demo = BooleanField('demo')
-    advertise = BooleanField('advertise')
+    active_month_year = DateField('active_month_year')
     listed = BooleanField('listed')
+    demo = BooleanField('demo')
+    
