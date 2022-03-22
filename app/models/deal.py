@@ -10,7 +10,7 @@ class Deal(db.Model):
     year = db.Column(db.Integer, nullable=False)
     make = db.Column(db.String, nullable=False)
     model = db.Column(db.String, nullable=False)
-
+    trim = db.Column(db.String, nullable=False)
     months = db.Column(db.Integer, nullable=False)
     miles = db.Column(db.Integer, nullable=False)
     money_factor = db.Column(db.Float, nullable=False)
@@ -35,6 +35,7 @@ class Deal(db.Model):
             "year": self.year,
             "make": self.make,
             "model": self.model,
+            "trim": self.trim,
             "months": self.months,
             "miles": self.miles,
             "money_factor": self.money_factor,

@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Discover from "./components/Discover";
 import { Box, Container } from "@mui/material";
 import Account from "./components/Account";
+import Broker from "./components/Broker";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
           <Route path="/" element={<Home />} exact={true} />
           <Route path="/discover" element={<Discover />} exact={true} />
           <Route path="/account" element={<Account />} exact={true} />
+          <Route path="/broker" element={<Broker />} exact={true} />
         </Routes>
       </Box>
       <Footer />

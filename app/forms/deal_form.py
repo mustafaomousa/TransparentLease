@@ -10,6 +10,7 @@ class DealForm(FlaskForm):
     make = StringField('make', validators=[DataRequired()])
     model = StringField('model', validators=[DataRequired()])
     months = IntegerField('months', validators=[DataRequired()])
+    trim = StringField('trim', validators=[DataRequired()])
     miles = IntegerField('miles', validators=[DataRequired()])
     money_factor = FloatField('money_factor', validators=[DataRequired()])
     residual = FloatField('residual', validators=[DataRequired()])

@@ -38,6 +38,7 @@ def create_deal():
             year = form.data['year'],
             make = form.data['make'],
             model = form.data['model'],
+            trim = form.data['trim'],
             months = form.data['months'],
             miles = form.data['miles'],
             money_factor = form.data['money_factor'],
